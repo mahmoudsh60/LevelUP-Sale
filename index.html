@@ -114,21 +114,21 @@
             <div class="pkg-card">
                 <div class="pkg-title">باقة الأكشن والمحركات</div>
                 <div class="pkg-info" id="pkg1-info">جاري الحساب...</div>
-                <div class="pkg-desc">Burnout Paradise, Call of Duty WWII, Crash Racing, FC 2026, Mortal Kombat 11, GTA V</div>
+                <div class="pkg-desc">Burnout Paradise, Call of Duty WWII Gold Edition, Crash Racing, FC 2026, Mortal Kombat 11, Grand Theft Auto V</div>
                 <button class="btn-pkg" onclick="addPackage([9, 10, 11, 13, 25, 16])">🛒 أضف الباقة لعرضي</button>
             </div>
             
             <div class="pkg-card">
                 <div class="pkg-title">باقة الحماس والقتال</div>
                 <div class="pkg-info" id="pkg2-info">جاري الحساب...</div>
-                <div class="pkg-desc">NFS Hot Pursuit, Black Ops III, Crash Racing, FC 2026, Tekken 7, Mafia Trilogy</div>
+                <div class="pkg-desc">NFS Hot Pursuit Remastered, Black Ops III, Crash Racing, FC 2026, Tekken 7, Mafia Trilogy</div>
                 <button class="btn-pkg" onclick="addPackage([29, 8, 11, 13, 35, 21])">🛒 أضف الباقة لعرضي</button>
             </div>
 
             <div class="pkg-card">
                 <div class="pkg-title">باقة التدمير والسرعة</div>
                 <div class="pkg-info" id="pkg3-info">جاري الحساب...</div>
-                <div class="pkg-desc">NFS Payback, Black Ops 4, Crash Racing, Mortal Kombat 11, Just Cause 4</div>
+                <div class="pkg-desc">NFS Payback, Black Ops 4, Crash Racing, Mortal Kombat 11, Just Cause 4 Reloaded</div>
                 <button class="btn-pkg" onclick="addPackage([30, 7, 11, 25, 19])">🛒 أضف الباقة لعرضي</button>
             </div>
 
@@ -136,7 +136,7 @@
                 <div class="pkg-title" style="color: var(--text-main);">باقة LevelUP 150 Giga WE</div>
                 <div class="pkg-info">💾 150 جيجا | 💰 85 ج.م</div>
                 <div style="width: 100%; height: 100px; border-radius: 8px; overflow: hidden; margin-bottom: 15px; border: 1px solid #444;">
-                    <img src="images/levelup.jpg" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+                    <img src="levelup.jpg" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
                 </div>
                 <div class="pkg-desc">باقة داتا مخصصة لتحميل 150 جيجا ألعاب من اختيارك.</div>
                 <button class="btn-pkg" style="background-color: var(--primary-color); color: #000;" onclick="addLevelUpPackage()">🛒 أضف الباقة لعرضي</button>
@@ -155,7 +155,7 @@
                 <button class="filter-btn" onclick="toggleGenreFilter('أكشن', this)">أكشن</button>
                 <button class="filter-btn" onclick="toggleGenreFilter('مغامرات', this)">مغامرات</button>
                 <button class="filter-btn" onclick="toggleGenreFilter('عالم مفتوح', this)">عالم مفتوح</button>
-                <button class="filter-btn" onclick="toggleFilter('genre', 'رعب', this)">رعب</button>
+                <button class="filter-btn" onclick="toggleGenreFilter('رعب', this)">رعب</button>
                 <button class="filter-btn" onclick="toggleGenreFilter('العاب عائلية', this)">ألعاب عائلية</button>
                 <button class="filter-btn" onclick="toggleGenreFilter('سباق', this)">سباق</button>
                 <button class="filter-btn" onclick="toggleGenreFilter('رياضة', this)">رياضة</button>
@@ -215,8 +215,7 @@
     </div>
 
     <script>
-        // >>> ضع رابط جوجل شيت الجديد هنا <<<
-        const GOOGLE_SHEET_URL = 'رابط_جوجل_الجديد_هنا';
+        const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwF_iYswSvpyirHWy0PXeBUkTi6CX-vFqJRksaS3_Rz6uzfJdEXvgk-gKfaoK1NFxgX/exec';
 
         const gamesDB = [
             { id: 1, name: "A way out", genres: ["مغامرات", "العاب عائلية"], size: 17, prices: { 'Offline': 100, 'Pri PS4': 400, 'Pri PS5': 300, 'Secondary': 200 }, image: "a-way-out.jpg" },
@@ -242,7 +241,7 @@
             { id: 21, name: "Mafia Trilogy", genres: ["أكشن", "عالم مفتوح"], size: 100, prices: { 'Offline': 80, 'Pri PS4': 300, 'Pri PS5': 200, 'Secondary': 0 }, image: "mafia-trilogy.jpg" },
             { id: 22, name: "marvel's spider-man miles morales", genres: ["أكشن", "عالم مفتوح"], size: 50, prices: { 'Offline': 150, 'Pri PS4': 550, 'Pri PS5': 500, 'Secondary': 0 }, image: "marvels-spider-man-miles-morales.jpg" },
             { id: 23, name: "Marvel's Spider-Man Remastered", genres: ["أكشن", "عالم مفتوح"], size: 50, prices: { 'Offline': 80, 'Pri PS4': 350, 'Pri PS5': 250, 'Secondary': 200 }, image: "marvels-spider-man-remastered.png" },
-            { id: 24, name: "Minecraft", genres: ["العاب عائلية"], size: 2, prices: { 'Offline': 150, 'Pri PS4': 0, 'Pri PS5': 0, 'Secondary': 0 }, image: "minecraft.jpg" },
+            { id: 24, name: "Minecraft", genres: ["العاب عائلية", "مغامرات"], size: 2, prices: { 'Offline': 150, 'Pri PS4': 0, 'Pri PS5': 0, 'Secondary': 0 }, image: "minecraft.jpg" },
             { id: 25, name: "Mortal Kombat 11", genres: ["أكشن"], size: 80, prices: { 'Offline': 80, 'Pri PS4': 300, 'Pri PS5': 250, 'Secondary': 200 }, image: "mortal-kombat-11.jpg" },
             { id: 26, name: "Mortal Kombat™ 1", genres: ["أكشن"], size: 100, prices: { 'Offline': 150, 'Pri PS4': 0, 'Pri PS5': 450, 'Secondary': 0 }, image: "mortal-kombat-1.jpg" },
             { id: 27, name: "MotoGP 22 PS4 & PS5", genres: ["سباق", "رياضة"], size: 30, prices: { 'Offline': 80, 'Pri PS4': 250, 'Pri PS5': 200, 'Secondary': 150 }, image: "motogp-22-ps4--ps5.jpg" },
@@ -299,7 +298,6 @@
             renderGames();
         }
 
-        // إضافة باقة الأوفلاين (مع التحقق من القواعد)
         function addPackage(gameIds) {
             let hasPriOrSec = cart.some(c => c.type !== 'Offline');
             if (hasPriOrSec) {
@@ -318,7 +316,6 @@
             alert("تم إضافة باقة الأوفلاين بنجاح لعرضك!");
         }
 
-        // دالة إضافة باقة LevelUP WE
         function addLevelUpPackage() {
             let hasPriOrSec = cart.some(c => c.type !== 'Offline');
             if(hasPriOrSec) {
@@ -332,11 +329,10 @@
             }
         }
 
-        // النظام الذكي لمنع تداخل التصاريح (Smart Validation)
+        // قواعد اختيار النسخ الذكية
         function toggleSpecificVersion(gameId, type, price) {
             const existingIndex = cart.findIndex(c => c.id === gameId && c.type === type);
             
-            // لو اللعبة موجودة في السلة، احذفها فوراً بدون شروط
             if (existingIndex > -1) {
                 cart.splice(existingIndex, 1);
                 updateCartUI();
@@ -344,30 +340,27 @@
                 return;
             }
 
-            // لو بيضيف لعبة جديدة، نطبق الشروط:
             let hasOffline = cart.some(c => c.type === 'Offline');
             let hasPri4 = cart.some(c => c.type === 'Pri PS4');
             let hasPri5 = cart.some(c => c.type === 'Pri PS5');
-            let hasSec = cart.some(c => c.type === 'Secondary');
 
-            if (type === 'Offline' && (hasPri4 || hasPri5 || hasSec)) {
-                alert("لا يمكن إضافة ألعاب أوفلاين مع نسخ البرايمري أو السكندري في نفس الطلب.");
+            if (type === 'Offline' && cart.length > 0 && !hasOffline) {
+                alert("لا يمكن إضافة ألعاب أوفلاين لأن السلة تحتوي على نسخ برايمري أو سكندري.");
                 return;
             }
-            if ((type === 'Pri PS4' || type === 'Pri PS5' || type === 'Secondary') && hasOffline) {
+            if (type !== 'Offline' && hasOffline) {
                 alert("عفواً، السلة تحتوي على ألعاب أوفلاين. لا يمكن دمجها مع برايمري أو سكندري.");
                 return;
             }
             if (type === 'Pri PS4' && hasPri5) {
-                alert("لا يمكن اختيار نسخة Pri PS4 مع نسخة Pri PS5 في نفس الطلب.");
+                alert("لا يمكن اختيار نسخة Pri PS4 لوجود نسخة Pri PS5 في العرض.");
                 return;
             }
             if (type === 'Pri PS5' && hasPri4) {
-                alert("لا يمكن اختيار نسخة Pri PS5 مع نسخة Pri PS4 في نفس الطلب.");
+                alert("لا يمكن اختيار نسخة Pri PS5 لوجود نسخة Pri PS4 في العرض.");
                 return;
             }
 
-            // لو عدت من الشروط، ضيفها للسلة
             const game = gamesDB.find(g => g.id === gameId);
             cart.push({ id: game.id, name: game.name, size: game.size, type: type, price: price });
             updateCartUI();
@@ -412,7 +405,7 @@
                     <div class="card">
                         <div class="card-img-container">
                             <span class="fallback-text">${game.name}</span>
-                            <img src="images/${game.image}" loading="lazy" onerror="this.style.display='none'">
+                            <img src="${game.image}" loading="lazy" onerror="this.style.display='none'">
                         </div>
                         <div class="card-header">
                             <h3 class="game-title">${game.name}</h3>
@@ -457,13 +450,12 @@
                     </div>`;
             });
             
-            // حساب ضريبة المحل لو السويتش متفعل
             const isStoreFeeChecked = document.getElementById('storeFeeToggle').checked;
             if(isStoreFeeChecked && cart.length > 0) {
                 totalPrice += 100;
                 list.innerHTML += `
                     <div class="cart-item" style="border-top: 1px dashed var(--danger); padding-top: 10px;">
-                        <span style="color: var(--danger); font-weight: bold;">ضريبة تنزيل الألعاب في المحل</span>
+                        <span style="color: var(--danger); font-weight: bold;">رسوم التنزيل داخل المحل</span>
                         <span style="color:var(--danger); font-weight:bold;">100 ج</span>
                     </div>`;
             }
@@ -505,7 +497,7 @@
             const isStoreFeeChecked = document.getElementById('storeFeeToggle').checked;
             if(isStoreFeeChecked) {
                 totalPrice += 100;
-                text += `\n* تم إضافة ضريبة التحميل في المحل (+100 ج)\n`;
+                text += `\n* تنزيل الألعاب سيكون داخل المحل (+100 ج)\n`;
             }
 
             let licenseGroup = hasPriOrSec ? "Primary/Secondary" : "Offline";
@@ -513,7 +505,7 @@
             text += `\nإجمالي المساحة: ${totalSize} GB`;
             text += `\nالسعر الإجمالي: ${totalPrice} جنيه.`;
 
-            // إرسال البيانات لجوجل شيت بالشكل الجديد
+            // إرسال لجوجل شيت: التاريخ|الاسم|الموبايل|التصريح|الألعاب|الإجمالي|المساحة
             fetch(GOOGLE_SHEET_URL, {
                 method: 'POST',
                 mode: 'no-cors',
@@ -521,7 +513,7 @@
                 body: JSON.stringify({
                     name: name,
                     phone: contact,
-                    licenseType: licenseGroup, // بيبعت أوفلاين أو برايمري لجوجل شيت
+                    licenseType: licenseGroup,
                     gamesFormatted: gamesForSheetText,
                     totalPrice: `${totalPrice} EGP`,
                     totalSize: `${totalSize} GB`
@@ -530,7 +522,7 @@
 
             alert("تم تجهيز طلبك! جاري تحويلك للواتساب للتأكيد...");
             clearCart();
-            document.getElementById('storeFeeToggle').checked = false; // إعادة تعيين السويتش
+            document.getElementById('storeFeeToggle').checked = false;
             closeCart();
             window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
         }
