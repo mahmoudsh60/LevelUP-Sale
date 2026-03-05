@@ -17,7 +17,7 @@
         
         header { background-color: #0b1120; padding: 25px 15px; text-align: center; border-bottom: 3px solid var(--primary-color); position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.8);}
         header h1 { margin: 0; font-size: 32px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; text-shadow: 2px 2px 4px rgba(245, 158, 11, 0.4);}
-        header span { color: var(--primary-color); } /* كلمة SALE بالدهبي */
+        header span { color: var(--primary-color); }
         
         .fb-link { display: inline-block; margin-top: 10px; background-color: var(--fb-color); color: white; padding: 6px 20px; border-radius: 20px; font-size: 14px; text-decoration: none; font-weight: bold; transition: 0.2s;}
         .fb-link:hover { transform: scale(1.05); }
@@ -75,8 +75,10 @@
         .cart-content { background-color: var(--card-bg); width: 100%; max-width: 500px; border-radius: 15px; padding: 25px; max-height: 90vh; overflow-y: auto; border: 2px solid var(--accent-color); }
         .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; padding-bottom: 15px; margin-bottom: 15px; }
         .cart-header h2 { margin: 0; color: var(--primary-color); }
+        
         .user-info-section { display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px; }
         .user-info-section input { padding: 12px; border-radius: 8px; border: 1px solid #475569; background-color: #0f172a; color: white; font-family: 'Tajawal', sans-serif; }
+        
         .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 14px; border-bottom: 1px dashed #334155; padding-bottom: 8px; }
         
         /* تصميم زر التحميل في المحل */
@@ -186,6 +188,7 @@
             <div class="user-info-section">
                 <input type="text" id="userName" placeholder="الاسم الثنائي...">
                 <input type="tel" id="userPhone" placeholder="رقم الموبايل...">
+                <input type="tel" id="userLandline" placeholder="الرقم الأرضي (اختياري لباقة WE)...">
             </div>
 
             <div class="store-fee-box">
@@ -329,7 +332,6 @@
             }
         }
 
-        // قواعد اختيار النسخ الذكية
         function toggleSpecificVersion(gameId, type, price) {
             const existingIndex = cart.findIndex(c => c.id === gameId && c.type === type);
             
@@ -470,12 +472,16 @@
         function sendWhatsApp(phone) {
             const name = document.getElementById('userName').value.trim();
             const contact = document.getElementById('userPhone').value.trim();
+            const landline = document.getElementById('userLandline').value.trim();
             
             if(!name || !contact) { alert("من فضلك اكتب اسمك ورقم الموبايل أولاً!"); return; }
             if(cart.length === 0) { alert("يرجى اختيار ألعاب أولاً لتكوين عرضك!"); return; }
 
             let totalSize = 0, totalPrice = 0;
-            let text = `مرحباً Level UP Sale،\nأنا ${name} (رقمي: ${contact})\nأريد حجز هذا العرض:\n\n`;
+            
+            let text = `مرحباً Level UP Sale،\nأنا ${name} (موبايل: ${contact})\n`;
+            if (landline) { text += `(أرضي: ${landline})\n`; }
+            text += `أريد حجز هذا العرض:\n\n`;
             
             let gamesForSheetText = ""; 
             let uniqueGames = new Set();
@@ -505,14 +511,19 @@
             text += `\nإجمالي المساحة: ${totalSize} GB`;
             text += `\nالسعر الإجمالي: ${totalPrice} جنيه.`;
 
-            // إرسال لجوجل شيت: التاريخ|الاسم|الموبايل|التصريح|الألعاب|الإجمالي|المساحة
+            // دمج الرقمين علشان يروحوا في خليه واحدة في الشيت
+            let combinedPhone = contact;
+            if (landline) {
+                combinedPhone += " | أرضي: " + landline;
+            }
+
             fetch(GOOGLE_SHEET_URL, {
                 method: 'POST',
                 mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     name: name,
-                    phone: contact,
+                    phone: combinedPhone,
                     licenseType: licenseGroup,
                     gamesFormatted: gamesForSheetText,
                     totalPrice: `${totalPrice} EGP`,
@@ -523,6 +534,7 @@
             alert("تم تجهيز طلبك! جاري تحويلك للواتساب للتأكيد...");
             clearCart();
             document.getElementById('storeFeeToggle').checked = false;
+            document.getElementById('userLandline').value = ""; // تفريغ خانة الأرضي
             closeCart();
             window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
         }
