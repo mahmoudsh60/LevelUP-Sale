@@ -7,9 +7,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0f172a; --card-bg: #1e293b; --primary-color: #f59e0b; 
-            --primary-hover: #fbbf24; --accent-color: #ef4444; --text-main: #f8fafc;
-            --text-muted: #94a3b8; --danger: #dc2626; --fb-color: #1877F2;
+            /* ألوان العروض */
+            --bg-color: #0f172a; 
+            --card-bg: #1e293b; 
+            --primary-color: #f59e0b; 
+            --primary-hover: #fbbf24; 
+            --accent-color: #ef4444; 
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8; 
+            --danger: #dc2626; 
+            --fb-color: #1877F2;
         }
         body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Tajawal', sans-serif; margin: 0; padding: 0; padding-bottom: 80px; }
         .top-info-bar { background-color: #020617; color: var(--primary-color); padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: bold; border-bottom: 2px solid var(--accent-color); }
@@ -20,62 +27,61 @@
         header span { color: var(--accent-color); }
         
         .container { max-width: 1200px; margin: auto; padding: 20px 15px; }
-        .section-title { font-size: 24px; color: var(--primary-color); margin-bottom: 20px; font-weight: 900; display: flex; align-items: center; gap: 10px; border-bottom: 2px dashed #334155; padding-bottom: 10px;}
+        .section-title { font-size: 26px; color: var(--primary-color); margin-bottom: 25px; font-weight: 900; display: flex; align-items: center; gap: 10px; border-bottom: 2px dashed #334155; padding-bottom: 10px;}
         
-        /* الباقات الأساسية */
+        /* ======== باقات الأوفلاين ======== */
         .packages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 40px; }
-        .pkg-card { background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%); border: 2px solid var(--accent-color); border-radius: 12px; padding: 20px; text-align: center; transition: 0.3s; position: relative; overflow: hidden; }
-        .pkg-card::before { content: '🔥 باقة أوفلاين'; position: absolute; top: 15px; right: -35px; background: var(--accent-color); color: white; padding: 5px 40px; font-weight: bold; transform: rotate(45deg); font-size: 12px; }
-        .pkg-title { font-size: 20px; font-weight: bold; color: var(--primary-color); margin-bottom: 15px; }
-        .pkg-info { background-color: #020617; display: inline-block; padding: 8px 20px; border-radius: 20px; font-size: 14px; font-weight: bold; margin-bottom: 15px; border: 1px solid #334155; color: white;}
+        .pkg-card { background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%); border: 2px solid var(--accent-color); border-radius: 15px; padding: 20px; text-align: center; transition: 0.3s; position: relative; overflow: hidden; }
+        .pkg-card::before { content: '🔥 عرض أوفلاين'; position: absolute; top: 15px; right: -35px; background: var(--accent-color); color: white; padding: 5px 40px; font-weight: bold; transform: rotate(45deg); font-size: 12px; }
+        .pkg-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3); }
+        .pkg-title { font-size: 22px; font-weight: bold; color: var(--primary-color); margin-bottom: 15px; }
+        .pkg-info { background-color: #020617; display: inline-block; padding: 8px 20px; border-radius: 20px; font-size: 15px; font-weight: bold; margin-bottom: 15px; border: 1px solid #334155; color: white;}
         .pkg-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.8; direction: ltr;}
-        .btn-pkg { background-color: var(--accent-color); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; font-family: 'Tajawal', sans-serif; font-size: 15px; cursor: pointer; width: 100%; transition: 0.2s;}
+        .btn-pkg { background-color: var(--accent-color); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; font-family: 'Tajawal', sans-serif; font-size: 16px; cursor: pointer; width: 100%; transition: 0.2s;}
         .btn-pkg:hover { background-color: #b91c1c; }
 
-        /* البحث والفلترة */
+        /* ======== البحث والفلترة ======== */
         .filter-section { background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid #334155; margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);}
         .search-box { display: flex; gap: 10px; margin-bottom: 20px; }
         .search-box input { flex: 1; padding: 12px 15px; border-radius: 8px; border: 1px solid #475569; background-color: #0f172a; color: white; font-family: 'Tajawal', sans-serif; font-size: 15px; }
-        .search-box button { background-color: var(--primary-color); color: #000; border: none; padding: 0 25px; border-radius: 8px; font-weight: bold; font-family: 'Tajawal', sans-serif; cursor: pointer; font-size: 15px;}
-        .filter-title { font-size: 14px; color: var(--primary-color); margin-bottom: 12px; font-weight: bold; }
-        .filter-group { display: flex; flex-wrap: wrap; gap: 10px; }
+        .search-box button { background-color: var(--primary-color); color: #000; border: none; padding: 0 25px; border-radius: 8px; font-weight: bold; font-family: 'Tajawal', sans-serif; cursor: pointer; font-size: 15px; transition: 0.2s;}
+        .filter-title { font-size: 15px; color: var(--primary-color); margin-bottom: 12px; font-weight: bold; }
+        .filter-group { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
         .filter-btn { background-color: #0f172a; color: var(--text-main); border: 1px solid #475569; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-family: 'Tajawal', sans-serif; font-size: 13px; transition: 0.2s; }
         .filter-btn.active { background-color: var(--primary-color); color: #000; border-color: var(--primary-color); font-weight: bold; }
 
-        /* كروت الألعاب بـ 4 زراير */
-        .grid-layout { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        /* ======== كروت الألعاب 4 زراير ======== */
+        .grid-layout { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         .card { background-color: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 6px 15px rgba(0,0,0,0.5); display: flex; flex-direction: column; border: 1px solid #334155; transition: 0.2s; }
         .card:hover { border-color: var(--primary-color); transform: translateY(-5px); }
         
-        .card-img-container { width: 100%; height: 200px; position: relative; background: #0f172a; display: flex; justify-content: center; align-items: center; text-align: center; border-bottom: 2px solid var(--primary-color); overflow: hidden;}
+        .card-img-container { width: 100%; height: 220px; position: relative; background: #0f172a; display: flex; justify-content: center; align-items: center; text-align: center; border-bottom: 2px solid var(--primary-color); overflow: hidden;}
         .fallback-text { position: absolute; z-index: 1; color: #475569; font-size: 22px; font-weight: 900; padding: 20px; text-transform: uppercase;}
-        /* تم إضافة loading="lazy" لسرعة التحميل (Caching) */
         .card-img-container img { position: absolute; z-index: 2; width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
         .card:hover .card-img-container img { transform: scale(1.08); }
 
-        .card-header { padding: 15px 10px; text-align: center; background-color: #17171c;}
-        .game-title { color: var(--text-main); font-size: 18px; font-weight: 900; margin: 0; }
+        .card-header { padding: 15px 10px 5px; text-align: center; background-color: #17171c;}
+        .game-title { color: var(--text-main); font-size: 18px; font-weight: 900; margin: 0; text-transform: uppercase;}
         .size-badge { font-size: 13px; color: #cbd5e1; margin-top: 5px; display: block;}
         
-        .card-content { padding: 15px; flex: 1; display: flex; flex-direction: column; gap: 8px;}
+        .card-content { padding: 15px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
         
-        /* تنسيق الـ 4 زراير */
-        .btn-version { padding: 10px 5px; border: 1px solid #475569; border-radius: 6px; font-family: 'Tajawal', sans-serif; font-weight: bold; cursor: pointer; text-align: center; font-size: 13px; transition: 0.2s; background-color: #0f172a; color: white; display: flex; justify-content: space-between; align-items: center; width: 100%;}
-        .btn-version span.v-name { color: var(--text-muted); }
-        .btn-version span.v-price { color: var(--primary-color); font-size: 14px;}
+        .btn-version { padding: 12px 10px; border: 1px solid #475569; border-radius: 6px; font-family: 'Tajawal', sans-serif; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background-color: #0f172a; color: white; transition: 0.2s;}
+        .btn-version span.v-name { color: var(--text-muted); font-size: 13px;}
+        .btn-version span.v-price { color: var(--primary-color); font-size: 15px;}
+        
         .btn-version:hover:not(:disabled) { border-color: var(--primary-color); background-color: #1e293b;}
-        
-        .btn-version.added { background-color: var(--danger); border-color: var(--danger); color: white;}
+        .btn-version.added { background-color: var(--danger); border-color: var(--danger); }
         .btn-version.added span.v-name, .btn-version.added span.v-price { color: white; }
         
-        .btn-version:disabled { background-color: #17171c; border-color: #333; cursor: not-allowed; opacity: 0.6;}
-        .btn-version:disabled span.v-price { color: var(--danger); font-size: 12px;}
+        .btn-version:disabled { background-color: #17171c; border-color: #333; cursor: not-allowed; opacity: 0.7;}
+        .btn-version:disabled span.v-price { color: var(--danger); font-size: 13px;}
 
-        /* السلة */
+        /* ======== السلة ======== */
         .cart-float { position: fixed; bottom: 20px; left: 20px; background-color: var(--accent-color); color: white; padding: 15px 25px; border-radius: 30px; font-weight: bold; font-family: 'Tajawal', sans-serif; font-size: 16px; box-shadow: 0 5px 20px rgba(239, 68, 68, 0.5); cursor: pointer; border: none; z-index: 1000; display: flex; align-items: center; gap: 10px; transition: 0.2s;}
         .cart-float:hover { transform: scale(1.05); background-color: #dc2626;}
         .cart-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.9); z-index: 1001; justify-content: center; align-items: center; padding: 15px; }
-        .cart-content { background-color: var(--card-bg); width: 100%; max-width: 500px; border-radius: 15px; padding: 25px; max-height: 90vh; overflow-y: auto; border: 2px solid var(--accent-color); }
+        .cart-content { background-color: var(--card-bg); width: 100%; max-width: 450px; border-radius: 15px; padding: 25px; max-height: 90vh; overflow-y: auto; border: 2px solid var(--accent-color); }
         .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; padding-bottom: 15px; margin-bottom: 15px; }
         .cart-header h2 { margin: 0; color: var(--primary-color); }
         .user-info-section { display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px; }
@@ -84,8 +90,11 @@
         .cart-summary { background-color: #0f172a; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; border: 1px solid #334155;}
         .cart-summary h3 { margin: 0 0 5px 0; color: var(--text-muted); font-size: 14px; }
         .cart-summary h2 { margin: 0 0 10px 0; color: var(--primary-color); font-size: 20px;}
-        .btn-whatsapp { background-color: #25D366; color: white; width: 100%; padding: 14px; border: none; border-radius: 8px; font-family: 'Tajawal', sans-serif; font-weight: bold; font-size: 15px; cursor: pointer; transition: 0.2s; margin-top: 10px;}
+        .whatsapp-buttons { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+        .btn-whatsapp { background-color: #25D366; color: white; width: 100%; padding: 14px; border: none; border-radius: 8px; font-family: 'Tajawal', sans-serif; font-weight: bold; font-size: 15px; cursor: pointer; transition: 0.2s; }
+        .btn-whatsapp:hover { background-color: #128C7E; }
         .close-cart { background: none; border: none; color: white; font-size: 24px; cursor: pointer; }
+        @media (max-width: 600px) { header h1 { font-size: 22px; } }
     </style>
 </head>
 <body>
@@ -102,34 +111,37 @@
 
     <div class="container">
         
-        <h2 class="section-title">🔥 باقات التوفير (أوفلاين)</h2>
+        <h2 class="section-title">🔥 أقوى عروض الباقات (أوفلاين)</h2>
         <div class="packages-grid">
             <div class="pkg-card">
-                <div class="pkg-title">باقة رقم 1</div>
+                <div class="pkg-title">باقة الأكشن والمحركات</div>
                 <div class="pkg-info" id="pkg1-info">جاري الحساب...</div>
-                <div class="pkg-desc">Burnout Paradise, Call of Duty WWII Gold Edition, Crash Racing, FC 2026, Mortal Kombat 11, Grand Theft Auto V</div>
+                <div class="pkg-desc">Burnout Paradise, Call of Duty WWII, Crash Racing, FC 2026, Mortal Kombat 11, GTA V</div>
                 <button class="btn-pkg" onclick="addPackage([9, 10, 11, 13, 25, 16])">🛒 أضف الباقة لعرضي</button>
             </div>
+            
             <div class="pkg-card">
-                <div class="pkg-title">باقة رقم 2</div>
+                <div class="pkg-title">باقة الحماس والقتال</div>
                 <div class="pkg-info" id="pkg2-info">جاري الحساب...</div>
-                <div class="pkg-desc">NFS Hot Pursuit Remastered, Black Ops III, Crash Racing, FC 2026, Tekken 7, Mafia Trilogy</div>
+                <div class="pkg-desc">NFS Hot Pursuit, Black Ops III, Crash Racing, FC 2026, Tekken 7, Mafia Trilogy</div>
                 <button class="btn-pkg" onclick="addPackage([29, 8, 11, 13, 35, 21])">🛒 أضف الباقة لعرضي</button>
             </div>
+
             <div class="pkg-card">
-                <div class="pkg-title">باقة رقم 3</div>
+                <div class="pkg-title">باقة التدمير والسرعة</div>
                 <div class="pkg-info" id="pkg3-info">جاري الحساب...</div>
-                <div class="pkg-desc">NFS Payback, Black Ops 4, Crash Racing, Mortal Kombat 11, Just Cause 4 Reloaded</div>
+                <div class="pkg-desc">NFS Payback, Black Ops 4, Crash Racing, Mortal Kombat 11, Just Cause 4</div>
                 <button class="btn-pkg" onclick="addPackage([30, 7, 11, 25, 19])">🛒 أضف الباقة لعرضي</button>
             </div>
         </div>
 
-        <h2 class="section-title">🎮 اختر ألعابك وحدد النسخة</h2>
+        <h2 class="section-title">🎮 اختر ألعابك الفردية وحدد نسختك</h2>
 
         <div class="filter-section">
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="ابحث عن اسم اللعبة..." onkeyup="renderGames()">
             </div>
+
             <div class="filter-title">💾 فلتر بالمساحة التقديرية:</div>
             <div class="filter-group" id="sizeFilters">
                 <button class="filter-btn" onclick="toggleSizeFilter(50, this)">أقل من 50 جيجا</button>
@@ -158,8 +170,8 @@
             </div>
 
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #334155; padding-bottom: 10px; margin-bottom: 10px;">
-                <span style="font-size: 14px; color: var(--primary-color);">تفاصيل النسخ والأسعار المختارة</span>
-                <button onclick="clearCart()" style="background: none; border: 1px solid var(--danger); color: var(--danger); padding: 5px 10px; border-radius: 5px; cursor: pointer; font-family:'Tajawal';">إفراغ السلة</button>
+                <span style="font-size: 13px; color: var(--primary-color);">الألعاب والنسخ المختارة</span>
+                <button onclick="clearCart()" style="background: none; border: 1px solid var(--danger); color: var(--danger); padding: 5px 10px; border-radius: 5px; cursor: pointer; font-family:'Tajawal'; font-weight:bold;">إفراغ السلة</button>
             </div>
 
             <div id="cartItemsList" style="margin-bottom: 15px;"></div>
@@ -167,13 +179,13 @@
             <div class="cart-summary">
                 <h3>إجمالي المساحة التقديرية</h3>
                 <h2 id="totalSizeUI" dir="ltr" style="color: white;">0 GB</h2>
-                <h3>السعر الإجمالي لعرضك</h3>
+                <h3>السعر الإجمالي</h3>
                 <h2 id="totalPriceUI">0 ج.م</h2>
             </div>
 
             <div class="whatsapp-buttons">
-                <button class="btn-whatsapp" onclick="sendWhatsApp('201555886990')">إرسال الطلب (محمود شوقي) 💬</button>
-                <button class="btn-whatsapp" onclick="sendWhatsApp('201010763503')">إرسال الطلب (احمد يسري) 💬</button>
+                <button class="btn-whatsapp" onclick="sendWhatsApp('201555886990')">تأكيد وإرسال (محمود شوقي)</button>
+                <button class="btn-whatsapp" onclick="sendWhatsApp('201010763503')">تأكيد وإرسال (احمد يسري)</button>
             </div>
         </div>
     </div>
@@ -181,13 +193,13 @@
     <script>
         const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwF_iYswSvpyirHWy0PXeBUkTi6CX-vFqJRksaS3_Rz6uzfJdEXvgk-gKfaoK1NFxgX/exec';
 
-        // الداتابيز بالأسعار والأسماء المتوافقة مع الكود الجديد
+        // قاعدة البيانات بالأسماء المحسنة وبدون فولدر images لكي تقرأ مباشرة
         const gamesDB = [
             { id: 1, name: "A way out", size: 17, prices: { 'Offline': 100, 'Pri PS4': 400, 'Pri PS5': 300, 'Secondary': 200 }, image: "a-way-out.jpg" },
             { id: 2, name: "Assassin's Creed Mirage", size: 40, prices: { 'Offline': 100, 'Pri PS4': 450, 'Pri PS5': 400, 'Secondary': 0 }, image: "assassins-creed-mirage.png" },
             { id: 3, name: "Assassin's Creed Odyssey", size: 55, prices: { 'Offline': 80, 'Pri PS4': 350, 'Pri PS5': 300, 'Secondary': 0 }, image: "assassins-creed-odyssey.jpg" },
             { id: 4, name: "Assassin's Creed® Valhalla", size: 70, prices: { 'Offline': 100, 'Pri PS4': 400, 'Pri PS5': 350, 'Secondary': 0 }, image: "assassins-creed-valhalla.jpg" },
-            { id: 5, name: "Batman Arkham knight", size: 50, prices: { 'Offline': 80, 'Pri PS4': 300, 'Pri PS5': 25, 'Secondary': 200 }, image: "batman-arkham-knight.jpg" },
+            { id: 5, name: "Batman Arkham knight", size: 50, prices: { 'Offline': 80, 'Pri PS4': 300, 'Pri PS5': 250, 'Secondary': 200 }, image: "batman-arkham-knight.jpg" },
             { id: 6, name: "Battlefield™ V", size: 116, prices: { 'Offline': 80, 'Pri PS4': 250, 'Pri PS5': 200, 'Secondary': 150 }, image: "battlefield-v.jpg" },
             { id: 7, name: "Black Ops 4", size: 100, prices: { 'Offline': 100, 'Pri PS4': 350, 'Pri PS5': 300, 'Secondary': 200 }, image: "black-ops-4.jpg" },
             { id: 8, name: "Black Ops III", size: 120, prices: { 'Offline': 150, 'Pri PS4': 550, 'Pri PS5': 500, 'Secondary': 350 }, image: "black-ops-iii.jpg" },
@@ -228,14 +240,12 @@
         let cart = []; // يخزن: {id, name, type, price, size}
         let activeSizeFilter = 0; 
 
-        // حساب بيانات الباقات الأساسية ديناميكياً
         function calculatePackagesInfo() {
             const pkgs = [
                 { id: 'pkg1-info', games: [9, 10, 11, 13, 25, 16] },
                 { id: 'pkg2-info', games: [29, 8, 11, 13, 35, 21] },
                 { id: 'pkg3-info', games: [30, 7, 11, 25, 19] }
             ];
-            
             pkgs.forEach(pkg => {
                 let totalSize = 0, totalPrice = 0;
                 pkg.games.forEach(gameId => {
@@ -254,7 +264,6 @@
             renderGames();
         }
 
-        // إضافة باقة (تضاف كأوفلاين)
         function addPackage(gameIds) {
             gameIds.forEach(id => {
                 const game = gamesDB.find(g => g.id === id);
@@ -267,11 +276,10 @@
             alert("تم إضافة باقة الأوفلاين بنجاح لعرضك!");
         }
 
-        // إضافة/إزالة نسخة معينة من اللعبة
         function toggleSpecificVersion(gameId, type, price) {
             const existingIndex = cart.findIndex(c => c.id === gameId && c.type === type);
             if (existingIndex > -1) {
-                cart.splice(existingIndex, 1); // إزالة لو موجودة
+                cart.splice(existingIndex, 1);
             } else {
                 const game = gamesDB.find(g => g.id === gameId);
                 cart.push({ id: game.id, name: game.name, size: game.size, type: type, price: price });
@@ -294,7 +302,6 @@
                 if (activeSizeFilter === 100 && (game.size < 50 || game.size > 100)) return;
                 if (activeSizeFilter === 999 && game.size <= 100) return;
 
-                // إنشاء الـ 4 زراير
                 let buttonsHTML = '';
                 const types = ['Offline', 'Pri PS4', 'Pri PS5', 'Secondary'];
                 
@@ -315,16 +322,17 @@
                     }
                 });
 
+                // مسار الصورة مباشر بدون مجلد images بناءً على رفعك على جيت هاب
                 grid.innerHTML += `
                     <div class="card">
                         <div class="card-img-container">
                             <span class="fallback-text">${game.name}</span>
-                            <img src="images/${game.image}" loading="lazy" onerror="this.style.display='none'">
+                            <img src="${game.image}" loading="lazy" onerror="this.style.display='none'">
                         </div>
                         
                         <div class="card-header">
                             <h3 class="game-title">${game.name}</h3>
-                            <span class="size-badge">💾 ~${game.size} جيجا</span>
+                            <span class="size-badge">💾 المساحة: ~${game.size} جيجا</span>
                         </div>
                         
                         <div class="card-content">
@@ -340,14 +348,12 @@
             list.innerHTML = '';
             
             let totalSize = 0, totalPrice = 0;
-            
+            let uniqueGames = new Set();
+
             if(cart.length === 0) {
                 list.innerHTML = '<p style="text-align:center; color:#aaa; padding: 10px;">لم تختر أي ألعاب أو باقات بعد.</p>';
             }
             
-            // عشان نحسب المساحة مرة واحدة لو العميل اختار نسختين لنفس اللعبة (نادر بس احتياطي)
-            let uniqueGames = new Set();
-
             cart.forEach(item => {
                 if(!uniqueGames.has(item.id)) {
                     totalSize += item.size;
@@ -358,7 +364,7 @@
                 list.innerHTML += `
                     <div class="cart-item">
                         <div>
-                            <span style="font-weight: bold; color: var(--text-main); display:block;">${item.name}</span>
+                            <span style="font-weight: bold; color: var(--text-main); display:block; text-transform: uppercase;">${item.name}</span>
                             <span style="color: var(--text-muted); font-size: 12px;">نسخة: ${item.type}</span>
                         </div>
                         <span>
@@ -392,7 +398,7 @@
             cart.forEach((item, index) => {
                 text += ` ${index + 1}. ${item.name} (${item.type}) - السعر: ${item.price} ج\n`;
                 gamesForSheetText += `${index + 1}. ${item.name} [${item.type}]\n`;
-                gamesArrayForInventory.push(item.name); // للخصم من الجرد
+                gamesArrayForInventory.push(item.name); 
                 
                 if(!uniqueGames.has(item.id)) {
                     totalSize += item.size;
