@@ -81,7 +81,6 @@
         
         .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 14px; border-bottom: 1px dashed #334155; padding-bottom: 8px; }
         
-        /* تصميم زر التحميل في المحل */
         .store-fee-box { background: #0f172a; padding: 15px; border-radius: 8px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #334155;}
         .store-fee-box label { font-size: 14px; color: var(--text-main); font-weight: bold; cursor: pointer; }
         .store-fee-box input[type="checkbox"] { transform: scale(1.5); cursor: pointer; accent-color: var(--primary-color);}
@@ -218,7 +217,8 @@
     </div>
 
     <script>
-        const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwF_iYswSvpyirHWy0PXeBUkTi6CX-vFqJRksaS3_Rz6uzfJdEXvgk-gKfaoK1NFxgX/exec';
+        // >>> ضع رابط جوجل شيت الجديد هنا <<<
+        const GOOGLE_SHEET_URL = 'رابط_جوجل_الجديد_هنا';
 
         const gamesDB = [
             { id: 1, name: "A way out", genres: ["مغامرات", "العاب عائلية"], size: 17, prices: { 'Offline': 100, 'Pri PS4': 400, 'Pri PS5': 300, 'Secondary': 200 }, image: "a-way-out.jpg" },
@@ -253,7 +253,7 @@
             { id: 30, name: "NFS Payback", genres: ["سباق"], size: 30, prices: { 'Offline': 80, 'Pri PS4': 300, 'Pri PS5': 250, 'Secondary': 200 }, image: "nfs-payback.jpg" },
             { id: 31, name: "Olympic Games Tokyo 2020", genres: ["رياضة", "العاب عائلية"], size: 15, prices: { 'Offline': 100, 'Pri PS4': 350, 'Pri PS5': 350, 'Secondary': 0 }, image: "olympic-games-tokyo-2020.png" },
             { id: 32, name: "Pes 21", genres: ["رياضة"], size: 40, prices: { 'Offline': 450, 'Pri PS4': 0, 'Pri PS5': 0, 'Secondary': 0 }, image: "pes-21.jpg" },
-            { id: 33, name: "Red Dead Redemption 2", genres: ["أكشن", "عالم مفتوح"], size: 115, prices: { 'Offline': 150, 'Pri PS4': 500, 'Pri PS5': 400, 'Secondary': 0 }, image: "red-dead-redemption-2.jpg" },
+            { id: 33, name: "Red Dead Redemption 2", genres: ["أكشن", "عالم مفتوح", "مغامرات"], size: 115, prices: { 'Offline': 150, 'Pri PS4': 500, 'Pri PS5': 400, 'Secondary': 0 }, image: "red-dead-redemption-2.jpg" },
             { id: 34, name: "Saints Row", genres: ["أكشن", "عالم مفتوح"], size: 50, prices: { 'Offline': 100, 'Pri PS4': 300, 'Pri PS5': 300, 'Secondary': 0 }, image: "saints-row.png" },
             { id: 35, name: "Tekken 7", genres: ["أكشن"], size: 50, prices: { 'Offline': 100, 'Pri PS4': 500, 'Pri PS5': 350, 'Secondary': 250 }, image: "tekken-7.jpg" },
             { id: 36, name: "The Last of Us Remastered", genres: ["أكشن", "رعب", "مغامرات"], size: 45, prices: { 'Offline': 100, 'Pri PS4': 350, 'Pri PS5': 300, 'Secondary': 0 }, image: "the-last-of-us-remastered.jpg" },
@@ -472,7 +472,7 @@
         function sendWhatsApp(phone) {
             const name = document.getElementById('userName').value.trim();
             const contact = document.getElementById('userPhone').value.trim();
-            const landline = document.getElementById('userLandline').value.trim();
+            const landline = document.getElementById('userLandline').value.trim(); // قراءة الرقم الأرضي
             
             if(!name || !contact) { alert("من فضلك اكتب اسمك ورقم الموبايل أولاً!"); return; }
             if(cart.length === 0) { alert("يرجى اختيار ألعاب أولاً لتكوين عرضك!"); return; }
@@ -511,7 +511,7 @@
             text += `\nإجمالي المساحة: ${totalSize} GB`;
             text += `\nالسعر الإجمالي: ${totalPrice} جنيه.`;
 
-            // دمج الرقمين علشان يروحوا في خليه واحدة في الشيت
+            // دمج الرقمين لخلية واحدة في الشيت
             let combinedPhone = contact;
             if (landline) {
                 combinedPhone += " | أرضي: " + landline;
@@ -523,7 +523,7 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     name: name,
-                    phone: combinedPhone,
+                    phone: combinedPhone, // إرسال الرقمين المدمجين
                     licenseType: licenseGroup,
                     gamesFormatted: gamesForSheetText,
                     totalPrice: `${totalPrice} EGP`,
