@@ -1,0 +1,450 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LevelUP Mod Games - كون عرضك</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #121212; --card-bg: #1e1e24; --primary-color: #00ffcc;
+            --primary-hover: #00ccaa; --accent-color: #ffcc00; --text-main: #ffffff;
+            --text-muted: #a0a0a0; --danger: #ff4757; --danger-hover: #e03e4d; --fb-color: #1877F2;
+        }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Tajawal', sans-serif; margin: 0; padding: 0; padding-bottom: 80px; }
+        .top-info-bar { background-color: #000; color: var(--primary-color); padding: 8px 15px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; border-bottom: 1px solid #333; }
+        .top-info-bar a { color: var(--primary-color); text-decoration: none; font-weight: bold; }
+        header { background-color: #0d0d0d; padding: 20px 15px; text-align: center; border-bottom: 2px solid var(--primary-color); position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.6);}
+        header h1 { margin: 0; font-size: 26px; font-weight: 900; letter-spacing: 1px; }
+        header span { color: var(--primary-color); }
+        .fb-link { display: inline-block; margin-top: 10px; background-color: var(--fb-color); color: white; padding: 5px 15px; border-radius: 20px; font-size: 13px; text-decoration: none; font-weight: bold; transition: 0.2s;}
+        .fb-link:hover { transform: scale(1.05); }
+        
+        .container { max-width: 1200px; margin: auto; padding: 20px 15px; }
+        .section-title { text-align: center; font-size: 24px; color: var(--primary-color); margin-bottom: 20px; font-weight: 900; }
+        
+        /* ======== البحث والفلترة ======== */
+        .search-box { display: flex; gap: 8px; margin-bottom: 15px; }
+        .search-box input { flex: 1; padding: 12px 15px; border-radius: 8px; border: 1px solid #444; background-color: var(--card-bg); color: white; font-family: 'Tajawal', sans-serif; font-size: 15px; }
+        .search-box button { background-color: var(--primary-color); color: #000; border: none; padding: 0 20px; border-radius: 8px; font-weight: bold; font-family: 'Tajawal', sans-serif; cursor: pointer; font-size: 15px; transition: 0.2s;}
+        .search-box button:hover { background-color: var(--primary-hover); }
+        
+        .filter-section { margin-bottom: 25px; background: #1a1a20; padding: 15px; border-radius: 8px; border: 1px solid #333; }
+        .filter-title { font-size: 14px; color: var(--primary-color); margin-bottom: 10px; font-weight: bold; }
+        .filter-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+        .filter-group:last-child { margin-bottom: 0; }
+        .filter-btn { background-color: #2a2a35; color: var(--text-main); border: 1px solid #444; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-family: 'Tajawal', sans-serif; font-size: 13px; transition: 0.2s; }
+        .filter-btn.active { background-color: var(--primary-color); color: #000; border-color: var(--primary-color); font-weight: bold; }
+        
+        /* ======== كروت الألعاب ======== */
+        .grid-layout { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .card { background-color: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 6px 12px rgba(0,0,0,0.4); display: flex; flex-direction: column; border: 1px solid #333; transition: transform 0.2s, border-color 0.2s; }
+        .card:hover { transform: translateY(-5px); border-color: var(--primary-color); }
+        
+        /* حاوية الصورة للاحتفاظ بالمقاس الثابت والتأثيرات */
+        .card-img-container { width: 100%; height: 200px; overflow: hidden; position: relative; border-bottom: 2px solid var(--primary-color); cursor: pointer;}
+        .card-img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+        .card:hover .card-img-container img { transform: scale(1.1); }
+        
+        .card-header { background-color: #17171c; padding: 12px 10px; text-align: center; }
+        .game-title { color: var(--text-main); font-size: 17px; font-weight: 700; margin: 0; line-height: 1.4; }
+        
+        .card-content { padding: 15px; flex: 1; display: flex; flex-direction: column; }
+        .tags { margin-bottom: 12px; text-align: center; }
+        .tag { display: inline-block; background-color: #2a2a35; font-size: 11px; padding: 4px 8px; border-radius: 6px; margin: 2px; color: var(--primary-color); border: 1px solid #444;}
+        
+        .info-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 14px; font-weight: bold; background: #121212; padding: 8px 10px; border-radius: 6px; border: 1px dashed #333;}
+        
+        .card-actions { margin-top: auto; display: flex; gap: 8px; }
+        .btn { flex: 1; padding: 12px; border: none; border-radius: 6px; font-family: 'Tajawal', sans-serif; font-weight: bold; cursor: pointer; text-align: center; text-decoration: none; font-size: 14px; transition: 0.2s;}
+        .btn-add { background-color: var(--primary-color); color: #000; }
+        .btn-add:hover { background-color: var(--primary-hover); }
+        .btn-add.added { background-color: var(--danger); color: white; }
+        .btn-add.added:hover { background-color: var(--danger-hover); }
+        .btn-out { background-color: #2a2a35; color: #777; cursor: not-allowed; border: 1px solid #444;}
+        
+        /* ======== السلة ======== */
+        .cart-float { position: fixed; bottom: 20px; left: 20px; background-color: var(--primary-color); color: #000; padding: 15px 25px; border-radius: 30px; font-weight: bold; font-family: 'Tajawal', sans-serif; font-size: 16px; box-shadow: 0 5px 15px rgba(0, 255, 204, 0.4); cursor: pointer; border: none; z-index: 1000; display: flex; align-items: center; gap: 8px; transition: 0.2s;}
+        .cart-float:hover { transform: scale(1.05); }
+        .cart-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); z-index: 1001; justify-content: center; align-items: center; padding: 15px; }
+        .cart-content { background-color: var(--card-bg); width: 100%; max-width: 500px; border-radius: 12px; padding: 20px; max-height: 90vh; overflow-y: auto; border: 2px solid var(--primary-color); display: flex; flex-direction: column; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #444; padding-bottom: 15px; margin-bottom: 15px; }
+        .user-info-section { margin-bottom: 15px; display: flex; flex-direction: column; gap: 10px; }
+        .user-info-section input { padding: 12px; border-radius: 8px; border: 1px solid #444; background-color: #2a2a35; color: white; font-family: 'Tajawal', sans-serif; }
+        .cart-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed #333; }
+        .btn-empty-cart { background-color: transparent; color: var(--danger); border: 1px solid var(--danger); padding: 5px 10px; border-radius: 6px; font-family: 'Tajawal', sans-serif; font-size: 13px; cursor: pointer; transition: 0.2s; }
+        .btn-empty-cart:hover { background-color: var(--danger); color: white; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 14px; border-bottom: 1px dashed #333; padding-bottom: 8px; }
+        .cart-summary { background-color: #2a2a35; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; border: 1px solid #444;}
+        .cart-summary h3 { margin: 0 0 5px 0; color: var(--text-muted); font-size: 14px; }
+        .cart-summary h2 { margin: 0 0 15px 0; color: var(--text-main); font-size: 20px;}
+        .whatsapp-buttons { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
+        .btn-whatsapp { background-color: #25D366; color: white; width: 100%; padding: 14px; border: none; border-radius: 8px; font-family: 'Tajawal', sans-serif; font-weight: bold; font-size: 15px; cursor: pointer; transition: 0.2s; }
+        .btn-whatsapp:hover { background-color: #128C7E; }
+        .close-cart { background: none; border: none; color: white; font-size: 24px; cursor: pointer; }
+        @media (max-width: 600px) { .top-info-bar { flex-direction: column; gap: 5px; text-align: center; } header h1 { font-size: 22px; } }
+    </style>
+</head>
+<body>
+
+    <div class="top-info-bar">
+        <div class="phones">📞 01555886990 - 01010763503</div>
+        <div class="address">📍 شارع الابراج, ارض الجمعيات, الاسماعيلية</div>
+    </div>
+
+    <header>
+        <h1>Level<span>UP</span> Mod Games</h1>
+        <a href="https://www.facebook.com/LevelUP.Ismailia" target="_blank" class="fb-link">f | LevelUP Ismailia</a>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title" style="color: white;">🎮 اختر ألعابك وكون باقتك بنفسك</h2>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="ابحث عن لعبة (مثال: Spider-Man, GTA)..." onkeypress="handleEnter(event)">
+            <button onclick="renderGames()">أبحث</button>
+        </div>
+
+        <div class="filter-section">
+            <div class="filter-title">📌 نوع اللعبة:</div>
+            <div class="filter-group" id="genreFilters">
+                <button class="filter-btn" onclick="toggleFilter('genre', 'أكشن', this)">أكشن</button>
+                <button class="filter-btn" onclick="toggleFilter('genre', 'مغامرات', this)">مغامرات</button>
+                <button class="filter-btn" onclick="toggleFilter('genre', 'عالم مفتوح', this)">عالم مفتوح</button>
+                <button class="filter-btn" onclick="toggleFilter('genre', 'رعب', this)">رعب</button>
+                <button class="filter-btn" onclick="toggleFilter('genre', 'العاب عائلية', this)">ألعاب عائلية</button>
+                <button class="filter-btn" onclick="toggleFilter('genre', 'سباق', this)">سباق</button>
+                <button class="filter-btn" onclick="toggleFilter('genre', 'رياضة', this)">رياضة</button>
+            </div>
+        </div>
+
+        <div class="grid-layout" id="gamesGrid"></div>
+    </div>
+
+    <button class="cart-float" onclick="openCart()">
+        🛒 عرضي المختار (<span id="cartCount">0</span>)
+    </button>
+
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2 style="margin: 0; color: var(--primary-color);">عروضي المختارة</h2>
+                <button class="close-cart" onclick="closeCart()">✖</button>
+            </div>
+            
+            <div class="user-info-section">
+                <input type="text" id="userName" placeholder="اسمك الثنائي...">
+                <input type="tel" id="userPhone" placeholder="رقم الموبايل...">
+            </div>
+
+            <div class="cart-controls">
+                <span style="font-size: 14px; color: var(--primary-color);">الألعاب مرتبة أبجدياً</span>
+                <button class="btn-empty-cart" onclick="clearCart()">🗑️ إفراغ السلة</button>
+            </div>
+
+            <div id="cartItemsList" style="margin-bottom: 15px;"></div>
+
+            <div class="cart-summary">
+                <h3>إجمالي المساحة التقديرية</h3>
+                <h2 id="totalSizeUI" dir="ltr">0 GB</h2>
+                <h3>السعر التقديري الإجمالي</h3>
+                <h2 id="totalPriceUI" style="color: var(--accent-color); margin-bottom: 0;">0 جنيه</h2>
+            </div>
+
+            <div class="whatsapp-buttons">
+                <button class="btn-whatsapp" onclick="sendWhatsApp('201555886990')">إرسال الطلب (محمود شوقي) 💬</button>
+                <button class="btn-whatsapp" onclick="sendWhatsApp('201010763503')">إرسال الطلب (احمد يسري) 💬</button>
+                <button class="btn-whatsapp" onclick="sendWhatsApp('201277675487')">إرسال الطلب (عمر ياسر) 💬</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-modal" id="gameDetailsModal">
+        <div class="cart-content" style="padding: 0; overflow: hidden; max-width: 420px; text-align: center;">
+            <div style="position: relative;">
+                <img id="detailImage" src="" alt="Game Image" style="width: 100%; height: 280px; object-fit: cover; border-bottom: 3px solid var(--primary-color);">
+                <button class="close-cart" onclick="closeGameDetails()" style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.8); width: 35px; height: 35px; border-radius: 50%; font-size: 18px;">✖</button>
+            </div>
+            
+            <div style="padding: 20px;">
+                <h2 id="detailName" style="margin: 0 0 10px 0; color: var(--text-main); font-size: 22px;">اسم اللعبة</h2>
+                <p id="detailDesc" style="color: #bbb; font-size: 14px; line-height: 1.6; margin-bottom: 20px;"></p>
+                
+                <div style="display: flex; justify-content: space-between; background: #121212; padding: 12px; border-radius: 8px; margin-bottom: 20px; border: 1px dashed #444;">
+                    <span id="detailSize" style="font-weight: bold; color: #ddd;">💾 المساحة: </span>
+                    <span id="detailPrice" style="color: var(--accent-color); font-weight: bold; font-size: 16px;">💰 السعر: </span>
+                </div>
+
+                <div id="detailActionContainer">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // رابط جوجل شيت المحدث الخاص بك
+        const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwF_iYswSvpyirHWy0PXeBUkTi6CX-vFqJRksaS3_Rz6uzfJdEXvgk-gKfaoK1NFxgX/exec';
+
+        // قاعدة البيانات الكاملة من الجرد الخاص بك
+        // ملحوظة: السعر الافتراضي لكل الألعاب وضعته (50 جنيه)، يمكنك تغييره لكل لعبة كما تشاء.
+        const gamesDB = [
+            { id: 1, name: "A way out", genres: ["مغامرات", "العاب عائلية"], playersTxt: "2", maxPlayers: 2, minSize: 17, maxSize: 17, price: 50, stock: 41, image: "images/A way out.jpg", desc: "تجربة تعاونية فريدة ومثيرة تعتمد كلياً على اللعب المشترك للهروب من السجن." },
+            { id: 2, name: "Assassin's Creed Mirage", genres: ["أكشن", "عالم مفتوح"], playersTxt: "1", maxPlayers: 1, minSize: 40, maxSize: 40, price: 50, stock: 12, image: "images/Assassin's Creed Mirage.png", desc: "عد إلى الجذور في بغداد التاريخية مع أسلوب تخفي واغتيالات كلاسيكي." },
+            { id: 3, name: "Assassin's Creed Odyssey", genres: ["أكشن", "عالم مفتوح"], playersTxt: "1", maxPlayers: 1, minSize: 55, maxSize: 55, price: 50, stock: 40, image: "images/Assassin's Creed Odyssey.jpg", desc: "اكتب ملحمتك الأسطورية الخاصة في اليونان القديمة كمرتزق إسبرطي." },
+            { id: 4, name: "Assassin's Creed® Valhalla", genres: ["أكشن", "عالم مفتوح"], playersTxt: "1", maxPlayers: 1, minSize: 70, maxSize: 70, price: 50, stock: 40, image: "images/Assassin's Creed® Valhalla.jpg", desc: "قد قبيلتك من الفايكنج نحو المجد في إنجلترا في العصور المظلمة." },
+            { id: 5, name: "Batman Arkham knight", genres: ["أكشن", "عالم مفتوح"], playersTxt: "1", maxPlayers: 1, minSize: 50, maxSize: 50, price: 50, stock: 27, image: "images/Batman Arkham knight.jpg", desc: "الخاتمة الملحمية لسلسلة أركام، كن أنت الرجل الوطواط وتجول بسيارة البات موبيل." },
+            { id: 6, name: "Battlefield™ V", genres: ["أكشن"], playersTxt: "1", maxPlayers: 1, minSize: 116, maxSize: 116, price: 50, stock: 33, image: "images/Battlefield™ V.jpg", desc: "عش أجواء الحرب العالمية الثانية بأقصى درجات الواقعية والتدمير." },
+            { id: 7, name: "Black Ops 4", genres: ["أكشن"], playersTxt: "1 - 4", maxPlayers: 4, minSize: 100, maxSize: 100, price: 50, stock: 24, image: "images/Black Ops 4.jpg", desc: "قتال جماعي مثير مع طور البلاك أوت والزومبي المحبوب." },
+            { id: 8, name: "Black Ops III", genres: ["أكشن"], playersTxt: "1 - 4", maxPlayers: 4, minSize: 120, maxSize: 120, price: 50, stock: 52, image: "images/Black Ops III.jpg", desc: "أحد أقوى أجزاء كول أوف ديوتي مع أطوار قصة، زومبي، وتعدد لاعبين ممتاز." },
+            { id: 9, name: "Burnout Paradise", genres: ["سباق"], playersTxt: "1", maxPlayers: 1, minSize: 8, maxSize: 8, price: 50, stock: 16, image: "images/Burnout Paradise.jpg", desc: "تدمير وسباقات سرعة جنونية في مدينة باراديس المفتوحة." },
+            { id: 10, name: "Call of Duty WWII Gold Edition", genres: ["أكشن"], playersTxt: "1 - 2", maxPlayers: 2, minSize: 80, maxSize: 80, price: 50, stock: 38, image: "images/Call of Duty WWII Gold Edition.jpg", desc: "العودة إلى الحرب العالمية الثانية بقصة سينمائية قوية." },
+            { id: 11, name: "Crash Racing", genres: ["سباق", "العاب عائلية"], playersTxt: "1 - 4", maxPlayers: 4, minSize: 15, maxSize: 15, price: 50, stock: 75, image: "images/Crash Racing.jpg", desc: "سباقات كراش المجنونة والممتعة لجميع أفراد العائلة." },
+            { id: 12, name: "Far Cry 6", genres: ["أكشن", "عالم مفتوح"], playersTxt: "1", maxPlayers: 1, minSize: 90, maxSize: 90, price: 50, stock: 22, image: "images/Far Cry 6.png", desc: "انضم للثورة للإطاحة بديكتاتور جزيرة يارا في عالم مفتوح مليء بالأسلحة والجنون." },
+            { id: 13, name: "FC 2026", genres: ["رياضة"], playersTxt: "1 - 4", maxPlayers: 4, minSize: 58, maxSize: 58, price: 50, stock: 56, image: "images/FC 2026.jpg", desc: "لعبة كرة القدم الأفضل عالمياً مع أحدث الانتقالات والأطقم." },
+            { id: 14, name: "Ghost of Tsushima", genres: ["أكشن", "عالم مفتوح", "مغامرات"], playersTxt: "1", maxPlayers: 1, minSize: 50, maxSize: 50, price: 50, stock: 21, image: "images/Ghost of Tsushima.jpg", desc: "تحفة فنية تأخذك لليابان الإقطاعية كساموراي يدافع عن أرضه." },
+            { id: 15, name: "God of War", genres: ["أكشن", "مغامرات"], playersTxt: "1", maxPlayers: 1, minSize: 45, maxSize: 45, price: 50, stock: 31, image: "images/God of War.jpg", desc: "رحلة كريتوس وابنه آتريوس في عالم الميثولوجيا الإسكندنافية الساحر." },
+            { id: 16, name: "Grand Theft Auto V", genres: ["أكشن", "عالم مفتوح"], playersTxt: "1", maxPlayers: 1, minSize: 90, maxSize: 90, price: 50, stock: 142, image: "images/Grand Theft Auto V.jpg", desc: "العب بثلاث شخصيات مختلفة في أضخم ألعاب العالم المفتوح والجريمة." },
+            { id: 17, name: "Injustice 2", genres: ["أكشن"], playersTxt: "1 - 2", maxPlayers: 2, minSize: 35, maxSize: 35, price: 50, stock: 16, image: "images/Injustice 2.jpg", desc: "لعبة قتال تنافسية تجمع أبطال وأشرار عالم دي سي (DC)." },
+            { id: 18, name: "It Takes Two", genres: ["مغامرات", "العاب عائلية"], playersTxt: "2", maxPlayers: 2, minSize: 45, maxSize: 45, price: 50, stock: 38, image: "images/It Takes Two.jpg", desc: "أفضل لعبة تعاونية، رحلة خيالية لإنقاذ علاقة زوجين تحولا لدمى." },
+            { id: 19, name: "Just Cause 4 Reloaded", genres: ["أكشن", "عالم مفتوح"], playersTxt: "1", maxPlayers: 1, minSize: 60, maxSize: 60, price: 50, stock: 12, image: "images/Just Cause 4 Reloaded.jpg", desc: "تفجيرات وأكشن لا يتوقف في عالم مفتوح مليء بالفيزياء المجنونة." },
+            { id: 20, name: "LEGO Marvel Collection", genres: ["أكشن", "العاب عائلية"], playersTxt: "1 - 2", maxPlayers: 2, minSize: 50, maxSize: 50, price: 50, stock: 20, image: "images/LEGO Marvel Collection.jpg", desc: "اجمع أبطال مارفل المفضلين لديك في عالم من مكعبات ليجو." },
+            { id: 21, name: "Mafia Trilogy", genres: ["أكشن", "عالم مفتوح"], playersTxt: "1", maxPlayers: 1, minSize: 100, maxSize: 100, price: 50, stock: 26, image: "images/Mafia Trilogy.jpg", desc: "القصة الكاملة والريميك الرائع لعالم المافيا الإيطالية عبر عصور مختلفة." },
+            { id: 22, name: "marvel's spider-man miles morales", genres: ["أكشن", "عالم مفتوح"], playersTxt: "1", maxPlayers: 1, minSize: 50, maxSize: 50, price: 50, stock: 27, image: "images/marvel's spider-man miles morales.jpg", desc: "تأرجح في نيويورك واستخدم طاقة السم (Venom) مع البطل الجديد مايلز موراليس." },
+            { id: 23, name: "Marvel's Spider-Man Remastered", genres: ["أكشن", "عالم مفتوح"], playersTxt: "1", maxPlayers: 1, minSize: 50, maxSize: 50, price: 50, stock: 27, image: "images/Marvel's Spider-Man Remastered.png", desc: "عش حياة بيتر باركر وتأرجح بين ناطحات سحاب نيويورك في تحفة بصرية." },
+            { id: 24, name: "Minecraft", genres: ["العاب عائلية", "مغامرات"], playersTxt: "1 - 4", maxPlayers: 4, minSize: 2, maxSize: 2, price: 50, stock: 6, image: "images/Minecraft.jpg", desc: "عالم لا حدود له من البناء، النجاة، والمغامرات في لعبة المكعبات الأشهر." },
+            { id: 25, name: "Mortal Kombat 11", genres: ["أكشن"], playersTxt: "1 - 2", maxPlayers: 2, minSize: 80, maxSize: 80, price: 50, stock: 165, image: "images/Mortal Kombat 11.jpg", desc: "قتال دامي وعنيف مع شخصيات أيقونية ونظام تخصيص متطور." },
+            { id: 26, name: "Mortal Kombat™ 1", genres: ["أكشن"], playersTxt: "1 - 2", maxPlayers: 2, minSize: 100, maxSize: 100, price: 50, stock: 15, image: "images/Mortal Kombat™ 1.jpg", desc: "الجيل الجديد من السلسلة الأسطورية بعالم مُعاد تشكيله وقصص جديدة." },
+            { id: 27, name: "MotoGP 22 PS4 & PS5", genres: ["سباق", "رياضة"], playersTxt: "1 - 2", maxPlayers: 2, minSize: 30, maxSize: 30, price: 50, stock: 14, image: "images/MotoGP 22 PS4 & PS5.jpg", desc: "لعبة سباق الدراجات النارية الرسمية بأقصى درجات الواقعية." },
+            { id: 28, name: "Need for speed heat", genres: ["سباق"], playersTxt: "1", maxPlayers: 1, minSize: 35, maxSize: 35, price: 50, stock: 69, image: "images/Need for speed heat.jpg", desc: "سباقات شوارع نهارية شرعية، ومطاردات شرطة ليلية غير قانونية." },
+            { id: 29, name: "NFS Hot Pursuit Remastered", genres: ["سباق"], playersTxt: "1", maxPlayers: 1, minSize: 25, maxSize: 25, price: 50, stock: 17, image: "images/NFS Hot Pursuit Remastered.jpg", desc: "اختبر إثارة المطاردة سواء كشرطي أو كمتسابق هارب." },
+            { id: 30, name: "NFS Payback", genres: ["سباق"], playersTxt: "1", maxPlayers: 1, minSize: 30, maxSize: 30, price: 50, stock: 20, image: "images/NFS Payback.jpg", desc: "قصة انتقام مليئة بالأكشن وسرقة السيارات والسباقات الجبلية." },
+            { id: 31, name: "Olympic Games Tokyo 2020", genres: ["رياضة", "العاب عائلية"], playersTxt: "1 - 4", maxPlayers: 4, minSize: 15, maxSize: 15, price: 50, stock: 8, image: "images/Olympic Games Tokyo 2020.png", desc: "نافس في العديد من الرياضات الأولمبية الممتعة مع أصدقائك." },
+            { id: 32, name: "Pes 21", genres: ["رياضة"], playersTxt: "1 - 4", maxPlayers: 4, minSize: 40, maxSize: 40, price: 50, stock: 20, image: "images/Pes 21.jpg", desc: "لعبة كرة القدم المحببة والمحدثة، أسلوب لعب كلاسيكي رائع." },
+            { id: 33, name: "Red Dead Redemption 2", genres: ["أكشن", "عالم مفتوح", "مغامرات"], playersTxt: "1", maxPlayers: 1, minSize: 115, maxSize: 115, price: 50, stock: 20, image: "images/Red Dead Redemption 2.jpg", desc: "ملحمة آرثر مورغان في الغرب الأمريكي، واحدة من أعظم الألعاب تاريخياً." },
+            { id: 34, name: "Saints Row", genres: ["أكشن", "عالم مفتوح"], playersTxt: "1", maxPlayers: 1, minSize: 50, maxSize: 50, price: 50, stock: 16, image: "images/Saints Row.png", desc: "ابنِ إمبراطوريتك الإجرامية من الصفر في مدينة مليئة بالفوضى والأكشن." },
+            { id: 35, name: "Tekken 7", genres: ["أكشن"], playersTxt: "1 - 2", maxPlayers: 2, minSize: 50, maxSize: 50, price: 50, stock: 13, image: "images/Tekken 7.jpg", desc: "بطولة القبضة الحديدية للقتال الشرس، مع قصة عائلة ميشيما الملحمية." },
+            { id: 36, name: "The Last of Us Remastered", genres: ["أكشن", "رعب", "مغامرات"], playersTxt: "1", maxPlayers: 1, minSize: 45, maxSize: 45, price: 50, stock: 40, image: "images/The Last of Us Remastered.jpg", desc: "رحلة جويل وإيلي العاطفية للنجاة في عالم مليء بالمتحولين." },
+            { id: 37, name: "the witcher", genres: ["أكشن", "عالم مفتوح", "مغامرات"], playersTxt: "1", maxPlayers: 1, minSize: 40, maxSize: 40, price: 50, stock: 12, image: "images/the witcher.jpg", desc: "العب بشخصية صائد الوحوش جيرالت في عالم خيالي ضخم ومليء بالتفاصيل." },
+            { id: 38, name: "Tomb Raider Trilogy", genres: ["أكشن", "مغامرات"], playersTxt: "1", maxPlayers: 1, minSize: 50, maxSize: 50, price: 50, stock: 40, image: "images/Tomb Raider Trilogy.jpg", desc: "ثلاثية المغامرات الكاملة للاستكشافية لارا كروفت." },
+            { id: 39, name: "Uncharted Bundle", genres: ["أكشن", "مغامرات"], playersTxt: "1", maxPlayers: 1, minSize: 45, maxSize: 45, price: 50, stock: 32, image: "images/Uncharted Bundle.png", desc: "مغامرات البحث عن الكنوز السينمائية مع ناثان دريك." },
+            { id: 40, name: "Unravel 2", genres: ["مغامرات", "العاب عائلية"], playersTxt: "1 - 2", maxPlayers: 2, minSize: 4, maxSize: 4, price: 50, stock: 14, image: "images/Unravel 2.jpg", desc: "لعبة منصات ذكية ومبهجة تعتمد على التعاون لحل الألغاز." }
+        ];
+
+        let cart = [];
+        let activeGenres = [];
+
+        function toggleFilter(type, value, btnElement) {
+            btnElement.classList.toggle('active');
+            if(type === 'genre') {
+                if(activeGenres.includes(value)) activeGenres = activeGenres.filter(g => g !== value);
+                else activeGenres.push(value);
+            } 
+            renderGames();
+        }
+
+        function handleEnter(e) { if(e.key === 'Enter') renderGames(); }
+
+        function sortCartAlphabetically() {
+            cart.sort((a, b) => a.name.localeCompare(b.name, 'en', { sensitivity: 'base' }));
+        }
+
+        // دالة إضافة اللعبة مع التحقق من الرصيد (Stock)
+        function toggleCart(id, event) {
+            if(event) event.stopPropagation(); // لمنع فتح التفاصيل عند الضغط على زرار الإضافة من الخارج
+            
+            const game = gamesDB.find(g => g.id === id);
+            if (!game || game.stock <= 0) return; // حماية لعدم إضافة لعبة خلصت من الجرد
+
+            const index = cart.findIndex(g => g.id === id);
+            if(index > -1) {
+                cart.splice(index, 1);
+            } else {
+                cart.push(game);
+            }
+            sortCartAlphabetically();
+            updateCartUI();
+            renderGames();
+            
+            // تحديث حالة الزرار داخل النافذة المنبثقة لو كانت مفتوحة
+            if(document.getElementById('gameDetailsModal').style.display === 'flex') {
+                openGameDetails(id);
+            }
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCartUI();
+            renderGames();
+        }
+
+        // دالة فتح النافذة المنبثقة (Modal) للتفاصيل
+        function openGameDetails(id) {
+            const game = gamesDB.find(g => g.id === id);
+            if(!game) return;
+
+            document.getElementById('detailName').innerText = game.name;
+            document.getElementById('detailImage').src = game.image;
+            document.getElementById('detailDesc').innerHTML = game.desc;
+            document.getElementById('detailSize').innerText = `💾 المساحة: ${game.maxSize} GB`;
+            document.getElementById('detailPrice').innerText = `💰 السعر: ${game.price} جنيه`;
+
+            const actionContainer = document.getElementById('detailActionContainer');
+            
+            if (game.stock <= 0) {
+                // شكل الزرار لو اللعبة غير متوفرة
+                actionContainer.innerHTML = `<button class="btn btn-out" style="width: 100%; padding: 15px; font-size: 16px;" disabled>نفذت الكمية حالياً ❌</button>`;
+            } else {
+                // شكل الزرار لو اللعبة متاحة (تتغير حسب وجودها في السلة)
+                const inCart = cart.some(c => c.id === game.id);
+                const btnColor = inCart ? 'var(--danger)' : 'var(--primary-color)';
+                const btnText = inCart ? '❌ إزالة اللعبة من عرضي' : '➕ إضافة اللعبة لعرضي';
+                const btnTextColor = inCart ? 'white' : '#000';
+                
+                actionContainer.innerHTML = `<button class="btn" style="width: 100%; padding: 15px; font-size: 16px; background-color: ${btnColor}; color: ${btnTextColor}; border: none; cursor:pointer;" onclick="toggleCart(${game.id})">${btnText}</button>`;
+            }
+
+            document.getElementById('gameDetailsModal').style.display = 'flex';
+        }
+
+        function closeGameDetails() {
+            document.getElementById('gameDetailsModal').style.display = 'none';
+        }
+
+        function renderGames() {
+            const grid = document.getElementById('gamesGrid');
+            const searchText = document.getElementById('searchInput').value.toLowerCase();
+            grid.innerHTML = '';
+            
+            gamesDB.forEach(game => {
+                if (searchText && !game.name.toLowerCase().includes(searchText)) return;
+                if (activeGenres.length > 0 && !game.genres.some(g => activeGenres.includes(g))) return;
+
+                const inCart = cart.some(c => c.id === game.id);
+                let tagsHTML = game.genres.map(g => `<span class="tag">${g}</span>`).join('');
+                let sizeDisplay = (game.minSize === game.maxSize) ? `${game.minSize} GB` : `${game.minSize}-${game.maxSize} GB`;
+                
+                // تحديد شكل الزرار الخارجي للكارت بناءً على الرصيد
+                let buttonHTML = '';
+                if (game.stock <= 0) {
+                    buttonHTML = `<button class="btn btn-out" disabled>غير متوفرة ❌</button>`;
+                } else {
+                    buttonHTML = `<button class="btn ${inCart ? 'btn-add added' : 'btn-add'}" onclick="toggleCart(${game.id}, event)">
+                                    ${inCart ? '❌ إزالة' : '➕ إضافـة'}
+                                  </button>`;
+                }
+
+                grid.innerHTML += `
+                    <div class="card">
+                        <div class="card-img-container" onclick="openGameDetails(${game.id})">
+                            <img src="${game.image}" alt="${game.name}">
+                        </div>
+                        
+                        <div class="card-content">
+                            <div class="card-header" style="background: transparent; border: none; padding: 0 0 10px 0;">
+                                <h3 class="game-title" style="cursor: pointer;" onclick="openGameDetails(${game.id})">${game.name}</h3>
+                            </div>
+                            
+                            <div class="tags">${tagsHTML}</div>
+                            
+                            <div class="info-row">
+                                <span style="color: var(--accent-color);">💰 ${game.price} ج</span>
+                                <span style="color: #ddd;" dir="ltr">💾 ${sizeDisplay}</span>
+                            </div>
+                            
+                            <div class="card-actions">
+                                ${buttonHTML}
+                            </div>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function updateCartUI() {
+            document.getElementById('cartCount').innerText = cart.length;
+            const list = document.getElementById('cartItemsList');
+            list.innerHTML = '';
+            
+            let minTotal = 0, maxTotal = 0, totalPrice = 0;
+            
+            if(cart.length === 0) {
+                list.innerHTML = '<p style="text-align:center; color:#aaa; font-size:14px; padding: 15px 0;">لم تختر أي ألعاب بعد.</p>';
+            }
+            
+            cart.forEach(item => {
+                minTotal += item.minSize; 
+                maxTotal += item.maxSize;
+                totalPrice += item.price; 
+                
+                let itemSizeText = (item.minSize === item.maxSize) ? `${item.minSize} GB` : `${item.minSize}-${item.maxSize} GB`;
+                list.innerHTML += `
+                    <div class="cart-item">
+                        <span style="font-weight: bold;">${item.name}</span>
+                        <span>
+                            <span style="color:var(--accent-color); font-weight:bold; margin-left:10px;">${item.price} ج</span>
+                            <span style="color:var(--primary-color);" dir="ltr">${itemSizeText}</span>
+                        </span>
+                    </div>`;
+            });
+            
+            document.getElementById('totalSizeUI').innerText = (minTotal === maxTotal) ? `${minTotal} GB` : `${minTotal} - ${maxTotal} GB`;
+            document.getElementById('totalPriceUI').innerText = `${totalPrice} جنيه`;
+        }
+
+        function openCart() { document.getElementById('cartModal').style.display = 'flex'; }
+        function closeCart() { document.getElementById('cartModal').style.display = 'none'; }
+
+        function sendWhatsApp(phone) {
+            const name = document.getElementById('userName').value.trim();
+            const contact = document.getElementById('userPhone').value.trim();
+            
+            if(!name || !contact) { alert("من فضلك اكتب اسمك ورقم الموبايل أولاً!"); return; }
+            if(cart.length === 0) { alert("يرجى اختيار ألعاب أولاً لتكوين عرضك!"); return; }
+
+            let minTotal = 0, maxTotal = 0, totalPrice = 0;
+            let text = `مرحباً LevelUP،\nأنا ${name} (رقمي: ${contact})\nأريد حجز هذا العرض لجهازي (PS4 / PS5):\n\n`;
+            
+            let gamesForSheetText = ""; 
+            let gamesArrayForInventory = []; // تجهيز الأسماء لخصم الجرد
+            
+            cart.forEach((game, index) => {
+                let sizeTxt = (game.minSize === game.maxSize) ? `${game.minSize} GB` : `${game.minSize}-${game.maxSize} GB`;
+                text += ` ${index + 1}. ${game.name} - ${game.price} ج (${sizeTxt})\n`;
+                
+                gamesForSheetText += `${index + 1}. ${game.name}\n`;
+                gamesArrayForInventory.push(game.name);
+                
+                minTotal += game.minSize; 
+                maxTotal += game.maxSize;
+                totalPrice += game.price;
+            });
+            
+            let finalTotalTxt = (minTotal === maxTotal) ? `${minTotal} GB` : `من ${minTotal} إلى ${maxTotal} GB`;
+            text += `\nإجمالي المساحة: ${finalTotalTxt}`;
+            text += `\nالسعر الإجمالي: ${totalPrice} جنيه.`;
+
+            // الإرسال في الخلفية إلى Google Sheets (مرفق معاها مصفوفة الألعاب لخصم الجرد)
+            fetch(GOOGLE_SHEET_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: name,
+                    phone: contact,
+                    deviceType: "PS4 / PS5",
+                    games: gamesForSheetText,
+                    totalSize: finalTotalTxt,
+                    gameNamesArray: gamesArrayForInventory 
+                })
+            }).catch(error => console.log('خطأ في التسجيل:', error));
+
+            alert("تم إرسال طلبك بنجاح! جاري تحويلك للواتساب لإتمام الحجز...");
+            clearCart();
+            closeCart();
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        renderGames(); 
+        updateCartUI();
+    </script>
+</body>
+</html>
