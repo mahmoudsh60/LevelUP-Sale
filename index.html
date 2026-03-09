@@ -6,494 +6,274 @@
     <title>Level UP Sale - عروض الألعاب</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #0f172a; --card-bg: #1e293b; --primary-color: #f59e0b; 
-            --accent-color: #ef4444; --text-main: #f8fafc; --text-muted: #94a3b8; 
-            --danger: #dc2626; --fb-color: #1877F2;
-        }
-        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Tajawal', sans-serif; margin: 0; padding: 0; padding-bottom: 80px; }
-        .top-info-bar { background-color: #020617; color: var(--primary-color); padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: bold; border-bottom: 2px solid var(--accent-color); }
-        header { background-color: #0b1120; padding: 25px 15px; text-align: center; border-bottom: 3px solid var(--primary-color); position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.8);}
+        :root { --bg: #0f172a; --card: #1e293b; --pri: #f59e0b; --acc: #ef4444; --txt: #f8fafc; --mut: #94a3b8; --dang: #dc2626; }
+        body { background: var(--bg); color: var(--txt); font-family: 'Tajawal', sans-serif; margin: 0; padding-bottom: 80px; }
+        .top-bar { background: #020617; color: var(--pri); padding: 10px 15px; display: flex; justify-content: space-between; font-size: 13px; font-weight: bold; border-bottom: 2px solid var(--acc); }
+        header { background: #0b1120; padding: 25px 15px; text-align: center; border-bottom: 3px solid var(--pri); position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.8);}
         header h1 { margin: 0; font-size: 32px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; text-shadow: 2px 2px 4px rgba(245, 158, 11, 0.4);}
-        header span { color: var(--primary-color); }
-        .fb-link { display: inline-block; margin-top: 10px; background-color: var(--fb-color); color: white; padding: 6px 20px; border-radius: 20px; font-size: 14px; text-decoration: none; font-weight: bold; transition: 0.2s;}
-        .disclaimer-text { font-size: 12px; color: var(--text-muted); margin-top: 12px; background: rgba(0,0,0,0.3); display: inline-block; padding: 5px 15px; border-radius: 10px; border: 1px dashed #334155;}
-        .container { max-width: 1200px; margin: auto; padding: 20px 15px; }
-        .section-title { font-size: 24px; color: var(--primary-color); margin-bottom: 20px; font-weight: 900; display: flex; align-items: center; gap: 10px; border-bottom: 2px dashed #334155; padding-bottom: 10px;}
+        header span { color: var(--pri); }
+        .fb-link { display: inline-block; margin-top: 10px; background: #1877F2; color: white; padding: 6px 20px; border-radius: 20px; font-size: 14px; text-decoration: none; font-weight: bold; }
+        .disc { font-size: 12px; color: var(--mut); margin-top: 12px; background: rgba(0,0,0,0.3); display: inline-block; padding: 5px 15px; border-radius: 10px; border: 1px dashed #334155;}
+        .cont { max-width: 1200px; margin: auto; padding: 20px 15px; }
+        .sec-title { font-size: 24px; color: var(--pri); margin-bottom: 20px; font-weight: 900; border-bottom: 2px dashed #334155; padding-bottom: 10px;}
         
-        .packages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px; }
-        .pkg-card { background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%); border: 2px solid var(--accent-color); border-radius: 12px; padding: 20px; text-align: center; transition: 0.3s; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between;}
-        .pkg-card::before { content: '🔥 عرض أوفلاين'; position: absolute; top: 15px; right: -35px; background: var(--accent-color); color: white; padding: 5px 40px; font-weight: bold; transform: rotate(45deg); font-size: 12px; }
-        .pkg-title { font-size: 18px; font-weight: bold; color: var(--primary-color); margin-bottom: 15px; }
-        .pkg-info { background-color: #020617; display: inline-block; padding: 8px 15px; border-radius: 20px; font-size: 13px; font-weight: bold; margin-bottom: 15px; border: 1px solid #334155; color: white;}
-        .pkg-desc { font-size: 12px; color: var(--text-muted); margin-bottom: 15px; line-height: 1.8; flex-grow: 1;}
-        .btn-pkg { background-color: var(--accent-color); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; font-family: 'Tajawal', sans-serif; font-size: 14px; cursor: pointer; width: 100%; transition: 0.2s; margin-top: auto;}
+        .pkg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .pkg-card { background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%); border: 2px solid var(--acc); border-radius: 12px; padding: 20px; text-align: center; position: relative; overflow: hidden; display: flex; flex-direction: column;}
+        .pkg-card::before { content: '🔥 عرض'; position: absolute; top: 15px; right: -35px; background: var(--acc); color: white; padding: 5px 40px; font-weight: bold; transform: rotate(45deg); font-size: 12px; }
+        .pkg-title { font-size: 18px; font-weight: bold; color: var(--pri); margin-bottom: 15px; }
+        .pkg-info { background: #020617; padding: 8px 15px; border-radius: 20px; font-size: 13px; font-weight: bold; margin-bottom: 15px; border: 1px solid #334155; }
+        .pkg-desc { font-size: 12px; color: var(--mut); margin-bottom: 15px; line-height: 1.8; flex-grow: 1;}
+        .btn-pkg { background: var(--acc); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; font-family: inherit; font-size: 14px; cursor: pointer; width: 100%; margin-top: auto;}
         
-        .filter-section { background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid #334155; margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);}
-        .search-box input { width: 100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #475569; background-color: #0f172a; color: white; font-family: 'Tajawal', sans-serif; font-size: 15px; box-sizing: border-box;}
-        .filter-title { font-size: 14px; color: var(--primary-color); margin: 15px 0 10px; font-weight: bold; }
-        .filter-group { display: flex; flex-wrap: wrap; gap: 10px; }
-        .filter-btn { background-color: #0f172a; color: var(--text-main); border: 1px solid #475569; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-family: 'Tajawal', sans-serif; font-size: 13px; transition: 0.2s; }
-        .filter-btn.active { background-color: var(--primary-color); color: #000; border-color: var(--primary-color); font-weight: bold; }
+        .filters { background: var(--card); padding: 20px; border-radius: 12px; border: 1px solid #334155; margin-bottom: 30px; }
+        .filters input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: white; font-family: inherit; font-size: 15px; box-sizing: border-box;}
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: var(--card); border-radius: 12px; overflow: hidden; border: 1px solid #334155; display: flex; flex-direction: column; }
+        .c-img { width: 100%; height: 220px; position: relative; background: #0f172a; display: flex; justify-content: center; align-items: center; border-bottom: 2px solid var(--pri); }
+        .c-text { position: absolute; z-index: 1; color: #475569; font-size: 22px; font-weight: 900; text-transform: uppercase; text-align: center; padding: 10px;}
+        .c-img img { position: absolute; z-index: 2; width: 100%; height: 100%; object-fit: cover; }
+        .c-head { padding: 15px 10px 5px; text-align: center; background: #17171c;}
+        .c-title { color: var(--txt); font-size: 18px; font-weight: 900; margin: 0; text-transform: uppercase;}
+        .c-size { font-size: 13px; color: #cbd5e1; margin-top: 5px; display: block;}
+        .c-body { padding: 15px; flex: 1; display: flex; flex-direction: column; gap: 8px;}
+        
+        .btn-v { padding: 12px 10px; border: 1px solid #475569; border-radius: 6px; font-family: inherit; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; background: #0f172a; color: white; transition: 0.2s;}
+        .btn-v span:first-child { color: var(--mut); font-size: 13px;}
+        .btn-v span:last-child { color: var(--pri); font-size: 15px;}
+        .btn-v.added { background: var(--dang); border-color: var(--dang); }
+        .btn-v.added span { color: white !important; }
+        .btn-v:disabled { background: #17171c; border-color: #333; cursor: not-allowed; opacity: 0.7;}
+        .btn-v:disabled span:last-child { color: var(--dang); font-size: 13px;}
 
-        .grid-layout { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .card { background-color: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 6px 15px rgba(0,0,0,0.5); display: flex; flex-direction: column; border: 1px solid #334155; transition: 0.2s; }
-        .card:hover { border-color: var(--primary-color); transform: translateY(-5px); }
-        .card-img-container { width: 100%; height: 220px; position: relative; background: #0f172a; display: flex; justify-content: center; align-items: center; text-align: center; border-bottom: 2px solid var(--primary-color); overflow: hidden;}
-        .fallback-text { position: absolute; z-index: 1; color: #475569; font-size: 22px; font-weight: 900; padding: 20px; text-transform: uppercase;}
-        .card-img-container img { position: absolute; z-index: 2; width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
-        .card:hover .card-img-container img { transform: scale(1.08); }
-        .card-header { padding: 15px 10px 5px; text-align: center; background-color: #17171c;}
-        .game-title { color: var(--text-main); font-size: 18px; font-weight: 900; margin: 0; text-transform: uppercase;}
-        .size-badge { font-size: 13px; color: #cbd5e1; margin-top: 5px; display: block;}
-        .card-content { padding: 15px; flex: 1; display: flex; flex-direction: column; gap: 8px;}
-        
-        .btn-version { padding: 12px 10px; border: 1px solid #475569; border-radius: 6px; font-family: 'Tajawal', sans-serif; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background-color: #0f172a; color: white; transition: 0.2s;}
-        .btn-version span.v-name { color: var(--text-muted); font-size: 13px;}
-        .btn-version span.v-price { color: var(--primary-color); font-size: 15px;}
-        .btn-version:hover:not(:disabled) { border-color: var(--primary-color); background-color: #1e293b;}
-        .btn-version.added { background-color: var(--danger); border-color: var(--danger); }
-        .btn-version.added span.v-name, .btn-version.added span.v-price { color: white; }
-        .btn-version:disabled { background-color: #17171c; border-color: #333; cursor: not-allowed; opacity: 0.7;}
-        .btn-version:disabled span.v-price { color: var(--danger); font-size: 13px;}
-
-        .cart-float { position: fixed; bottom: 20px; left: 20px; background-color: var(--accent-color); color: white; padding: 15px 25px; border-radius: 30px; font-weight: bold; font-family: 'Tajawal', sans-serif; font-size: 16px; box-shadow: 0 5px 20px rgba(239, 68, 68, 0.5); cursor: pointer; border: none; z-index: 1000; display: flex; align-items: center; gap: 10px; transition: 0.2s;}
-        .cart-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.9); z-index: 1001; justify-content: center; align-items: center; padding: 15px; }
-        .cart-content { background-color: var(--card-bg); width: 100%; max-width: 500px; border-radius: 15px; padding: 25px; max-height: 90vh; overflow-y: auto; border: 2px solid var(--accent-color); }
-        .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; padding-bottom: 15px; margin-bottom: 15px; }
-        .cart-header h2 { margin: 0; color: var(--primary-color); }
-        .user-info-section { display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px; }
-        .user-info-section input { padding: 12px; border-radius: 8px; border: 1px solid #475569; background-color: #0f172a; color: white; font-family: 'Tajawal', sans-serif; box-sizing: border-box;}
-        .store-fee-box { background: #0f172a; padding: 15px; border-radius: 8px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #334155;}
-        .store-fee-box label { font-size: 14px; color: var(--text-main); font-weight: bold; cursor: pointer; }
-        .store-fee-box input[type="checkbox"] { transform: scale(1.5); cursor: pointer; accent-color: var(--primary-color);}
-        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 14px; border-bottom: 1px dashed #334155; padding-bottom: 8px; }
-        .cart-summary { background-color: #0f172a; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; border: 1px solid #334155;}
-        .cart-summary h3 { margin: 0 0 5px 0; color: var(--text-muted); font-size: 14px; }
-        .cart-summary h2 { margin: 0 0 10px 0; color: var(--primary-color); font-size: 22px;}
-        .btn-whatsapp { background-color: #25D366; color: white; width: 100%; padding: 14px; border: none; border-radius: 8px; font-family: 'Tajawal', sans-serif; font-weight: bold; font-size: 15px; cursor: pointer; transition: 0.2s; margin-top: 10px;}
-        .close-cart { background: none; border: none; color: white; font-size: 24px; cursor: pointer; }
+        .cart-fl { position: fixed; bottom: 20px; left: 20px; background: var(--acc); color: white; padding: 15px 25px; border-radius: 30px; font-weight: bold; font-family: inherit; cursor: pointer; border: none; z-index: 1000; box-shadow: 0 5px 20px rgba(0,0,0,0.5);}
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1001; justify-content: center; align-items: center; padding: 15px; }
+        .m-cont { background: var(--card); width: 100%; max-width: 500px; border-radius: 15px; padding: 25px; max-height: 90vh; overflow-y: auto; border: 2px solid var(--acc); }
+        .m-head { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; padding-bottom: 15px; margin-bottom: 15px; }
+        .m-head h2 { margin: 0; color: var(--pri); }
+        .u-info input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: white; font-family: inherit; margin-bottom: 10px; box-sizing: border-box;}
+        .fee-box { background: #0f172a; padding: 15px; border-radius: 8px; margin-bottom: 15px; display: flex; justify-content: space-between; border: 1px solid #334155;}
+        .fee-box input { transform: scale(1.5); accent-color: var(--pri);}
+        .c-item { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; border-bottom: 1px dashed #334155; padding-bottom: 8px; }
+        .m-sum { background: #0f172a; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; border: 1px solid #334155;}
+        .btn-wa { background: #25D366; color: white; width: 100%; padding: 14px; border: none; border-radius: 8px; font-weight: bold; font-family: inherit; cursor: pointer; margin-top: 10px;}
     </style>
 </head>
 <body>
 
-    <div class="top-info-bar">
-        <div class="phones">📞 01555886990 - 01010763503</div>
-        <div class="address">📍 الإسماعيلية - أرض الجمعيات</div>
+    <div class="top-bar">
+        <div>📞 01555886990 - 01010763503</div>
+        <div>📍 الإسماعيلية - أرض الجمعيات</div>
     </div>
 
     <header>
         <h1>Level UP <span>SALE</span></h1>
-        <a href="https://www.facebook.com/LevelUP.Ismailia" target="_blank" class="fb-link">f | LevelUP Ismailia</a>
-        <br>
-        <div class="disclaimer-text">⚠️ يتم احتساب 100 جنيه رسوم إضافية في حالة تحميل الألعاب داخل المحل.</div>
+        <a href="https://www.facebook.com/LevelUP.Ismailia" target="_blank" class="fb-link">f | LevelUP Ismailia</a><br>
+        <div class="disc">⚠️ يتم احتساب 100 جنيه رسوم إضافية في حالة تحميل الألعاب داخل المحل.</div>
     </header>
 
-    <div class="container">
-        
-        <h2 class="section-title">🔥 باقات التوفير (أوفلاين)</h2>
-        <div class="packages-grid">
+    <div class="cont">
+        <h2 class="sec-title">🔥 باقات التوفير (أوفلاين)</h2>
+        <div class="pkg-grid">
             <div class="pkg-card">
                 <div class="pkg-title">باقة الأكشن والمحركات</div>
                 <div class="pkg-info" id="pkg1-info">جاري الحساب...</div>
-                <div class="pkg-desc">Burnout Paradise, Call of Duty WWII Gold Edition, Crash Racing, FC 2026, Mortal Kombat 11, Grand Theft Auto V</div>
-                <button class="btn-pkg" onclick="addPackage([9, 10, 11, 13, 25, 16])">🛒 أضف الباقة لعرضي</button>
+                <div class="pkg-desc">Burnout Paradise, CoD WWII, Crash Racing, FC 2026, Mortal Kombat 11, GTA V</div>
+                <button class="btn-pkg" onclick="addPackage([19, 21, 25, 39, 70, 50])">🛒 أضف الباقة</button>
             </div>
-            
             <div class="pkg-card">
                 <div class="pkg-title">باقة الحماس والقتال</div>
                 <div class="pkg-info" id="pkg2-info">جاري الحساب...</div>
-                <div class="pkg-desc">NFS Hot Pursuit Remastered, Black Ops III, Crash Racing, FC 2026, Tekken 7, Mafia Trilogy</div>
-                <button class="btn-pkg" onclick="addPackage([29, 8, 11, 13, 35, 21])">🛒 أضف الباقة لعرضي</button>
+                <div class="pkg-desc">NFS Hot Pursuit, Black Ops III, Crash Racing, FC 2026, Tekken 7, Mafia Trilogy</div>
+                <button class="btn-pkg" onclick="addPackage([78, 17, 25, 39, 107, 63])">🛒 أضف الباقة</button>
             </div>
-
             <div class="pkg-card">
                 <div class="pkg-title">باقة التدمير والسرعة</div>
                 <div class="pkg-info" id="pkg3-info">جاري الحساب...</div>
-                <div class="pkg-desc">NFS Payback, Black Ops 4, Crash Racing, Mortal Kombat 11, Just Cause 4 Reloaded</div>
-                <button class="btn-pkg" onclick="addPackage([30, 7, 11, 25, 19])">🛒 أضف الباقة لعرضي</button>
+                <div class="pkg-desc">NFS Payback, Black Ops 4, Crash Racing, Mortal Kombat 11, Just Cause 4</div>
+                <button class="btn-pkg" onclick="addPackage([79, 16, 25, 70, 58])">🛒 أضف الباقة</button>
             </div>
-
-            <div class="pkg-card" style="border-color: var(--primary-color);">
-                <div class="pkg-title" style="color: var(--text-main);">باقة LevelUP 150 Giga WE</div>
+            <div class="pkg-card" style="border-color: var(--pri);">
+                <div class="pkg-title" style="color: white;">باقة LevelUP 150 Giga WE</div>
                 <div class="pkg-info">💾 150 جيجا | 💰 85 ج.م</div>
-                <div style="width: 100%; height: 100px; border-radius: 8px; overflow: hidden; margin-bottom: 15px; border: 1px solid #444;">
-                    <img src="levelup.jpg" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
-                </div>
-                <div class="pkg-desc">باقة داتا مخصصة لتحميل 150 جيجا ألعاب من اختيارك.</div>
-                <button class="btn-pkg" style="background-color: var(--primary-color); color: #000;" onclick="addLevelUpPackage()">🛒 أضف الباقة لعرضي</button>
+                <div style="height: 100px; border-radius: 8px; margin-bottom: 15px;"><img src="levelup.jpg" style="width:100%; height:100%; object-fit:cover;" onerror="this.style.display='none'"></div>
+                <button class="btn-pkg" style="background:var(--pri); color:#000;" onclick="addLevelUp()">🛒 أضف الباقة</button>
             </div>
         </div>
 
-        <h2 class="section-title">🎮 اختر ألعابك الفردية وحدد نسختك</h2>
-
-        <div class="filter-section">
-            <input type="text" id="searchInput" class="search-box" placeholder="ابحث عن اسم اللعبة..." onkeyup="renderGames()" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: white; font-family: 'Tajawal'; font-size: 15px; margin-bottom: 15px; box-sizing: border-box;">
-            
-            <div class="filter-title">📌 نوع اللعبة:</div>
-            <div class="filter-group" id="genreFilters">
-                <button class="filter-btn" onclick="toggleGenreFilter('أكشن', this)">أكشن</button>
-                <button class="filter-btn" onclick="toggleGenreFilter('مغامرات', this)">مغامرات</button>
-                <button class="filter-btn" onclick="toggleGenreFilter('عالم مفتوح', this)">عالم مفتوح</button>
-                <button class="filter-btn" onclick="toggleGenreFilter('رعب', this)">رعب</button>
-                <button class="filter-btn" onclick="toggleGenreFilter('العاب عائلية', this)">ألعاب عائلية</button>
-                <button class="filter-btn" onclick="toggleGenreFilter('سباق', this)">سباق</button>
-                <button class="filter-btn" onclick="toggleGenreFilter('رياضة', this)">رياضة</button>
-            </div>
-
-            <div class="filter-title">💾 فلتر بالمساحة التقديرية:</div>
-            <div class="filter-group" id="sizeFilters">
-                <button class="filter-btn" onclick="toggleSizeFilter(50, this)">أقل من 50 جيجا</button>
-                <button class="filter-btn" onclick="toggleSizeFilter(100, this)">من 50 إلى 100 جيجا</button>
-                <button class="filter-btn" onclick="toggleSizeFilter(999, this)">أكبر من 100 جيجا</button>
-            </div>
+        <h2 class="sec-title">🎮 اختر ألعابك وحدد نسختك</h2>
+        <div class="filters">
+            <input type="text" id="searchInput" placeholder="ابحث عن اسم اللعبة..." onkeyup="renderGames()">
         </div>
-
-        <div class="grid-layout" id="gamesGrid"></div>
+        <div class="grid" id="gamesGrid"></div>
     </div>
 
-    <button class="cart-float" onclick="openCart()">
-        🛒 عرضي المختار (<span id="cartCount">0</span>)
-    </button>
+    <button class="cart-fl" onclick="openCart()">🛒 عرضي المختار (<span id="cartCount">0</span>)</button>
 
-    <div class="cart-modal" id="cartModal">
-        <div class="cart-content">
-            <div class="cart-header">
+    <div class="modal" id="cartModal">
+        <div class="m-cont">
+            <div class="m-head">
                 <h2>عروضي المختارة</h2>
-                <button class="close-cart" onclick="closeCart()">✖</button>
+                <button onclick="closeCart()" style="background:none; border:none; color:white; font-size:24px; cursor:pointer;">✖</button>
             </div>
-            
-            <div class="user-info-section">
+            <div class="u-info">
                 <input type="text" id="userName" placeholder="الاسم الثنائي...">
                 <input type="tel" id="userPhone" placeholder="رقم الموبايل...">
                 <input type="tel" id="userLandline" placeholder="الرقم الأرضي (اختياري لباقة WE)...">
             </div>
-
-            <div class="store-fee-box">
-                <label for="storeFeeToggle">تنزيل الألعاب داخل المحل (+100 ج.م)</label>
-                <input type="checkbox" id="storeFeeToggle" onchange="updateCartUI()">
+            <div class="fee-box">
+                <label>تنزيل الألعاب داخل المحل (+100 ج.م)</label>
+                <input type="checkbox" id="storeFeeToggle" onchange="updateCart()">
             </div>
-
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #334155; padding-bottom: 10px; margin-bottom: 10px;">
-                <span style="font-size: 14px; color: var(--primary-color);">تفاصيل الألعاب</span>
-                <button onclick="clearCart()" style="background: none; border: 1px solid var(--danger); color: var(--danger); padding: 5px 10px; border-radius: 5px; cursor: pointer; font-family:'Tajawal'; font-weight:bold;">إفراغ السلة</button>
+            <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                <span style="color:var(--pri); font-size:14px;">التفاصيل</span>
+                <button onclick="clearCart()" style="background:none; border:1px solid var(--dang); color:var(--dang); padding:3px 10px; border-radius:5px; cursor:pointer;">إفراغ</button>
             </div>
-
-            <div id="cartItemsList" style="margin-bottom: 15px;"></div>
-
-            <div class="cart-summary">
-                <h3>إجمالي المساحة التقديرية</h3>
-                <h2 id="totalSizeUI" dir="ltr" style="color: white;">0 GB</h2>
-                <h3>السعر الإجمالي لعرضك</h3>
-                <h2 id="totalPriceUI">0 ج.م</h2>
+            <div id="cartList" style="margin-bottom:15px;"></div>
+            <div class="m-sum">
+                <h3 style="margin:0 0 5px; color:var(--mut); font-size:14px;">إجمالي المساحة</h3>
+                <h2 id="totalSizeUI" style="margin:0 0 10px; color:white; direction:ltr;">0 GB</h2>
+                <h3 style="margin:0 0 5px; color:var(--mut); font-size:14px;">السعر الإجمالي</h3>
+                <h2 id="totalPriceUI" style="margin:0; color:var(--pri);">0 ج.م</h2>
             </div>
-
-            <div class="whatsapp-buttons">
-                <button class="btn-whatsapp" onclick="sendWhatsApp('201555886990')">إرسال الطلب (محمود شوقي) 💬</button>
-                <button class="btn-whatsapp" onclick="sendWhatsApp('201010763503')">إرسال الطلب (احمد يسري) 💬</button>
-            </div>
+            <button class="btn-wa" onclick="sendWA('201555886990')">إرسال (محمود شوقي)</button>
+            <button class="btn-wa" onclick="sendWA('201010763503')">إرسال (احمد يسري)</button>
         </div>
     </div>
 
     <script>
-        // رابط جوجل شيت المعتمد والمحدث
-        const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbzJbRLq_Qwyq1qbZsXR8AMKPiwi0H9J7WlwIzcL2O_8rVzK-74tP1hV-V_oUBxK3Ge-/exec';
+        const GOOGLE_URL = 'https://script.google.com/macros/s/AKfycbzJbRLq_Qwyq1qbZsXR8AMKPiwi0H9J7WlwIzcL2O_8rVzK-74tP1hV-V_oUBxK3Ge-/exec';
 
-        // قائمة الـ 40 لعبة الجاهزة (يمكنك إضافة باقي الـ 130 لعبة هنا بنفس النمط)
-        const gamesDB = [
-            { id: 1, name: "A way out", genres: ["مغامرات", "العاب عائلية"], size: 17, prices: { 'Offline': 100, 'Pri PS4': 400, 'Pri PS5': 300, 'Secondary': 200 }, image: "a-way-out.jpg" },
-            { id: 2, name: "Assassin's Creed Mirage", genres: ["أكشن", "عالم مفتوح"], size: 40, prices: { 'Offline': 100, 'Pri PS4': 450, 'Pri PS5': 400, 'Secondary': 0 }, image: "assassins-creed-mirage.png" },
-            { id: 3, name: "Assassin's Creed Odyssey", genres: ["أكشن", "عالم مفتوح"], size: 55, prices: { 'Offline': 80, 'Pri PS4': 350, 'Pri PS5': 300, 'Secondary': 0 }, image: "assassins-creed-odyssey.jpg" },
-            { id: 4, name: "Assassin's Creed® Valhalla", genres: ["أكشن", "عالم مفتوح"], size: 70, prices: { 'Offline': 100, 'Pri PS4': 400, 'Pri PS5': 350, 'Secondary': 0 }, image: "assassins-creed-valhalla.jpg" },
-            { id: 5, name: "Batman Arkham knight", genres: ["أكشن", "عالم مفتوح"], size: 50, prices: { 'Offline': 80, 'Pri PS4': 300, 'Pri PS5': 25, 'Secondary': 200 }, image: "batman-arkham-knight.jpg" },
-            { id: 6, name: "Battlefield™ V", genres: ["أكشن"], size: 116, prices: { 'Offline': 80, 'Pri PS4': 250, 'Pri PS5': 200, 'Secondary': 150 }, image: "battlefield-v.jpg" },
-            { id: 7, name: "Black Ops 4", genres: ["أكشن"], size: 100, prices: { 'Offline': 100, 'Pri PS4': 350, 'Pri PS5': 300, 'Secondary': 200 }, image: "black-ops-4.jpg" },
-            { id: 8, name: "Black Ops III", genres: ["أكشن"], size: 120, prices: { 'Offline': 150, 'Pri PS4': 550, 'Pri PS5': 500, 'Secondary': 350 }, image: "black-ops-iii.jpg" },
-            { id: 9, name: "Burnout Paradise", genres: ["سباق"], size: 8, prices: { 'Offline': 80, 'Pri PS4': 200, 'Pri PS5': 200, 'Secondary': 150 }, image: "burnout-paradise.jpg" },
-            { id: 10, name: "Call of Duty WWII Gold Edition", genres: ["أكشن"], size: 80, prices: { 'Offline': 80, 'Pri PS4': 300, 'Pri PS5': 200, 'Secondary': 150 }, image: "call-of-duty-wwii-gold-edition.jpg" },
-            { id: 11, name: "Crash Racing", genres: ["سباق", "العاب عائلية"], size: 15, prices: { 'Offline': 100, 'Pri PS4': 350, 'Pri PS5': 350, 'Secondary': 250 }, image: "crash-racing.jpg" },
-            { id: 12, name: "Far Cry 6", genres: ["أكشن", "عالم مفتوح"], size: 90, prices: { 'Offline': 100, 'Pri PS4': 450, 'Pri PS5': 250, 'Secondary': 200 }, image: "far-cry-6.png" },
-            { id: 13, name: "FC 2026", genres: ["رياضة"], size: 58, prices: { 'Offline': 100, 'Pri PS4': 450, 'Pri PS5': 550, 'Secondary': 350 }, image: "fc-2026.jpg" },
-            { id: 14, name: "Ghost of Tsushima", genres: ["أكشن", "عالم مفتوح"], size: 50, prices: { 'Offline': 100, 'Pri PS4': 450, 'Pri PS5': 450, 'Secondary': 0 }, image: "ghost-of-tsushima.jpg" },
-            { id: 15, name: "God of War", genres: ["أكشن", "مغامرات"], size: 45, prices: { 'Offline': 100, 'Pri PS4': 450, 'Pri PS5': 400, 'Secondary': 300 }, image: "god-of-war.jpg" },
-            { id: 16, name: "Grand Theft Auto V", genres: ["أكشن", "عالم مفتوح"], size: 90, prices: { 'Offline': 150, 'Pri PS4': 550, 'Pri PS5': 350, 'Secondary': 300 }, image: "grand-theft-auto-v.jpg" },
-            { id: 17, name: "Injustice 2", genres: ["أكشن"], size: 35, prices: { 'Offline': 80, 'Pri PS4': 300, 'Pri PS5': 300, 'Secondary': 200 }, image: "injustice-2.jpg" },
-            { id: 18, name: "It Takes Two", genres: ["مغامرات", "العاب عائلية"], size: 45, prices: { 'Offline': 150, 'Pri PS4': 500, 'Pri PS5': 400, 'Secondary': 0 }, image: "it-takes-two.jpg" },
-            { id: 19, name: "Just Cause 4 Reloaded", genres: ["أكشن", "عالم مفتوح"], size: 60, prices: { 'Offline': 100, 'Pri PS4': 300, 'Pri PS5': 300, 'Secondary': 150 }, image: "just-cause-4-reloaded.jpg" },
-            { id: 20, name: "LEGO Marvel Collection", genres: ["أكشن", "العاب عائلية"], size: 50, prices: { 'Offline': 100, 'Pri PS4': 450, 'Pri PS5': 450, 'Secondary': 0 }, image: "lego-marvel-collection.jpg" },
-            { id: 21, name: "Mafia Trilogy", genres: ["أكشن", "عالم مفتوح"], size: 100, prices: { 'Offline': 80, 'Pri PS4': 300, 'Pri PS5': 200, 'Secondary': 0 }, image: "mafia-trilogy.jpg" },
-            { id: 22, name: "marvel's spider-man miles morales", genres: ["أكشن", "عالم مفتوح"], size: 50, prices: { 'Offline': 150, 'Pri PS4': 550, 'Pri PS5': 500, 'Secondary': 0 }, image: "marvels-spider-man-miles-morales.jpg" },
-            { id: 23, name: "Marvel's Spider-Man Remastered", genres: ["أكشن", "عالم مفتوح"], size: 50, prices: { 'Offline': 80, 'Pri PS4': 350, 'Pri PS5': 250, 'Secondary': 200 }, image: "marvels-spider-man-remastered.png" },
-            { id: 24, name: "Minecraft", genres: ["العاب عائلية", "مغامرات"], size: 2, prices: { 'Offline': 150, 'Pri PS4': 0, 'Pri PS5': 0, 'Secondary': 0 }, image: "minecraft.jpg" },
-            { id: 25, name: "Mortal Kombat 11", genres: ["أكشن"], size: 80, prices: { 'Offline': 80, 'Pri PS4': 300, 'Pri PS5': 250, 'Secondary': 200 }, image: "mortal-kombat-11.jpg" },
-            { id: 26, name: "Mortal Kombat™ 1", genres: ["أكشن"], size: 100, prices: { 'Offline': 150, 'Pri PS4': 0, 'Pri PS5': 450, 'Secondary': 0 }, image: "mortal-kombat-1.jpg" },
-            { id: 27, name: "MotoGP 22 PS4 & PS5", genres: ["سباق", "رياضة"], size: 30, prices: { 'Offline': 80, 'Pri PS4': 250, 'Pri PS5': 200, 'Secondary': 150 }, image: "motogp-22-ps4--ps5.jpg" },
-            { id: 28, name: "Need for speed heat", genres: ["سباق"], size: 35, prices: { 'Offline': 100, 'Pri PS4': 300, 'Pri PS5': 250, 'Secondary': 200 }, image: "need-for-speed-heat.jpg" },
-            { id: 29, name: "NFS Hot Pursuit Remastered", genres: ["سباق"], size: 25, prices: { 'Offline': 80, 'Pri PS4': 250, 'Pri PS5': 200, 'Secondary': 150 }, image: "nfs-hot-pursuit-remastered.jpg" },
-            { id: 30, name: "NFS Payback", genres: ["سباق"], size: 30, prices: { 'Offline': 80, 'Pri PS4': 300, 'Pri PS5': 250, 'Secondary': 200 }, image: "nfs-payback.jpg" },
-            { id: 31, name: "Olympic Games Tokyo 2020", genres: ["رياضة", "العاب عائلية"], size: 15, prices: { 'Offline': 100, 'Pri PS4': 350, 'Pri PS5': 350, 'Secondary': 0 }, image: "olympic-games-tokyo-2020.png" },
-            { id: 32, name: "Pes 21", genres: ["رياضة"], size: 40, prices: { 'Offline': 450, 'Pri PS4': 0, 'Pri PS5': 0, 'Secondary': 0 }, image: "pes-21.jpg" },
-            { id: 33, name: "Red Dead Redemption 2", genres: ["أكشن", "عالم مفتوح", "مغامرات"], size: 115, prices: { 'Offline': 150, 'Pri PS4': 500, 'Pri PS5': 400, 'Secondary': 0 }, image: "red-dead-redemption-2.jpg" },
-            { id: 34, name: "Saints Row", genres: ["أكشن", "عالم مفتوح"], size: 50, prices: { 'Offline': 100, 'Pri PS4': 300, 'Pri PS5': 300, 'Secondary': 0 }, image: "saints-row.png" },
-            { id: 35, name: "Tekken 7", genres: ["أكشن"], size: 50, prices: { 'Offline': 100, 'Pri PS4': 500, 'Pri PS5': 350, 'Secondary': 250 }, image: "tekken-7.jpg" },
-            { id: 36, name: "The Last of Us Remastered", genres: ["أكشن", "رعب", "مغامرات"], size: 45, prices: { 'Offline': 100, 'Pri PS4': 350, 'Pri PS5': 300, 'Secondary': 0 }, image: "the-last-of-us-remastered.jpg" },
-            { id: 37, name: "the witcher", genres: ["أكشن", "عالم مفتوح", "مغامرات"], size: 40, prices: { 'Offline': 80, 'Pri PS4': 200, 'Pri PS5': 200, 'Secondary': 0 }, image: "the-witcher.jpg" },
-            { id: 38, name: "Tomb Raider Trilogy", genres: ["أكشن", "مغامرات"], size: 50, prices: { 'Offline': 100, 'Pri PS4': 300, 'Pri PS5': 300, 'Secondary': 0 }, image: "tomb-raider-trilogy.jpg" },
-            { id: 39, name: "Uncharted Bundle", genres: ["أكشن", "مغامرات"], size: 45, prices: { 'Offline': 100, 'Pri PS4': 350, 'Pri PS5': 350, 'Secondary': 300 }, image: "uncharted-bundle.png" },
-            { id: 40, name: "Unravel 2", genres: ["مغامرات", "العاب عائلية"], size: 4, prices: { 'Offline': 80, 'Pri PS4': 200, 'Pri PS5': 200, 'Secondary': 150 }, image: "unravel-2.jpg" }
+        // بيانات 130 لعبة تم ضغطها لسرعة التحميل وتطابق الجرد
+        // [id, name, OFF, PRI_4, PRI_5, SEC, Size]
+        const raw = [
+            [1,"A way out",100,350,300,250,17],[2,"AC Unity",100,0,200,150,50],[3,"Affected the minor UK",100,0,200,150,2],[4,"Alan Wake Remastered",150,400,350,250,30],[5,"Assassin's Creed Mirage",150,550,500,0,40],[6,"Assassin's Creed Odyssey",100,300,250,0,55],[7,"Assassin's Creed Origins",80,200,0,0,50],[8,"Assassin's Creed® Valhalla",100,350,250,0,70],[9,"Astro Bot",0,0,0,550,35],[10,"Baja Edge of Control HD",80,0,180,150,5],[11,"Batman Arkham knight",100,250,200,150,50],[12,"Battlefield 4™ Premium Edition",100,0,200,150,70],[13,"Battlefield™ V",80,250,200,150,116],[14,"Beat Saber",0,0,0,0,3],[15,"Bendy and the Dark Revival",100,300,300,200,15],[16,"Black Ops 4",80,250,250,200,100],[17,"Black Ops III",150,550,400,350,120],[18,"blood and Truth VR",100,0,0,250,40],[19,"Burnout Paradise",80,250,200,150,8],[20,"Call of duty Vanguard",0,0,0,0,75],[21,"Call of Duty WWII Gold Edition",100,250,250,200,80],[22,"Car Mechanic Sim",100,0,0,200,15],[23,"cho cho Charles",100,0,0,400,3],[24,"Control Ultimate Edition",100,0,350,200,25],[25,"Crash Racing",100,350,300,250,15],[26,"Cyberpunk",100,0,0,0,110],[27,"Demon Slayer - Kimetsu no Yaiba",100,0,0,0,25],[28,"Detroit Become Human",0,200,0,0,45],[29,"Devil May Cry 5",100,0,200,0,35],[30,"Dragon Ball FighterZ",100,0,350,0,6],[31,"Dragon Ball Z Kakarot",100,0,350,0,40],[32,"Dragonball Sparking Z",0,0,700,600,30],[33,"Dying Light",0,0,0,0,25],[34,"ea family bundle",80,0,200,150,50],[35,"Far Cry 3",0,0,0,0,15],[36,"Far Cry 6",100,6,6,2,90],[37,"FC 2024",100,0,0,0,50],[38,"FC 2025",100,0,0,0,50],[39,"FC 2026",150,450,500,350,58],[40,"FIFA 2022",100,0,0,0,40],[41,"FIFA 2023",100,0,0,0,45],[42,"Forza Horizon PS5",0,0,0,0,90],[43,"Friday The 13th",80,0,0,150,6],[44,"Gang Beasts",0,0,0,0,2],[45,"Ghost of Tsushima",150,450,500,0,50],[46,"God of War",100,350,350,200,45],[47,"God of War Ragnarok",0,0,0,0,110],[48,"Gotham Knights",150,0,0,450,45],[49,"Gran Turismo Sports",0,0,0,0,110],[50,"Grand Theft Auto V",100,500,450,300,90],[51,"Hello Neighbor Bundle",0,0,0,0,5],[52,"Hitman 3",0,0,0,0,70],[53,"Hogwarts Legacy",100,0,450,300,80],[54,"Horizon Forbidden West",150,450,400,300,90],[55,"Human fall flat",0,0,0,0,2],[56,"Injustice 2",100,250,200,150,35],[57,"It Takes Two",150,450,450,0,45],[58,"Just Cause 4 Reloaded",100,300,250,200,60],[59,"L.A Noire USA",100,0,250,150,18],[60,"lego 2k drive",100,350,300,0,20],[61,"LEGO Marvel Collection",100,350,300,0,50],[62,"Little Nightmares 1",100,0,250,0,4],[63,"Mafia Trilogy",100,300,300,0,100],[64,"Marvel Avengers",100,0,350,0,100],[65,"Marvel Spiderman 2",0,0,0,0,90],[66,"Marvel Super Heros 2",0,0,0,0,20],[67,"marvel's spider-man miles morales",150,450,400,0,50],[68,"Marvel's Spider-Man Remastered",100,400,350,250,50],[69,"Minecraft",200,0,0,0,2],[70,"Mortal Kombat 11",100,350,300,200,80],[71,"Mortal Kombat™ 1",150,0,550,0,100],[72,"Mortal XL",0,0,0,0,40],[73,"MotoGP 22 PS4 & PS5",100,250,200,180,30],[74,"Naruto Storm 4 RTB",150,0,400,0,40],[75,"NBA 2K25",100,0,0,400,150],[76,"need for speed 2015",100,0,200,150,20],[77,"Need for speed heat",150,300,250,200,35],[78,"NFS Hot Pursuit Remastered",100,200,200,150,25],[79,"NFS Payback",100,250,250,200,30],[80,"NFS Unbound",0,0,0,0,35],[81,"OffRoad b.atv.moto",0,0,0,0,15],[82,"Olympic Games Tokyo 2020",100,300,300,0,15],[83,"Outlast Trinity",100,0,0,250,30],[84,"Overcooked Bundle",0,0,0,0,10],[85,"Pes 19",0,0,0,0,30],[86,"Pes 21",450,0,0,0,40],[87,"Ratchet",0,200,200,150,28],[88,"Ratchet & HOrizon",0,0,0,0,75],[89,"Ratchet & HOrizon & vr",0,0,0,0,85],[90,"Rayman Legends",100,250,250,200,10],[91,"Red Dead Redemption 2",150,550,450,0,115],[92,"Resident Evil 4",0,0,0,0,60],[93,"resident evil 4 2005",0,0,0,0,10],[94,"Resident Evil 7",100,0,0,200,25],[95,"Resident Evil Racoon city",100,400,350,0,45],[96,"Resident Evil Village",100,0,0,0,30],[97,"Ride",100,0,200,150,20],[98,"Rise of the Tomb Raider",0,0,0,0,20],[99,"Road Redemtion",0,0,0,0,5],[100,"Rubber Bandits",0,0,0,0,2],[101,"SackBoy",0,0,0,0,35],[102,"Saints Row",100,350,300,0,50],[103,"Sekiro",100,450,0,0,15],[104,"Silent Hill 2 Remake",0,0,0,550,50],[105,"Sonic Frontiers",100,0,450,0,25],[106,"Split Fiction",0,0,0,0,10],[107,"Tekken 7",100,450,300,250,50],[108,"The Crew 2",0,0,0,0,60],[109,"The Crew Motofest",0,0,0,0,35],[110,"The Evil Within",100,0,0,150,40],[111,"The Evil Within 2",100,0,0,150,35],[112,"the last of us 2",150,0,0,0,80],[113,"The Last of Us Remastered",100,350,300,0,45],[114,"the witcher",100,250,200,0,40],[115,"Tomb Raider DE",100,200,200,150,15],[116,"Tomb Raider Trilogy",150,400,350,0,50],[117,"TOP Spin 2K 2025",0,0,450,350,30],[118,"UFC 4 deluxe edition",100,0,0,200,30],[119,"Uncharted Bundle",100,450,400,250,45],[120,"Unravel 2",80,200,200,150,4],[121,"V Rally",100,200,200,150,15],[122,"Vr worlds",0,0,0,0,10],[123,"WATCH DOGS 2",100,0,250,0,35],[124,"Watch dogs legion",100,0,0,0,45],[125,"WWE 2k20",100,0,0,0,50],[126,"WWE 2k23",0,0,0,0,70],[127,"WWE 2K24",100,0,0,0,80],[128,"WWE 2K25",150,450,0,0,80],[129,"Zombie Army 4",100,250,0,150,50]
         ];
 
+        const gamesDB = raw.map(r => ({ id: r[0], name: r[1], pr: {'Offline':r[2], 'Pri PS4':r[3], 'Pri PS5':r[4], 'Secondary':r[5]}, sz: r[6] }));
         let cart = []; 
-        let activeSizeFilter = 0; 
-        let activeGenres = [];
 
-        function calculatePackagesInfo() {
-            const pkgs = [
-                { id: 'pkg1-info', games: [9, 10, 11, 13, 25, 16] },
-                { id: 'pkg2-info', games: [29, 8, 11, 13, 35, 21] },
-                { id: 'pkg3-info', games: [30, 7, 11, 25, 19] }
-            ];
-            pkgs.forEach(pkg => {
-                let totalSize = 0, totalPrice = 0;
-                pkg.games.forEach(gameId => {
-                    const g = gamesDB.find(x => x.id === gameId);
-                    if(g) { totalSize += g.size; totalPrice += g.prices['Offline']; }
-                });
-                document.getElementById(pkg.id).innerText = `💾 ~${totalSize} جيجا | 💰 ${totalPrice} ج.م`;
+        // توليد اسم الصورة من اسم اللعبة
+        const getImg = (n) => n.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9-]/g, '');
+
+        function calcPkgs() {
+            const p = [{id:'pkg1-info',g:[19,21,25,39,70,50]}, {id:'pkg2-info',g:[78,17,25,39,107,63]}, {id:'pkg3-info',g:[79,16,25,70,58]}];
+            p.forEach(x => {
+                let sz=0, pr=0;
+                x.g.forEach(gid => { let g = gamesDB.find(i=>i.id===gid); if(g){sz+=g.sz; pr+=g.pr['Offline'];} });
+                document.getElementById(x.id).innerText = `💾 ~${sz} GB | 💰 ${pr} ج.م`;
             });
         }
-        calculatePackagesInfo();
+        calcPkgs();
 
-        function toggleGenreFilter(value, btnElement) {
-            btnElement.classList.toggle('active');
-            if(activeGenres.includes(value)) {
-                activeGenres = activeGenres.filter(g => g !== value);
-            } else {
-                activeGenres.push(value);
-            }
-            renderGames();
-        }
-
-        function toggleSizeFilter(sizeLimit, btnElement) {
-            document.querySelectorAll('#sizeFilters .filter-btn').forEach(btn => btn.classList.remove('active'));
-            if(activeSizeFilter === sizeLimit) { activeSizeFilter = 0; } 
-            else { activeSizeFilter = sizeLimit; btnElement.classList.add('active'); }
-            renderGames();
-        }
-
-        function addPackage(gameIds) {
-            let hasPriOrSec = cart.some(c => c.type !== 'Offline');
-            if (hasPriOrSec) return alert("السلة تحتوي على ألعاب برايمري أو سكندري. لا يمكن دمجها مع باقات الأوفلاين.");
-
-            gameIds.forEach(id => {
-                const game = gamesDB.find(g => g.id === id);
-                if (game && !cart.some(c => c.id === id && c.type === 'Offline')) {
-                    cart.push({ id: game.id, name: game.name, size: game.size, type: 'Offline', price: game.prices['Offline'] });
-                }
+        function addPackage(ids) {
+            if(cart.some(c => c.t !== 'Offline')) return alert("لا يمكن دمج الأوفلاين مع برايمري أو سكندري.");
+            ids.forEach(id => {
+                let g = gamesDB.find(x => x.id === id);
+                if(g && !cart.some(c => c.id === id)) cart.push({ id: g.id, n: g.name, t: 'Offline', p: g.pr['Offline'], sz: g.sz });
             });
-            updateCartUI();
-            renderGames();
-            alert("تم إضافة باقة الأوفلاين بنجاح لعرضك!");
+            updateCart(); renderGames(); alert("تم إضافة الباقة!");
         }
 
-        function addLevelUpPackage() {
-            let hasPriOrSec = cart.some(c => c.type !== 'Offline');
-            if(hasPriOrSec) return alert("لا يمكن إضافة هذه الباقة لأن السلة تحتوي على ألعاب برايمري أو سكندري.");
-            
-            if (!cart.some(c => c.id === 999)) {
-                cart.push({ id: 999, name: "باقة LevelUP 150 Giga WE", size: 150, type: 'Offline', price: 85 });
-                updateCartUI();
-                alert("تم إضافة الباقة بنجاح!");
+        function addLevelUp() {
+            if(cart.some(c => c.t !== 'Offline')) return alert("السلة تحتوي نسخ برايمري/سكندري.");
+            if(!cart.some(c => c.id === 999)) { cart.push({ id: 999, n: "باقة LevelUP 150 Giga WE", t: 'Offline', p: 85, sz: 150 }); updateCart(); alert("تم!");}
+        }
+
+        function toggleV(id, type, price) {
+            let idx = cart.findIndex(c => c.id === id && c.t === type);
+            if(idx > -1) { cart.splice(idx, 1); }
+            else {
+                let hasO = cart.some(c => c.t === 'Offline'), has4 = cart.some(c => c.t === 'Pri PS4'), has5 = cart.some(c => c.t === 'Pri PS5');
+                if(type === 'Offline' && cart.length && !hasO) return alert("السلة بها نسخ أخرى.");
+                if(type !== 'Offline' && hasO) return alert("السلة بها أوفلاين.");
+                if(type === 'Pri PS4' && has5) return alert("لا تدمج Pri PS4 مع Pri PS5.");
+                if(type === 'Pri PS5' && has4) return alert("لا تدمج Pri PS5 مع Pri PS4.");
+                let g = gamesDB.find(x => x.id === id);
+                cart.push({ id: g.id, n: g.name, t: type, p: price, sz: g.sz });
             }
+            updateCart(); renderGames();
         }
 
-        function toggleSpecificVersion(gameId, type, price) {
-            const existingIndex = cart.findIndex(c => c.id === gameId && c.type === type);
-            
-            if (existingIndex > -1) {
-                cart.splice(existingIndex, 1);
-                updateCartUI();
-                renderGames();
-                return;
-            }
-
-            let hasOffline = cart.some(c => c.type === 'Offline');
-            let hasPri4 = cart.some(c => c.type === 'Pri PS4');
-            let hasPri5 = cart.some(c => c.type === 'Pri PS5');
-
-            if (type === 'Offline' && cart.length > 0 && !hasOffline) return alert("لا يمكن إضافة ألعاب أوفلاين لأن السلة تحتوي على نسخ برايمري أو سكندري.");
-            if (type !== 'Offline' && hasOffline) return alert("عفواً، السلة تحتوي على ألعاب أوفلاين. لا يمكن دمجها مع برايمري أو سكندري.");
-            if (type === 'Pri PS4' && hasPri5) return alert("لا يمكن اختيار نسخة Pri PS4 لوجود نسخة Pri PS5 في العرض.");
-            if (type === 'Pri PS5' && hasPri4) return alert("لا يمكن اختيار نسخة Pri PS5 لوجود نسخة Pri PS4 في العرض.");
-
-            const game = gamesDB.find(g => g.id === gameId);
-            cart.push({ id: game.id, name: game.name, size: game.size, type: type, price: price });
-            updateCartUI();
-            renderGames();
-        }
-
-        function clearCart() { cart = []; updateCartUI(); renderGames(); }
+        function clearCart() { cart = []; updateCart(); renderGames(); }
 
         function renderGames() {
             const grid = document.getElementById('gamesGrid');
-            const searchText = document.getElementById('searchInput').value.toLowerCase();
+            const term = document.getElementById('searchInput').value.toLowerCase();
             grid.innerHTML = '';
-            
-            gamesDB.forEach(game => {
-                if (searchText && !game.name.toLowerCase().includes(searchText)) return;
-                if (activeSizeFilter === 50 && game.size >= 50) return;
-                if (activeSizeFilter === 100 && (game.size < 50 || game.size > 100)) return;
-                if (activeSizeFilter === 999 && game.size <= 100) return;
-                if (activeGenres.length > 0 && (!game.genres || !game.genres.some(g => activeGenres.includes(g)))) return;
-
-                let buttonsHTML = '';
-                ['Offline', 'Pri PS4', 'Pri PS5', 'Secondary'].forEach(type => {
-                    const price = game.prices[type];
-                    const inCart = cart.some(c => c.id === game.id && c.type === type);
-                    
-                    if (price > 0) {
-                        buttonsHTML += `<button class="btn-version ${inCart ? 'added' : ''}" onclick="toggleSpecificVersion(${game.id}, '${type}', ${price})">
-                                            <span class="v-name">${inCart ? 'إزالة' : type}</span> 
-                                            <span class="v-price">${price} ج</span>
-                                        </button>`;
-                    } else {
-                        buttonsHTML += `<button class="btn-version" disabled>
-                                            <span class="v-name">${type}</span> 
-                                            <span class="v-price">نفذت ❌</span>
-                                        </button>`;
-                    }
+            gamesDB.forEach(g => {
+                if(term && !g.name.toLowerCase().includes(term)) return;
+                let btns = '';
+                ['Offline', 'Pri PS4', 'Pri PS5', 'Secondary'].forEach(t => {
+                    let p = g.pr[t], inC = cart.some(c => c.id === g.id && c.t === t);
+                    btns += `<button class="btn-v ${inC?'added':''}" onclick="toggleV(${g.id},'${t}',${p})" ${p>0?'':'disabled'}>
+                                <span>${inC?'إزالة':t}</span> <span>${p>0?p+' ج':'نفذت ❌'}</span>
+                             </button>`;
                 });
-
-                grid.innerHTML += `
-                    <div class="card">
-                        <div class="card-img-container">
-                            <span class="fallback-text">${game.name}</span>
-                            <img src="${game.image}" loading="lazy" onerror="this.style.display='none'">
-                        </div>
-                        <div class="card-header">
-                            <h3 class="game-title">${game.name}</h3>
-                            <span class="size-badge">💾 المساحة: ~${game.size} جيجا</span>
-                        </div>
-                        <div class="card-content">
-                            ${buttonsHTML}
-                        </div>
-                    </div>`;
+                let imgN = getImg(g.name);
+                grid.innerHTML += `<div class="card">
+                    <div class="c-img">
+                        <span class="c-text">${g.name}</span>
+                        <img src="${imgN}.jpg" onerror="if(!this.dataset.tried){this.dataset.tried=true; this.src='${imgN}.png';}else{this.style.display='none';}">
+                    </div>
+                    <div class="c-head"><h3 class="c-title">${g.name}</h3><span class="c-size">💾 ~${g.sz} GB</span></div>
+                    <div class="c-body">${btns}</div>
+                </div>`;
             });
         }
 
-        function updateCartUI() {
+        function updateCart() {
             document.getElementById('cartCount').innerText = cart.length;
-            const list = document.getElementById('cartItemsList');
-            list.innerHTML = '';
-            
-            let totalSize = 0, totalPrice = 0;
-            let uniqueGames = new Set();
-
-            if(cart.length === 0) {
-                list.innerHTML = '<p style="text-align:center; color:#aaa; padding: 10px;">لم تختر أي ألعاب أو باقات بعد.</p>';
-            }
-            
-            cart.forEach(item => {
-                if(!uniqueGames.has(item.id)) {
-                    totalSize += item.size;
-                    uniqueGames.add(item.id);
-                }
-                totalPrice += item.price; 
-                
-                list.innerHTML += `
-                    <div class="cart-item">
-                        <div>
-                            <span style="font-weight: bold; color: var(--text-main); display:block; text-transform: uppercase;">${item.name}</span>
-                            <span style="color: var(--text-muted); font-size: 12px;">نسخة: ${item.type}</span>
-                        </div>
-                        <span>
-                            <span style="color:var(--text-muted);" dir="ltr">${item.size} GB</span>
-                            <span style="color:var(--primary-color); font-weight:bold; margin-right:10px;">${item.price} ج</span>
-                        </span>
-                    </div>`;
+            const list = document.getElementById('cartList');
+            list.innerHTML = cart.length ? '' : '<p style="text-align:center; color:#aaa;">السلة فارغة.</p>';
+            let totalSz = 0, totalP = 0, uG = new Set();
+            cart.forEach(c => {
+                if(!uG.has(c.id)) { totalSz += c.sz; uG.add(c.id); }
+                totalP += c.p;
+                list.innerHTML += `<div class="c-item">
+                    <div><b style="color:var(--txt);">${c.n}</b><br><small style="color:var(--mut);">نسخة: ${c.t}</small></div>
+                    <div><small dir="ltr" style="color:var(--mut);">${c.sz} GB</small> &nbsp; <b style="color:var(--pri);">${c.p} ج</b></div>
+                </div>`;
             });
-            
-            const isStoreFeeChecked = document.getElementById('storeFeeToggle').checked;
-            if(isStoreFeeChecked && cart.length > 0) {
-                totalPrice += 100;
-                list.innerHTML += `
-                    <div class="cart-item" style="border-top: 1px dashed var(--danger); padding-top: 10px;">
-                        <span style="color: var(--danger); font-weight: bold;">رسوم التنزيل داخل المحل</span>
-                        <span style="color:var(--danger); font-weight:bold;">100 ج</span>
-                    </div>`;
-            }
-            
-            document.getElementById('totalSizeUI').innerText = `${totalSize} GB`;
-            document.getElementById('totalPriceUI').innerText = `${totalPrice} ج.م`;
+            if(document.getElementById('storeFeeToggle').checked && cart.length) { totalP += 100; list.innerHTML += `<div class="c-item"><b style="color:var(--dang);">رسوم تحميل المحل</b><b style="color:var(--dang);">100 ج</b></div>`; }
+            document.getElementById('totalSizeUI').innerText = totalSz + " GB";
+            document.getElementById('totalPriceUI').innerText = totalP + " ج.م";
         }
 
-        function openCart() { document.getElementById('cartModal').style.display = 'flex'; }
-        function closeCart() { document.getElementById('cartModal').style.display = 'none'; }
+        function openCart() { document.getElementById('cartModal').style.display='flex'; }
+        function closeCart() { document.getElementById('cartModal').style.display='none'; }
 
-        function sendWhatsApp(phone) {
-            const name = document.getElementById('userName').value.trim();
-            const contact = document.getElementById('userPhone').value.trim();
-            const landline = document.getElementById('userLandline').value.trim(); 
+        function sendWA(num) {
+            const nm = document.getElementById('userName').value.trim(), ph = document.getElementById('userPhone').value.trim(), ln = document.getElementById('userLandline').value.trim();
+            if(!nm || !ph) return alert("أكمل الاسم ورقم الموبايل!");
+            if(!cart.length) return alert("السلة فارغة!");
             
-            if(!name || !contact) return alert("من فضلك اكتب اسمك ورقم الموبايل أولاً!");
-            if(cart.length === 0) return alert("يرجى اختيار ألعاب أولاً لتكوين عرضك!");
-
-            let totalSize = 0, totalPrice = 0;
-            let text = `مرحباً Level UP Sale،\nأنا ${name} (موبايل: ${contact})\n`;
-            if (landline) { text += `(أرضي: ${landline})\n`; }
-            text += `أريد حجز هذا العرض:\n\n`;
+            let totalSz=0, totalP=0, txt=`مرحباً Level UP،\nالاسم: ${nm}\nموبايل: ${ph}\n`, gTxt="", items=[], uG=new Set(), isPri=false;
+            if(ln) txt += `أرضي: ${ln}\n`; txt += `\nالطلب:\n`;
             
-            let gamesForSheetText = ""; 
-            let gamesArrayForInventory = []; 
-            let uniqueGames = new Set();
-            let hasPriOrSec = false;
-
-            cart.forEach((item, index) => {
-                text += ` ${index + 1}. ${item.name} (${item.type}) - ${item.price} ج\n`;
-                gamesForSheetText += `${index + 1}. ${item.name} [${item.type}]\n`;
-                gamesArrayForInventory.push({ name: item.name, type: item.type }); 
-                
-                if(item.type !== 'Offline') hasPriOrSec = true;
-                if(!uniqueGames.has(item.id)) { totalSize += item.size; uniqueGames.add(item.id); }
-                totalPrice += item.price;
+            cart.forEach((c, i) => {
+                txt += `${i+1}. ${c.n} (${c.t}) - ${c.p} ج\n`;
+                gTxt += `${i+1}. ${c.n} [${c.t}]\n`;
+                items.push({name: c.n, type: c.t});
+                if(c.t !== 'Offline') isPri = true;
+                if(!uG.has(c.id)) { totalSz += c.sz; uG.add(c.id); }
+                totalP += c.p;
             });
             
-            if(document.getElementById('storeFeeToggle').checked) {
-                totalPrice += 100;
-                text += `\n* تنزيل الألعاب سيكون داخل المحل (+100 ج)\n`;
-            }
+            if(document.getElementById('storeFeeToggle').checked) { totalP += 100; txt += `* تحميل داخل المحل (+100)\n`; }
+            txt += `\nالمساحة: ${totalSz} GB\nالإجمالي: ${totalP} ج`;
 
-            let licenseGroup = hasPriOrSec ? "Primary/Secondary" : "Offline";
-            text += `\nإجمالي المساحة: ${totalSize} GB`;
-            text += `\nالسعر الإجمالي: ${totalPrice} جنيه.`;
+            fetch(GOOGLE_URL, {
+                method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: nm, phone: ph+(ln?" | "+ln:""), licenseType: isPri?"Primary/Sec":"Offline", gamesFormatted: gTxt, totalPrice: totalP+" EGP", totalSize: totalSz+" GB", inventoryItems: items })
+            }).catch(e => console.log(e));
 
-            let combinedPhone = contact + (landline ? " | أرضي: " + landline : "");
-
-            fetch(GOOGLE_SHEET_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    name: name,
-                    phone: combinedPhone, 
-                    licenseType: licenseGroup,
-                    gamesFormatted: gamesForSheetText,
-                    totalPrice: `${totalPrice} EGP`,
-                    totalSize: `${totalSize} GB`,
-                    inventoryItems: gamesArrayForInventory 
-                })
-            }).catch(error => console.log('Error:', error));
-
-            alert("تم تجهيز طلبك! جاري تحويلك للواتساب للتأكيد...");
-            clearCart();
-            document.getElementById('storeFeeToggle').checked = false;
-            document.getElementById('userLandline').value = ""; 
-            closeCart();
-            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+            alert("جاري تحويلك للواتساب...");
+            clearCart(); document.getElementById('storeFeeToggle').checked=false; document.getElementById('userLandline').value=""; closeCart();
+            window.open(`https://wa.me/${num}?text=${encodeURIComponent(txt)}`, '_blank');
         }
 
-        renderGames(); 
-        updateCartUI();
+        renderGames(); updateCart();
     </script>
 </body>
 </html>
