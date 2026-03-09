@@ -31,10 +31,10 @@
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         .card { background: var(--card); border-radius: 12px; overflow: hidden; border: 1px solid #334155; display: flex; flex-direction: column; }
         .c-img { width: 100%; height: 220px; position: relative; background: #0f172a; display: flex; justify-content: center; align-items: center; border-bottom: 2px solid var(--pri); }
-        .c-text { position: absolute; z-index: 1; color: #475569; font-size: 22px; font-weight: 900; text-transform: uppercase; text-align: center; padding: 10px;}
+        .c-text { position: absolute; z-index: 1; color: #475569; font-size: 20px; font-weight: 900; text-transform: uppercase; text-align: center; padding: 10px;}
         .c-img img { position: absolute; z-index: 2; width: 100%; height: 100%; object-fit: cover; }
         .c-head { padding: 15px 10px 5px; text-align: center; background: #17171c;}
-        .c-title { color: var(--txt); font-size: 18px; font-weight: 900; margin: 0; text-transform: uppercase;}
+        .c-title { color: var(--txt); font-size: 16px; font-weight: 900; margin: 0; text-transform: uppercase;}
         .c-size { font-size: 13px; color: #cbd5e1; margin-top: 5px; display: block;}
         .c-body { padding: 15px; flex: 1; display: flex; flex-direction: column; gap: 8px;}
         
@@ -79,19 +79,19 @@
                 <div class="pkg-title">باقة الأكشن والمحركات</div>
                 <div class="pkg-info" id="pkg1-info">جاري الحساب...</div>
                 <div class="pkg-desc">Burnout Paradise, CoD WWII, Crash Racing, FC 2026, Mortal Kombat 11, GTA V</div>
-                <button class="btn-pkg" onclick="addPackage([19, 21, 25, 39, 70, 50])">🛒 أضف الباقة</button>
+                <button class="btn-pkg" onclick="addPackage([16, 18, 22, 36, 66, 47])">🛒 أضف الباقة</button>
             </div>
             <div class="pkg-card">
                 <div class="pkg-title">باقة الحماس والقتال</div>
                 <div class="pkg-info" id="pkg2-info">جاري الحساب...</div>
                 <div class="pkg-desc">NFS Hot Pursuit, Black Ops III, Crash Racing, FC 2026, Tekken 7, Mafia Trilogy</div>
-                <button class="btn-pkg" onclick="addPackage([78, 17, 25, 39, 107, 63])">🛒 أضف الباقة</button>
+                <button class="btn-pkg" onclick="addPackage([73, 15, 22, 36, 97, 60])">🛒 أضف الباقة</button>
             </div>
             <div class="pkg-card">
                 <div class="pkg-title">باقة التدمير والسرعة</div>
                 <div class="pkg-info" id="pkg3-info">جاري الحساب...</div>
                 <div class="pkg-desc">NFS Payback, Black Ops 4, Crash Racing, Mortal Kombat 11, Just Cause 4</div>
-                <button class="btn-pkg" onclick="addPackage([79, 16, 25, 70, 58])">🛒 أضف الباقة</button>
+                <button class="btn-pkg" onclick="addPackage([74, 14, 22, 66, 55])">🛒 أضف الباقة</button>
             </div>
             <div class="pkg-card" style="border-color: var(--pri);">
                 <div class="pkg-title" style="color: white;">باقة LevelUP 150 Giga WE</div>
@@ -144,20 +144,136 @@
     <script>
         const GOOGLE_URL = 'https://script.google.com/macros/s/AKfycbzJbRLq_Qwyq1qbZsXR8AMKPiwi0H9J7WlwIzcL2O_8rVzK-74tP1hV-V_oUBxK3Ge-/exec';
 
-        // بيانات 130 لعبة تم ضغطها لسرعة التحميل وتطابق الجرد
-        // [id, name, OFF, PRI_4, PRI_5, SEC, Size]
+        // قائمة الألعاب المحدثة بدون المحذوفات وبأسماء القائمة الجديدة
         const raw = [
-            [1,"A way out",100,350,300,250,17],[2,"AC Unity",100,0,200,150,50],[3,"Affected the minor UK",100,0,200,150,2],[4,"Alan Wake Remastered",150,400,350,250,30],[5,"Assassin's Creed Mirage",150,550,500,0,40],[6,"Assassin's Creed Odyssey",100,300,250,0,55],[7,"Assassin's Creed Origins",80,200,0,0,50],[8,"Assassin's Creed® Valhalla",100,350,250,0,70],[9,"Astro Bot",0,0,0,550,35],[10,"Baja Edge of Control HD",80,0,180,150,5],[11,"Batman Arkham knight",100,250,200,150,50],[12,"Battlefield 4™ Premium Edition",100,0,200,150,70],[13,"Battlefield™ V",80,250,200,150,116],[14,"Beat Saber",0,0,0,0,3],[15,"Bendy and the Dark Revival",100,300,300,200,15],[16,"Black Ops 4",80,250,250,200,100],[17,"Black Ops III",150,550,400,350,120],[18,"blood and Truth VR",100,0,0,250,40],[19,"Burnout Paradise",80,250,200,150,8],[20,"Call of duty Vanguard",0,0,0,0,75],[21,"Call of Duty WWII Gold Edition",100,250,250,200,80],[22,"Car Mechanic Sim",100,0,0,200,15],[23,"cho cho Charles",100,0,0,400,3],[24,"Control Ultimate Edition",100,0,350,200,25],[25,"Crash Racing",100,350,300,250,15],[26,"Cyberpunk",100,0,0,0,110],[27,"Demon Slayer - Kimetsu no Yaiba",100,0,0,0,25],[28,"Detroit Become Human",0,200,0,0,45],[29,"Devil May Cry 5",100,0,200,0,35],[30,"Dragon Ball FighterZ",100,0,350,0,6],[31,"Dragon Ball Z Kakarot",100,0,350,0,40],[32,"Dragonball Sparking Z",0,0,700,600,30],[33,"Dying Light",0,0,0,0,25],[34,"ea family bundle",80,0,200,150,50],[35,"Far Cry 3",0,0,0,0,15],[36,"Far Cry 6",100,6,6,2,90],[37,"FC 2024",100,0,0,0,50],[38,"FC 2025",100,0,0,0,50],[39,"FC 2026",150,450,500,350,58],[40,"FIFA 2022",100,0,0,0,40],[41,"FIFA 2023",100,0,0,0,45],[42,"Forza Horizon PS5",0,0,0,0,90],[43,"Friday The 13th",80,0,0,150,6],[44,"Gang Beasts",0,0,0,0,2],[45,"Ghost of Tsushima",150,450,500,0,50],[46,"God of War",100,350,350,200,45],[47,"God of War Ragnarok",0,0,0,0,110],[48,"Gotham Knights",150,0,0,450,45],[49,"Gran Turismo Sports",0,0,0,0,110],[50,"Grand Theft Auto V",100,500,450,300,90],[51,"Hello Neighbor Bundle",0,0,0,0,5],[52,"Hitman 3",0,0,0,0,70],[53,"Hogwarts Legacy",100,0,450,300,80],[54,"Horizon Forbidden West",150,450,400,300,90],[55,"Human fall flat",0,0,0,0,2],[56,"Injustice 2",100,250,200,150,35],[57,"It Takes Two",150,450,450,0,45],[58,"Just Cause 4 Reloaded",100,300,250,200,60],[59,"L.A Noire USA",100,0,250,150,18],[60,"lego 2k drive",100,350,300,0,20],[61,"LEGO Marvel Collection",100,350,300,0,50],[62,"Little Nightmares 1",100,0,250,0,4],[63,"Mafia Trilogy",100,300,300,0,100],[64,"Marvel Avengers",100,0,350,0,100],[65,"Marvel Spiderman 2",0,0,0,0,90],[66,"Marvel Super Heros 2",0,0,0,0,20],[67,"marvel's spider-man miles morales",150,450,400,0,50],[68,"Marvel's Spider-Man Remastered",100,400,350,250,50],[69,"Minecraft",200,0,0,0,2],[70,"Mortal Kombat 11",100,350,300,200,80],[71,"Mortal Kombat™ 1",150,0,550,0,100],[72,"Mortal XL",0,0,0,0,40],[73,"MotoGP 22 PS4 & PS5",100,250,200,180,30],[74,"Naruto Storm 4 RTB",150,0,400,0,40],[75,"NBA 2K25",100,0,0,400,150],[76,"need for speed 2015",100,0,200,150,20],[77,"Need for speed heat",150,300,250,200,35],[78,"NFS Hot Pursuit Remastered",100,200,200,150,25],[79,"NFS Payback",100,250,250,200,30],[80,"NFS Unbound",0,0,0,0,35],[81,"OffRoad b.atv.moto",0,0,0,0,15],[82,"Olympic Games Tokyo 2020",100,300,300,0,15],[83,"Outlast Trinity",100,0,0,250,30],[84,"Overcooked Bundle",0,0,0,0,10],[85,"Pes 19",0,0,0,0,30],[86,"Pes 21",450,0,0,0,40],[87,"Ratchet",0,200,200,150,28],[88,"Ratchet & HOrizon",0,0,0,0,75],[89,"Ratchet & HOrizon & vr",0,0,0,0,85],[90,"Rayman Legends",100,250,250,200,10],[91,"Red Dead Redemption 2",150,550,450,0,115],[92,"Resident Evil 4",0,0,0,0,60],[93,"resident evil 4 2005",0,0,0,0,10],[94,"Resident Evil 7",100,0,0,200,25],[95,"Resident Evil Racoon city",100,400,350,0,45],[96,"Resident Evil Village",100,0,0,0,30],[97,"Ride",100,0,200,150,20],[98,"Rise of the Tomb Raider",0,0,0,0,20],[99,"Road Redemtion",0,0,0,0,5],[100,"Rubber Bandits",0,0,0,0,2],[101,"SackBoy",0,0,0,0,35],[102,"Saints Row",100,350,300,0,50],[103,"Sekiro",100,450,0,0,15],[104,"Silent Hill 2 Remake",0,0,0,550,50],[105,"Sonic Frontiers",100,0,450,0,25],[106,"Split Fiction",0,0,0,0,10],[107,"Tekken 7",100,450,300,250,50],[108,"The Crew 2",0,0,0,0,60],[109,"The Crew Motofest",0,0,0,0,35],[110,"The Evil Within",100,0,0,150,40],[111,"The Evil Within 2",100,0,0,150,35],[112,"the last of us 2",150,0,0,0,80],[113,"The Last of Us Remastered",100,350,300,0,45],[114,"the witcher",100,250,200,0,40],[115,"Tomb Raider DE",100,200,200,150,15],[116,"Tomb Raider Trilogy",150,400,350,0,50],[117,"TOP Spin 2K 2025",0,0,450,350,30],[118,"UFC 4 deluxe edition",100,0,0,200,30],[119,"Uncharted Bundle",100,450,400,250,45],[120,"Unravel 2",80,200,200,150,4],[121,"V Rally",100,200,200,150,15],[122,"Vr worlds",0,0,0,0,10],[123,"WATCH DOGS 2",100,0,250,0,35],[124,"Watch dogs legion",100,0,0,0,45],[125,"WWE 2k20",100,0,0,0,50],[126,"WWE 2k23",0,0,0,0,70],[127,"WWE 2K24",100,0,0,0,80],[128,"WWE 2K25",150,450,0,0,80],[129,"Zombie Army 4",100,250,0,150,50]
+            [1,"A Way Out",100,350,300,250,17],
+            [2,"Assassin's Creed Unity",100,0,200,150,50],
+            [3,"Alan Wake Remastered",150,400,350,250,30],
+            [4,"Assassin's Creed Mirage",150,550,500,0,40],
+            [5,"Assassin's Creed Odyssey",100,300,250,0,55],
+            [6,"Assassin's Creed Origins",80,200,0,0,50],
+            [7,"Assassin's Creed® Valhalla",100,350,250,0,70],
+            [8,"Astro Bot",0,0,0,550,35],
+            [9,"Baja Edge of Control HD",80,0,180,150,5],
+            [10,"Batman: Arkham Knight",100,250,200,150,50],
+            [11,"Battlefield 4",100,0,200,150,70],
+            [12,"Battlefield V",80,250,200,150,116],
+            [13,"Bendy and the Dark Revival",100,300,300,200,15],
+            [14,"Call of Duty: Black Ops 4",80,250,250,200,100],
+            [15,"Call of Duty: Black Ops 3",150,550,400,350,120],
+            [16,"Burnout Paradise",80,250,200,150,8],
+            [17,"Call of Duty: Vanguard",0,0,0,0,75],
+            [18,"Call of Duty WWII Gold Edition",100,250,250,200,80],
+            [19,"Car Mechanic Sim",100,0,0,200,15],
+            [20,"cho cho Charles",100,0,0,400,3],
+            [21,"Control",100,0,350,200,25],
+            [22,"Crash Team Racing Nitro-Fueled",100,350,300,250,15],
+            [23,"Cyberpunk 2077",100,0,0,0,110],
+            [24,"Demon Slayer: Kimetsu no Yaiba",100,0,0,0,25],
+            [25,"Detroit: Become Human",0,200,0,0,45],
+            [26,"Devil May Cry 5",100,0,200,0,35],
+            [27,"Dragon Ball FighterZ",100,0,350,0,6],
+            [28,"Dragon Ball Z Kakarot",100,0,350,0,40],
+            [29,"Dragonball Sparking Z",0,0,700,600,30],
+            [30,"Dying Light 1",0,0,0,0,25],
+            [31,"ea family bundle",80,0,200,150,50],
+            [32,"Far Cry 3",0,0,0,0,15],
+            [33,"Far Cry 6",100,6,6,2,90],
+            [34,"EA SPORTS FC 24",100,0,0,0,50],
+            [35,"EA SPORTS FC 25",100,0,0,0,50],
+            [36,"EA SPORTS FC 26",150,450,500,350,58],
+            [37,"FIFA 2022",100,0,0,0,40],
+            [38,"FIFA 23",100,0,0,0,45],
+            [39,"Forza Horizon PS5",0,0,0,0,90],
+            [40,"Friday The 13th",80,0,0,150,6],
+            [41,"Gang Beasts",0,0,0,0,2],
+            [42,"Ghost of Tsushima",150,450,500,0,50],
+            [43,"God of War (2018)",100,350,350,200,45],
+            [44,"God of War Ragnarök",0,0,0,0,110],
+            [45,"Gotham Knights",150,0,0,450,45],
+            [46,"Gran Turismo Sport",0,0,0,0,110],
+            [47,"Grand Theft Auto V (GTA 5)",100,500,450,300,90],
+            [48,"Hello Neighbor Bundle",0,0,0,0,5],
+            [49,"Hitman 3",0,0,0,0,70],
+            [50,"Hogwarts Legacy",100,0,450,300,80],
+            [51,"Horizon Forbidden West",150,450,400,300,90],
+            [52,"Human: Fall Flat",0,0,0,0,2],
+            [53,"Injustice 2",100,250,200,150,35],
+            [54,"It Takes Two",150,450,450,0,45],
+            [55,"Just Cause 4 Reloaded",100,300,250,200,60],
+            [56,"L.A. Noire",100,0,250,150,18],
+            [57,"lego 2k drive",100,350,300,0,20],
+            [58,"LEGO Marvel Collection",100,350,300,0,50],
+            [59,"Little Nightmares 1",100,0,250,0,4],
+            [60,"Mafia Trilogy",100,300,300,0,100],
+            [61,"Marvel's Avengers",100,0,350,0,100],
+            [62,"Marvel's Spider-Man 2",0,0,0,0,90],
+            [63,"marvel's spider-man miles morales",150,450,400,0,50],
+            [64,"Marvel's Spider-Man 1",100,400,350,250,50],
+            [65,"Minecraft",200,0,0,0,2],
+            [66,"Mortal Kombat 11",100,350,300,200,80],
+            [67,"Mortal Kombat™ 1",150,0,550,0,100],
+            [68,"MotoGP 22 PS4 & PS5",100,250,200,180,30],
+            [69,"Naruto Shippuden: Ultimate Ninja Storm 4",150,0,400,0,40],
+            [70,"NBA 2K25",100,0,0,400,150],
+            [71,"need for speed 2015",100,0,200,150,20],
+            [72,"Need for Speed Heat",150,300,250,200,35],
+            [73,"NFS Hot Pursuit Remastered",100,200,200,150,25],
+            [74,"Need for Speed Payback",100,250,250,200,30],
+            [75,"NFS Unbound",0,0,0,0,35],
+            [76,"Olympic Games Tokyo 2020",100,300,300,0,15],
+            [77,"Outlast Trinity",100,0,0,250,30],
+            [78,"Overcooked Bundle",0,0,0,0,10],
+            [79,"eFootball / PES 2019",0,0,0,0,30],
+            [80,"eFootball / PES 2021",450,0,0,0,40],
+            [81,"Ratchet",0,200,200,150,28],
+            [82,"Rayman Legends",100,250,250,200,10],
+            [83,"Red Dead Redemption 2",150,550,450,0,115],
+            [84,"Resident Evil 4 Remake",0,0,0,0,60],
+            [85,"Resident Evil 7: Biohazard",100,0,0,200,25],
+            [86,"Resident Evil Racoon city",100,400,350,0,45],
+            [87,"Resident Evil Village",100,0,0,0,30],
+            [88,"Ride",100,0,200,150,20],
+            [89,"Rise of the Tomb Raider",0,0,0,0,20],
+            [90,"Rubber Bandits",0,0,0,0,2],
+            [91,"Sackboy: A Big Adventure",0,0,0,0,35],
+            [92,"Saints Row",100,350,300,0,50],
+            [93,"Sekiro: Shadows Die Twice",100,450,0,0,15],
+            [94,"Silent Hill 2 Remake",0,0,0,550,50],
+            [95,"Sonic Frontiers",100,0,450,0,25],
+            [96,"Split Fiction",0,0,0,0,10],
+            [97,"Tekken 7",100,450,300,250,50],
+            [98,"The Crew 2",0,0,0,0,60],
+            [99,"The Crew Motofest",0,0,0,0,35],
+            [100,"The Evil Within 1",100,0,0,150,40],
+            [101,"The Evil Within 2",100,0,0,150,35],
+            [102,"The Last of Us Part 2",150,0,0,0,80],
+            [103,"The Last of Us Part 1 Remastered",100,350,300,0,45],
+            [104,"The Witcher 3: Wild Hunt",100,250,200,0,40],
+            [105,"Tomb Raider DE",100,200,200,150,15],
+            [106,"Tomb Raider Trilogy",150,400,350,0,50],
+            [107,"TOP Spin 2K 2025",0,0,450,350,30],
+            [108,"EA SPORTS UFC 4",100,0,0,200,30],
+            [109,"Uncharted Trilogy",100,450,400,250,45],
+            [110,"Unravel Two",80,200,200,150,4],
+            [111,"V Rally",100,200,200,150,15],
+            [112,"Watch Dogs 2",100,0,250,0,35],
+            [113,"Watch Dogs Legion",100,0,0,0,45],
+            [114,"WWE 2k20",100,0,0,0,50],
+            [115,"WWE 2K23",0,0,0,0,70],
+            [116,"WWE 2K24",100,0,0,0,80],
+            [117,"WWE 2K25",150,450,0,0,80],
+            [118,"Zombie Army 4",100,250,0,150,50]
         ];
 
         const gamesDB = raw.map(r => ({ id: r[0], name: r[1], pr: {'Offline':r[2], 'Pri PS4':r[3], 'Pri PS5':r[4], 'Secondary':r[5]}, sz: r[6] }));
         let cart = []; 
 
-        // توليد اسم الصورة من اسم اللعبة
+        // دالة توليد اسم الصورة من اسم اللعبة (بدون رموز أو مسافات) لتطابق ملفاتك
         const getImg = (n) => n.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9-]/g, '');
 
         function calcPkgs() {
-            const p = [{id:'pkg1-info',g:[19,21,25,39,70,50]}, {id:'pkg2-info',g:[78,17,25,39,107,63]}, {id:'pkg3-info',g:[79,16,25,70,58]}];
+            const p = [{id:'pkg1-info',g:[16, 18, 22, 36, 66, 47]}, {id:'pkg2-info',g:[73, 15, 22, 36, 97, 60]}, {id:'pkg3-info',g:[74, 14, 22, 66, 55]}];
             p.forEach(x => {
                 let sz=0, pr=0;
                 x.g.forEach(gid => { let g = gamesDB.find(i=>i.id===gid); if(g){sz+=g.sz; pr+=g.pr['Offline'];} });
@@ -167,17 +283,17 @@
         calcPkgs();
 
         function addPackage(ids) {
-            if(cart.some(c => c.t !== 'Offline')) return alert("لا يمكن دمج الأوفلاين مع برايمري أو سكندري.");
+            if(cart.some(c => c.t !== 'Offline')) return alert("لا يمكن دمج باقات الأوفلاين مع نسخ برايمري أو سكندري في نفس السلة.");
             ids.forEach(id => {
                 let g = gamesDB.find(x => x.id === id);
                 if(g && !cart.some(c => c.id === id)) cart.push({ id: g.id, n: g.name, t: 'Offline', p: g.pr['Offline'], sz: g.sz });
             });
-            updateCart(); renderGames(); alert("تم إضافة الباقة!");
+            updateCart(); renderGames(); alert("تم إضافة الباقة بنجاح!");
         }
 
         function addLevelUp() {
-            if(cart.some(c => c.t !== 'Offline')) return alert("السلة تحتوي نسخ برايمري/سكندري.");
-            if(!cart.some(c => c.id === 999)) { cart.push({ id: 999, n: "باقة LevelUP 150 Giga WE", t: 'Offline', p: 85, sz: 150 }); updateCart(); alert("تم!");}
+            if(cart.some(c => c.t !== 'Offline')) return alert("لا يمكن إضافة هذه الباقة لأن السلة تحتوي على نسخ برايمري أو سكندري.");
+            if(!cart.some(c => c.id === 999)) { cart.push({ id: 999, n: "باقة LevelUP 150 Giga WE", t: 'Offline', p: 85, sz: 150 }); updateCart(); alert("تم إضافة الباقة بنجاح!");}
         }
 
         function toggleV(id, type, price) {
@@ -185,10 +301,10 @@
             if(idx > -1) { cart.splice(idx, 1); }
             else {
                 let hasO = cart.some(c => c.t === 'Offline'), has4 = cart.some(c => c.t === 'Pri PS4'), has5 = cart.some(c => c.t === 'Pri PS5');
-                if(type === 'Offline' && cart.length && !hasO) return alert("السلة بها نسخ أخرى.");
-                if(type !== 'Offline' && hasO) return alert("السلة بها أوفلاين.");
-                if(type === 'Pri PS4' && has5) return alert("لا تدمج Pri PS4 مع Pri PS5.");
-                if(type === 'Pri PS5' && has4) return alert("لا تدمج Pri PS5 مع Pri PS4.");
+                if(type === 'Offline' && cart.length && !hasO) return alert("لا يمكن إضافة ألعاب أوفلاين لوجود نسخ برايمري/سكندري بالسلة.");
+                if(type !== 'Offline' && hasO) return alert("عفواً، السلة تحتوي على ألعاب أوفلاين. لا يمكن دمجها.");
+                if(type === 'Pri PS4' && has5) return alert("لا يمكن اختيار نسخة Pri PS4 لوجود نسخة Pri PS5 في العرض.");
+                if(type === 'Pri PS5' && has4) return alert("لا يمكن اختيار نسخة Pri PS5 لوجود نسخة Pri PS4 في العرض.");
                 let g = gamesDB.find(x => x.id === id);
                 cart.push({ id: g.id, n: g.name, t: type, p: price, sz: g.sz });
             }
@@ -201,7 +317,11 @@
             const grid = document.getElementById('gamesGrid');
             const term = document.getElementById('searchInput').value.toLowerCase();
             grid.innerHTML = '';
-            gamesDB.forEach(g => {
+            
+            // ترتيب الألعاب أبجدياً
+            let sortedGames = [...gamesDB].sort((a,b) => a.name.localeCompare(b.name));
+            
+            sortedGames.forEach(g => {
                 if(term && !g.name.toLowerCase().includes(term)) return;
                 let btns = '';
                 ['Offline', 'Pri PS4', 'Pri PS5', 'Secondary'].forEach(t => {
@@ -225,17 +345,17 @@
         function updateCart() {
             document.getElementById('cartCount').innerText = cart.length;
             const list = document.getElementById('cartList');
-            list.innerHTML = cart.length ? '' : '<p style="text-align:center; color:#aaa;">السلة فارغة.</p>';
+            list.innerHTML = cart.length ? '' : '<p style="text-align:center; color:#aaa; font-size: 15px;">لم تختر ألعاباً بعد.</p>';
             let totalSz = 0, totalP = 0, uG = new Set();
             cart.forEach(c => {
                 if(!uG.has(c.id)) { totalSz += c.sz; uG.add(c.id); }
                 totalP += c.p;
                 list.innerHTML += `<div class="c-item">
-                    <div><b style="color:var(--txt);">${c.n}</b><br><small style="color:var(--mut);">نسخة: ${c.t}</small></div>
-                    <div><small dir="ltr" style="color:var(--mut);">${c.sz} GB</small> &nbsp; <b style="color:var(--pri);">${c.p} ج</b></div>
+                    <div><b style="color:var(--txt); display:block; margin-bottom: 3px;">${c.n}</b><small style="color:var(--mut);">نسخة: ${c.t}</small></div>
+                    <div style="text-align: left;"><small dir="ltr" style="color:var(--mut); display:block; margin-bottom:3px;">${c.sz} GB</small><b style="color:var(--pri);">${c.p} ج</b></div>
                 </div>`;
             });
-            if(document.getElementById('storeFeeToggle').checked && cart.length) { totalP += 100; list.innerHTML += `<div class="c-item"><b style="color:var(--dang);">رسوم تحميل المحل</b><b style="color:var(--dang);">100 ج</b></div>`; }
+            if(document.getElementById('storeFeeToggle').checked && cart.length) { totalP += 100; list.innerHTML += `<div class="c-item" style="border-top: 1px dashed var(--dang); padding-top: 10px;"><b style="color:var(--dang);">رسوم تحميل داخل المحل</b><b style="color:var(--dang);">100 ج</b></div>`; }
             document.getElementById('totalSizeUI').innerText = totalSz + " GB";
             document.getElementById('totalPriceUI').innerText = totalP + " ج.م";
         }
@@ -245,11 +365,11 @@
 
         function sendWA(num) {
             const nm = document.getElementById('userName').value.trim(), ph = document.getElementById('userPhone').value.trim(), ln = document.getElementById('userLandline').value.trim();
-            if(!nm || !ph) return alert("أكمل الاسم ورقم الموبايل!");
-            if(!cart.length) return alert("السلة فارغة!");
+            if(!nm || !ph) return alert("يرجى كتابة الاسم ورقم الموبايل أولاً!");
+            if(!cart.length) return alert("عفواً، سلة طلباتك فارغة!");
             
-            let totalSz=0, totalP=0, txt=`مرحباً Level UP،\nالاسم: ${nm}\nموبايل: ${ph}\n`, gTxt="", items=[], uG=new Set(), isPri=false;
-            if(ln) txt += `أرضي: ${ln}\n`; txt += `\nالطلب:\n`;
+            let totalSz=0, totalP=0, txt=`مرحباً Level UP،\nأنا ${nm} (موبايل: ${ph})\n`, gTxt="", items=[], uG=new Set(), isPri=false;
+            if(ln) txt += `(أرضي: ${ln})\n`; txt += `\nأريد حجز هذا العرض:\n\n`;
             
             cart.forEach((c, i) => {
                 txt += `${i+1}. ${c.n} (${c.t}) - ${c.p} ج\n`;
@@ -260,15 +380,15 @@
                 totalP += c.p;
             });
             
-            if(document.getElementById('storeFeeToggle').checked) { totalP += 100; txt += `* تحميل داخل المحل (+100)\n`; }
-            txt += `\nالمساحة: ${totalSz} GB\nالإجمالي: ${totalP} ج`;
+            if(document.getElementById('storeFeeToggle').checked) { totalP += 100; txt += `\n* تنزيل الألعاب سيكون داخل المحل (+100 ج)\n`; }
+            txt += `\nإجمالي المساحة: ${totalSz} GB\nالسعر الإجمالي: ${totalP} جنيه.`;
 
             fetch(GOOGLE_URL, {
                 method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name: nm, phone: ph+(ln?" | "+ln:""), licenseType: isPri?"Primary/Sec":"Offline", gamesFormatted: gTxt, totalPrice: totalP+" EGP", totalSize: totalSz+" GB", inventoryItems: items })
+                body: JSON.stringify({ name: nm, phone: ph+(ln?" | أرضي: "+ln:""), licenseType: isPri?"Primary/Secondary":"Offline", gamesFormatted: gTxt, totalPrice: totalP+" EGP", totalSize: totalSz+" GB", inventoryItems: items })
             }).catch(e => console.log(e));
 
-            alert("جاري تحويلك للواتساب...");
+            alert("تم إرسال طلبك! جاري تحويلك للواتساب للتأكيد...");
             clearCart(); document.getElementById('storeFeeToggle').checked=false; document.getElementById('userLandline').value=""; closeCart();
             window.open(`https://wa.me/${num}?text=${encodeURIComponent(txt)}`, '_blank');
         }
