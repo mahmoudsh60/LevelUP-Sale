@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Level UP Sale - عروض الألعاب</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <script src="image_map.js"></script>
+
     <style>
         :root { --bg: #0f172a; --card: #1e293b; --pri: #f59e0b; --acc: #ef4444; --txt: #f8fafc; --mut: #94a3b8; --dang: #dc2626; }
         body { background: var(--bg); color: var(--txt); font-family: 'Tajawal', sans-serif; margin: 0; padding-bottom: 80px; }
@@ -25,13 +28,13 @@
         .pkg-desc { font-size: 12px; color: var(--mut); margin-bottom: 15px; line-height: 1.8; flex-grow: 1;}
         .btn-pkg { background: var(--acc); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; font-family: inherit; font-size: 14px; cursor: pointer; width: 100%; margin-top: auto;}
         
-        .filters { background: var(--card); padding: 20px; border-radius: 12px; border: 1px solid #334155; margin-bottom: 30px; }
-        .filters input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: white; font-family: inherit; font-size: 15px; box-sizing: border-box;}
+        .filters { background: var(--card); padding: 20px; border-radius: 12px; border: 1px solid #334155; margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);}
+        .filters input { width: 100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: white; font-family: inherit; font-size: 15px; box-sizing: border-box;}
         
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         .card { background: var(--card); border-radius: 12px; overflow: hidden; border: 1px solid #334155; display: flex; flex-direction: column; }
         .c-img { width: 100%; height: 220px; position: relative; background: #0f172a; display: flex; justify-content: center; align-items: center; border-bottom: 2px solid var(--pri); }
-        .c-text { position: absolute; z-index: 1; color: #475569; font-size: 20px; font-weight: 900; text-transform: uppercase; text-align: center; padding: 10px;}
+        .c-text { position: absolute; z-index: 1; color: #475569; font-size: 18px; font-weight: 900; text-transform: uppercase; text-align: center; padding: 10px;}
         .c-img img { position: absolute; z-index: 2; width: 100%; height: 100%; object-fit: cover; }
         .c-head { padding: 15px 10px 5px; text-align: center; background: #17171c;}
         .c-title { color: var(--txt); font-size: 16px; font-weight: 900; margin: 0; text-transform: uppercase;}
@@ -144,7 +147,7 @@
     <script>
         const GOOGLE_URL = 'https://script.google.com/macros/s/AKfycbzJbRLq_Qwyq1qbZsXR8AMKPiwi0H9J7WlwIzcL2O_8rVzK-74tP1hV-V_oUBxK3Ge-/exec';
 
-        // قائمة الألعاب المحدثة بدون المحذوفات وبأسماء القائمة الجديدة
+        // قائمة الـ 118 لعبة المحدثة بأسماء رسمية (بدون المحذوفات)
         const raw = [
             [1,"A Way Out",100,350,300,250,17],
             [2,"Assassin's Creed Unity",100,0,200,150,50],
@@ -269,8 +272,19 @@
         const gamesDB = raw.map(r => ({ id: r[0], name: r[1], pr: {'Offline':r[2], 'Pri PS4':r[3], 'Pri PS5':r[4], 'Secondary':r[5]}, sz: r[6] }));
         let cart = []; 
 
-        // دالة توليد اسم الصورة من اسم اللعبة (بدون رموز أو مسافات) لتطابق ملفاتك
-        const getImg = (n) => n.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9-]/g, '');
+        // دالة استدعاء الصور بذكاء من ملف image_map.js مع تجاهل : و / والمسافات
+        const getImg = (name) => {
+            if (typeof imageMap !== 'undefined') {
+                const clean = n => n.toLowerCase().replace(/[:/]/g, '').replace(/\s+/g, ' ').trim();
+                let target = clean(name);
+                let match = imageMap.find(img => clean(img['اسم الصورة فقط']) === target);
+                if (match) {
+                    return encodeURI(match['الاسم بالكامل']);
+                }
+            }
+            // في حالة عدم العثور عليها في الخريطة كخيار احتياطي
+            return encodeURI(name.replace(/[:/]/g, '') + ".jpg"); 
+        };
 
         function calcPkgs() {
             const p = [{id:'pkg1-info',g:[16, 18, 22, 36, 66, 47]}, {id:'pkg2-info',g:[73, 15, 22, 36, 97, 60]}, {id:'pkg3-info',g:[74, 14, 22, 66, 55]}];
@@ -283,17 +297,17 @@
         calcPkgs();
 
         function addPackage(ids) {
-            if(cart.some(c => c.t !== 'Offline')) return alert("لا يمكن دمج باقات الأوفلاين مع نسخ برايمري أو سكندري في نفس السلة.");
+            if(cart.some(c => c.t !== 'Offline')) return alert("لا يمكن دمج الأوفلاين مع برايمري أو سكندري.");
             ids.forEach(id => {
                 let g = gamesDB.find(x => x.id === id);
                 if(g && !cart.some(c => c.id === id)) cart.push({ id: g.id, n: g.name, t: 'Offline', p: g.pr['Offline'], sz: g.sz });
             });
-            updateCart(); renderGames(); alert("تم إضافة الباقة بنجاح!");
+            updateCart(); renderGames(); alert("تم إضافة الباقة!");
         }
 
         function addLevelUp() {
-            if(cart.some(c => c.t !== 'Offline')) return alert("لا يمكن إضافة هذه الباقة لأن السلة تحتوي على نسخ برايمري أو سكندري.");
-            if(!cart.some(c => c.id === 999)) { cart.push({ id: 999, n: "باقة LevelUP 150 Giga WE", t: 'Offline', p: 85, sz: 150 }); updateCart(); alert("تم إضافة الباقة بنجاح!");}
+            if(cart.some(c => c.t !== 'Offline')) return alert("السلة تحتوي نسخ برايمري/سكندري.");
+            if(!cart.some(c => c.id === 999)) { cart.push({ id: 999, n: "باقة LevelUP 150 Giga WE", t: 'Offline', p: 85, sz: 150 }); updateCart(); alert("تم!");}
         }
 
         function toggleV(id, type, price) {
@@ -301,10 +315,10 @@
             if(idx > -1) { cart.splice(idx, 1); }
             else {
                 let hasO = cart.some(c => c.t === 'Offline'), has4 = cart.some(c => c.t === 'Pri PS4'), has5 = cart.some(c => c.t === 'Pri PS5');
-                if(type === 'Offline' && cart.length && !hasO) return alert("لا يمكن إضافة ألعاب أوفلاين لوجود نسخ برايمري/سكندري بالسلة.");
-                if(type !== 'Offline' && hasO) return alert("عفواً، السلة تحتوي على ألعاب أوفلاين. لا يمكن دمجها.");
-                if(type === 'Pri PS4' && has5) return alert("لا يمكن اختيار نسخة Pri PS4 لوجود نسخة Pri PS5 في العرض.");
-                if(type === 'Pri PS5' && has4) return alert("لا يمكن اختيار نسخة Pri PS5 لوجود نسخة Pri PS4 في العرض.");
+                if(type === 'Offline' && cart.length && !hasO) return alert("السلة بها نسخ أخرى.");
+                if(type !== 'Offline' && hasO) return alert("السلة بها أوفلاين.");
+                if(type === 'Pri PS4' && has5) return alert("لا تدمج Pri PS4 مع Pri PS5.");
+                if(type === 'Pri PS5' && has4) return alert("لا تدمج Pri PS5 مع Pri PS4.");
                 let g = gamesDB.find(x => x.id === id);
                 cart.push({ id: g.id, n: g.name, t: type, p: price, sz: g.sz });
             }
@@ -318,7 +332,6 @@
             const term = document.getElementById('searchInput').value.toLowerCase();
             grid.innerHTML = '';
             
-            // ترتيب الألعاب أبجدياً
             let sortedGames = [...gamesDB].sort((a,b) => a.name.localeCompare(b.name));
             
             sortedGames.forEach(g => {
@@ -330,11 +343,14 @@
                                 <span>${inC?'إزالة':t}</span> <span>${p>0?p+' ج':'نفذت ❌'}</span>
                              </button>`;
                 });
-                let imgN = getImg(g.name);
+                
+                // جلب مسار الصورة من imageMap 
+                let imgSrc = getImg(g.name);
+                
                 grid.innerHTML += `<div class="card">
                     <div class="c-img">
                         <span class="c-text">${g.name}</span>
-                        <img src="${imgN}.jpg" onerror="if(!this.dataset.tried){this.dataset.tried=true; this.src='${imgN}.png';}else{this.style.display='none';}">
+                        <img src="${imgSrc}" onerror="this.style.display='none'">
                     </div>
                     <div class="c-head"><h3 class="c-title">${g.name}</h3><span class="c-size">💾 ~${g.sz} GB</span></div>
                     <div class="c-body">${btns}</div>
@@ -345,17 +361,17 @@
         function updateCart() {
             document.getElementById('cartCount').innerText = cart.length;
             const list = document.getElementById('cartList');
-            list.innerHTML = cart.length ? '' : '<p style="text-align:center; color:#aaa; font-size: 15px;">لم تختر ألعاباً بعد.</p>';
+            list.innerHTML = cart.length ? '' : '<p style="text-align:center; color:#aaa;">السلة فارغة.</p>';
             let totalSz = 0, totalP = 0, uG = new Set();
             cart.forEach(c => {
                 if(!uG.has(c.id)) { totalSz += c.sz; uG.add(c.id); }
                 totalP += c.p;
                 list.innerHTML += `<div class="c-item">
-                    <div><b style="color:var(--txt); display:block; margin-bottom: 3px;">${c.n}</b><small style="color:var(--mut);">نسخة: ${c.t}</small></div>
-                    <div style="text-align: left;"><small dir="ltr" style="color:var(--mut); display:block; margin-bottom:3px;">${c.sz} GB</small><b style="color:var(--pri);">${c.p} ج</b></div>
+                    <div><b style="color:var(--txt);">${c.n}</b><br><small style="color:var(--mut);">نسخة: ${c.t}</small></div>
+                    <div><small dir="ltr" style="color:var(--mut);">${c.sz} GB</small> &nbsp; <b style="color:var(--pri);">${c.p} ج</b></div>
                 </div>`;
             });
-            if(document.getElementById('storeFeeToggle').checked && cart.length) { totalP += 100; list.innerHTML += `<div class="c-item" style="border-top: 1px dashed var(--dang); padding-top: 10px;"><b style="color:var(--dang);">رسوم تحميل داخل المحل</b><b style="color:var(--dang);">100 ج</b></div>`; }
+            if(document.getElementById('storeFeeToggle').checked && cart.length) { totalP += 100; list.innerHTML += `<div class="c-item"><b style="color:var(--dang);">رسوم تحميل المحل</b><b style="color:var(--dang);">100 ج</b></div>`; }
             document.getElementById('totalSizeUI').innerText = totalSz + " GB";
             document.getElementById('totalPriceUI').innerText = totalP + " ج.م";
         }
@@ -365,11 +381,11 @@
 
         function sendWA(num) {
             const nm = document.getElementById('userName').value.trim(), ph = document.getElementById('userPhone').value.trim(), ln = document.getElementById('userLandline').value.trim();
-            if(!nm || !ph) return alert("يرجى كتابة الاسم ورقم الموبايل أولاً!");
-            if(!cart.length) return alert("عفواً، سلة طلباتك فارغة!");
+            if(!nm || !ph) return alert("أكمل الاسم ورقم الموبايل!");
+            if(!cart.length) return alert("السلة فارغة!");
             
-            let totalSz=0, totalP=0, txt=`مرحباً Level UP،\nأنا ${nm} (موبايل: ${ph})\n`, gTxt="", items=[], uG=new Set(), isPri=false;
-            if(ln) txt += `(أرضي: ${ln})\n`; txt += `\nأريد حجز هذا العرض:\n\n`;
+            let totalSz=0, totalP=0, txt=`مرحباً Level UP،\nالاسم: ${nm}\nموبايل: ${ph}\n`, gTxt="", items=[], uG=new Set(), isPri=false;
+            if(ln) txt += `أرضي: ${ln}\n`; txt += `\nالطلب:\n`;
             
             cart.forEach((c, i) => {
                 txt += `${i+1}. ${c.n} (${c.t}) - ${c.p} ج\n`;
@@ -380,15 +396,15 @@
                 totalP += c.p;
             });
             
-            if(document.getElementById('storeFeeToggle').checked) { totalP += 100; txt += `\n* تنزيل الألعاب سيكون داخل المحل (+100 ج)\n`; }
-            txt += `\nإجمالي المساحة: ${totalSz} GB\nالسعر الإجمالي: ${totalP} جنيه.`;
+            if(document.getElementById('storeFeeToggle').checked) { totalP += 100; txt += `* تحميل داخل المحل (+100)\n`; }
+            txt += `\nالمساحة: ${totalSz} GB\nالإجمالي: ${totalP} ج`;
 
             fetch(GOOGLE_URL, {
                 method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name: nm, phone: ph+(ln?" | أرضي: "+ln:""), licenseType: isPri?"Primary/Secondary":"Offline", gamesFormatted: gTxt, totalPrice: totalP+" EGP", totalSize: totalSz+" GB", inventoryItems: items })
+                body: JSON.stringify({ name: nm, phone: ph+(ln?" | "+ln:""), licenseType: isPri?"Primary/Sec":"Offline", gamesFormatted: gTxt, totalPrice: totalP+" EGP", totalSize: totalSz+" GB", inventoryItems: items })
             }).catch(e => console.log(e));
 
-            alert("تم إرسال طلبك! جاري تحويلك للواتساب للتأكيد...");
+            alert("جاري تحويلك للواتساب...");
             clearCart(); document.getElementById('storeFeeToggle').checked=false; document.getElementById('userLandline').value=""; closeCart();
             window.open(`https://wa.me/${num}?text=${encodeURIComponent(txt)}`, '_blank');
         }
