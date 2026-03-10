@@ -3,17 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Level UP Sale - عروض الألعاب</title>
+    <title>Level UP Sale - عروض الألعاب الأصلية</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
-    
-    <script src="image_map.js"></script>
-
     <style>
         :root { --bg: #0f172a; --card: #1e293b; --pri: #f59e0b; --acc: #ef4444; --txt: #f8fafc; --mut: #94a3b8; --dang: #dc2626; }
         body { background: var(--bg); color: var(--txt); font-family: 'Tajawal', sans-serif; margin: 0; padding-bottom: 80px; }
         .top-bar { background: #020617; color: var(--pri); padding: 10px 15px; display: flex; justify-content: space-between; font-size: 13px; font-weight: bold; border-bottom: 2px solid var(--acc); }
         header { background: #0b1120; padding: 25px 15px; text-align: center; border-bottom: 3px solid var(--pri); position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.8);}
-        header h1 { margin: 0; font-size: 32px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; text-shadow: 2px 2px 4px rgba(245, 158, 11, 0.4);}
+        header h1 { margin: 0; font-size: 32px; font-weight: 900; text-transform: uppercase; }
         header span { color: var(--pri); }
         .fb-link { display: inline-block; margin-top: 10px; background: #1877F2; color: white; padding: 6px 20px; border-radius: 20px; font-size: 14px; text-decoration: none; font-weight: bold; }
         .disc { font-size: 12px; color: var(--mut); margin-top: 12px; background: rgba(0,0,0,0.3); display: inline-block; padding: 5px 15px; border-radius: 10px; border: 1px dashed #334155;}
@@ -21,12 +18,12 @@
         .sec-title { font-size: 24px; color: var(--pri); margin-bottom: 20px; font-weight: 900; border-bottom: 2px dashed #334155; padding-bottom: 10px;}
         
         .pkg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px; }
-        .pkg-card { background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%); border: 2px solid var(--acc); border-radius: 12px; padding: 20px; text-align: center; position: relative; overflow: hidden; display: flex; flex-direction: column;}
+        .pkg-card { background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%); border: 2px solid var(--acc); border-radius: 12px; padding: 20px; text-align: center; position: relative; display: flex; flex-direction: column;}
         .pkg-card::before { content: '🔥 عرض'; position: absolute; top: 15px; right: -35px; background: var(--acc); color: white; padding: 5px 40px; font-weight: bold; transform: rotate(45deg); font-size: 12px; }
         .pkg-title { font-size: 18px; font-weight: bold; color: var(--pri); margin-bottom: 15px; }
         .pkg-info { background: #020617; padding: 8px 15px; border-radius: 20px; font-size: 13px; font-weight: bold; margin-bottom: 15px; border: 1px solid #334155; }
         .pkg-desc { font-size: 12px; color: var(--mut); margin-bottom: 15px; line-height: 1.8; flex-grow: 1;}
-        .btn-pkg { background: var(--acc); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; font-family: inherit; font-size: 14px; cursor: pointer; width: 100%; margin-top: auto;}
+        .btn-pkg { background: var(--acc); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; font-family: inherit; cursor: pointer; width: 100%; margin-top: auto;}
         
         .filters { background: var(--card); padding: 20px; border-radius: 12px; border: 1px solid #334155; margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);}
         .filters input { width: 100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: white; font-family: inherit; font-size: 15px; box-sizing: border-box;}
@@ -41,7 +38,7 @@
         .c-size { font-size: 13px; color: #cbd5e1; margin-top: 5px; display: block;}
         .c-body { padding: 15px; flex: 1; display: flex; flex-direction: column; gap: 8px;}
         
-        .btn-v { padding: 12px 10px; border: 1px solid #475569; border-radius: 6px; font-family: inherit; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; background: #0f172a; color: white; transition: 0.2s;}
+        .btn-v { padding: 12px 10px; border: 1px solid #475569; border-radius: 6px; font-family: inherit; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; background: #0f172a; color: white;}
         .btn-v span:first-child { color: var(--mut); font-size: 13px;}
         .btn-v span:last-child { color: var(--pri); font-size: 15px;}
         .btn-v.added { background: var(--dang); border-color: var(--dang); }
@@ -49,14 +46,13 @@
         .btn-v:disabled { background: #17171c; border-color: #333; cursor: not-allowed; opacity: 0.7;}
         .btn-v:disabled span:last-child { color: var(--dang); font-size: 13px;}
 
-        .cart-fl { position: fixed; bottom: 20px; left: 20px; background: var(--acc); color: white; padding: 15px 25px; border-radius: 30px; font-weight: bold; font-family: inherit; cursor: pointer; border: none; z-index: 1000; box-shadow: 0 5px 20px rgba(0,0,0,0.5);}
+        .cart-fl { position: fixed; bottom: 20px; left: 20px; background: var(--acc); color: white; padding: 15px 25px; border-radius: 30px; font-weight: bold; font-family: inherit; cursor: pointer; border: none; z-index: 1000;}
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1001; justify-content: center; align-items: center; padding: 15px; }
         .m-cont { background: var(--card); width: 100%; max-width: 500px; border-radius: 15px; padding: 25px; max-height: 90vh; overflow-y: auto; border: 2px solid var(--acc); }
         .m-head { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; padding-bottom: 15px; margin-bottom: 15px; }
         .m-head h2 { margin: 0; color: var(--pri); }
         .u-info input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: white; font-family: inherit; margin-bottom: 10px; box-sizing: border-box;}
         .fee-box { background: #0f172a; padding: 15px; border-radius: 8px; margin-bottom: 15px; display: flex; justify-content: space-between; border: 1px solid #334155;}
-        .fee-box input { transform: scale(1.5); accent-color: var(--pri);}
         .c-item { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; border-bottom: 1px dashed #334155; padding-bottom: 8px; }
         .m-sum { background: #0f172a; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; border: 1px solid #334155;}
         .btn-wa { background: #25D366; color: white; width: 100%; padding: 14px; border: none; border-radius: 8px; font-weight: bold; font-family: inherit; cursor: pointer; margin-top: 10px;}
@@ -99,8 +95,7 @@
             <div class="pkg-card" style="border-color: var(--pri);">
                 <div class="pkg-title" style="color: white;">باقة LevelUP 150 Giga WE</div>
                 <div class="pkg-info">💾 150 جيجا | 💰 85 ج.م</div>
-                <div style="height: 100px; border-radius: 8px; margin-bottom: 15px;"><img src="levelup.jpg" style="width:100%; height:100%; object-fit:cover;" onerror="this.style.display='none'"></div>
-                <button class="btn-pkg" style="background:var(--pri); color:#000;" onclick="addLevelUp()">🛒 أضف الباقة</button>
+                <button class="btn-pkg" style="background:var(--pri); color:#000; margin-top: 15px;" onclick="addLevelUp()">🛒 أضف الباقة</button>
             </div>
         </div>
 
@@ -122,15 +117,10 @@
             <div class="u-info">
                 <input type="text" id="userName" placeholder="الاسم الثنائي...">
                 <input type="tel" id="userPhone" placeholder="رقم الموبايل...">
-                <input type="tel" id="userLandline" placeholder="الرقم الأرضي (اختياري لباقة WE)...">
             </div>
             <div class="fee-box">
                 <label>تنزيل الألعاب داخل المحل (+100 ج.م)</label>
-                <input type="checkbox" id="storeFeeToggle" onchange="updateCart()">
-            </div>
-            <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
-                <span style="color:var(--pri); font-size:14px;">التفاصيل</span>
-                <button onclick="clearCart()" style="background:none; border:1px solid var(--dang); color:var(--dang); padding:3px 10px; border-radius:5px; cursor:pointer;">إفراغ</button>
+                <input type="checkbox" id="storeFeeToggle" onchange="updateCart()" style="transform: scale(1.5); accent-color: var(--pri);">
             </div>
             <div id="cartList" style="margin-bottom:15px;"></div>
             <div class="m-sum">
@@ -144,146 +134,26 @@
         </div>
     </div>
 
-    <script>
-        // التعديل هنا: تم وضع رابط جوجل شيت الجديد الخاص بـ Master Data
-        const GOOGLE_URL = 'https://script.google.com/macros/s/AKfycbz_Gbc1q5mlw63yd2u2cn0hs6jnzf2gljhr486u3dkgm2y_2Ut8_Ha/exec';
+    <script src="image_map.js" onerror="console.warn('image_map.js not found')"></script>
 
-        // قائمة الـ 118 لعبة المحدثة بأسماء رسمية (بدون المحذوفات)
+    <script>
+        const GOOGLE_URL = 'https://script.google.com/macros/s/AKfycbzitNgeacplEjHYYuHqZCDoNZbBauk1Hjoww0SAnnWi2MurBhyjNeePUYvs_BGs7au8/exec';
+
+        // 118 Original games list
         const raw = [
-            [1,"A Way Out",100,350,300,250,17],
-            [2,"Assassin's Creed Unity",100,0,200,150,50],
-            [3,"Alan Wake Remastered",150,400,350,250,30],
-            [4,"Assassin's Creed Mirage",150,550,500,0,40],
-            [5,"Assassin's Creed Odyssey",100,300,250,0,55],
-            [6,"Assassin's Creed Origins",80,200,0,0,50],
-            [7,"Assassin's Creed® Valhalla",100,350,250,0,70],
-            [8,"Astro Bot",0,0,0,550,35],
-            [9,"Baja Edge of Control HD",80,0,180,150,5],
-            [10,"Batman: Arkham Knight",100,250,200,150,50],
-            [11,"Battlefield 4",100,0,200,150,70],
-            [12,"Battlefield V",80,250,200,150,116],
-            [13,"Bendy and the Dark Revival",100,300,300,200,15],
-            [14,"Call of Duty: Black Ops 4",80,250,250,200,100],
-            [15,"Call of Duty: Black Ops 3",150,550,400,350,120],
-            [16,"Burnout Paradise",80,250,200,150,8],
-            [17,"Call of Duty: Vanguard",0,0,0,0,75],
-            [18,"Call of Duty WWII Gold Edition",100,250,250,200,80],
-            [19,"Car Mechanic Sim",100,0,0,200,15],
-            [20,"cho cho Charles",100,0,0,400,3],
-            [21,"Control",100,0,350,200,25],
-            [22,"Crash Team Racing Nitro-Fueled",100,350,300,250,15],
-            [23,"Cyberpunk 2077",100,0,0,0,110],
-            [24,"Demon Slayer: Kimetsu no Yaiba",100,0,0,0,25],
-            [25,"Detroit: Become Human",0,200,0,0,45],
-            [26,"Devil May Cry 5",100,0,200,0,35],
-            [27,"Dragon Ball FighterZ",100,0,350,0,6],
-            [28,"Dragon Ball Z Kakarot",100,0,350,0,40],
-            [29,"Dragonball Sparking Z",0,0,700,600,30],
-            [30,"Dying Light 1",0,0,0,0,25],
-            [31,"ea family bundle",80,0,200,150,50],
-            [32,"Far Cry 3",0,0,0,0,15],
-            [33,"Far Cry 6",100,6,6,2,90],
-            [34,"EA SPORTS FC 24",100,0,0,0,50],
-            [35,"EA SPORTS FC 25",100,0,0,0,50],
-            [36,"EA SPORTS FC 26",150,450,500,350,58],
-            [37,"FIFA 2022",100,0,0,0,40],
-            [38,"FIFA 23",100,0,0,0,45],
-            [39,"Forza Horizon PS5",0,0,0,0,90],
-            [40,"Friday The 13th",80,0,0,150,6],
-            [41,"Gang Beasts",0,0,0,0,2],
-            [42,"Ghost of Tsushima",150,450,500,0,50],
-            [43,"God of War (2018)",100,350,350,200,45],
-            [44,"God of War Ragnarök",0,0,0,0,110],
-            [45,"Gotham Knights",150,0,0,450,45],
-            [46,"Gran Turismo Sport",0,0,0,0,110],
-            [47,"Grand Theft Auto V (GTA 5)",100,500,450,300,90],
-            [48,"Hello Neighbor Bundle",0,0,0,0,5],
-            [49,"Hitman 3",0,0,0,0,70],
-            [50,"Hogwarts Legacy",100,0,450,300,80],
-            [51,"Horizon Forbidden West",150,450,400,300,90],
-            [52,"Human: Fall Flat",0,0,0,0,2],
-            [53,"Injustice 2",100,250,200,150,35],
-            [54,"It Takes Two",150,450,450,0,45],
-            [55,"Just Cause 4 Reloaded",100,300,250,200,60],
-            [56,"L.A. Noire",100,0,250,150,18],
-            [57,"lego 2k drive",100,350,300,0,20],
-            [58,"LEGO Marvel Collection",100,350,300,0,50],
-            [59,"Little Nightmares 1",100,0,250,0,4],
-            [60,"Mafia Trilogy",100,300,300,0,100],
-            [61,"Marvel's Avengers",100,0,350,0,100],
-            [62,"Marvel's Spider-Man 2",0,0,0,0,90],
-            [63,"marvel's spider-man miles morales",150,450,400,0,50],
-            [64,"Marvel's Spider-Man 1",100,400,350,250,50],
-            [65,"Minecraft",200,0,0,0,2],
-            [66,"Mortal Kombat 11",100,350,300,200,80],
-            [67,"Mortal Kombat™ 1",150,0,550,0,100],
-            [68,"MotoGP 22 PS4 & PS5",100,250,200,180,30],
-            [69,"Naruto Shippuden: Ultimate Ninja Storm 4",150,0,400,0,40],
-            [70,"NBA 2K25",100,0,0,400,150],
-            [71,"need for speed 2015",100,0,200,150,20],
-            [72,"Need for Speed Heat",150,300,250,200,35],
-            [73,"NFS Hot Pursuit Remastered",100,200,200,150,25],
-            [74,"Need for Speed Payback",100,250,250,200,30],
-            [75,"NFS Unbound",0,0,0,0,35],
-            [76,"Olympic Games Tokyo 2020",100,300,300,0,15],
-            [77,"Outlast Trinity",100,0,0,250,30],
-            [78,"Overcooked Bundle",0,0,0,0,10],
-            [79,"eFootball / PES 2019",0,0,0,0,30],
-            [80,"eFootball / PES 2021",450,0,0,0,40],
-            [81,"Ratchet",0,200,200,150,28],
-            [82,"Rayman Legends",100,250,250,200,10],
-            [83,"Red Dead Redemption 2",150,550,450,0,115],
-            [84,"Resident Evil 4 Remake",0,0,0,0,60],
-            [85,"Resident Evil 7: Biohazard",100,0,0,200,25],
-            [86,"Resident Evil Racoon city",100,400,350,0,45],
-            [87,"Resident Evil Village",100,0,0,0,30],
-            [88,"Ride",100,0,200,150,20],
-            [89,"Rise of the Tomb Raider",0,0,0,0,20],
-            [90,"Rubber Bandits",0,0,0,0,2],
-            [91,"Sackboy: A Big Adventure",0,0,0,0,35],
-            [92,"Saints Row",100,350,300,0,50],
-            [93,"Sekiro: Shadows Die Twice",100,450,0,0,15],
-            [94,"Silent Hill 2 Remake",0,0,0,550,50],
-            [95,"Sonic Frontiers",100,0,450,0,25],
-            [96,"Split Fiction",0,0,0,0,10],
-            [97,"Tekken 7",100,450,300,250,50],
-            [98,"The Crew 2",0,0,0,0,60],
-            [99,"The Crew Motofest",0,0,0,0,35],
-            [100,"The Evil Within 1",100,0,0,150,40],
-            [101,"The Evil Within 2",100,0,0,150,35],
-            [102,"The Last of Us Part 2",150,0,0,0,80],
-            [103,"The Last of Us Part 1 Remastered",100,350,300,0,45],
-            [104,"The Witcher 3: Wild Hunt",100,250,200,0,40],
-            [105,"Tomb Raider DE",100,200,200,150,15],
-            [106,"Tomb Raider Trilogy",150,400,350,0,50],
-            [107,"TOP Spin 2K 2025",0,0,450,350,30],
-            [108,"EA SPORTS UFC 4",100,0,0,200,30],
-            [109,"Uncharted Trilogy",100,450,400,250,45],
-            [110,"Unravel Two",80,200,200,150,4],
-            [111,"V Rally",100,200,200,150,15],
-            [112,"Watch Dogs 2",100,0,250,0,35],
-            [113,"Watch Dogs Legion",100,0,0,0,45],
-            [114,"WWE 2k20",100,0,0,0,50],
-            [115,"WWE 2K23",0,0,0,0,70],
-            [116,"WWE 2K24",100,0,0,0,80],
-            [117,"WWE 2K25",150,450,0,0,80],
-            [118,"Zombie Army 4",100,250,0,150,50]
+            [1,"A Way Out",100,350,300,250,17],[2,"Assassin's Creed Unity",100,0,200,150,50],[3,"Alan Wake Remastered",150,400,350,250,30],[4,"Assassin's Creed Mirage",150,550,500,0,40],[5,"Assassin's Creed Odyssey",100,300,250,0,55],[6,"Assassin's Creed Origins",80,200,0,0,50],[7,"Assassin's Creed® Valhalla",100,350,250,0,70],[8,"Astro Bot",0,0,0,550,35],[9,"Baja Edge of Control HD",80,0,180,150,5],[10,"Batman: Arkham Knight",100,250,200,150,50],[11,"Battlefield 4",100,0,200,150,70],[12,"Battlefield V",80,250,200,150,116],[13,"Bendy and the Dark Revival",100,300,300,200,15],[14,"Call of Duty: Black Ops 4",80,250,250,200,100],[15,"Call of Duty: Black Ops 3",150,550,400,350,120],[16,"Burnout Paradise",80,250,200,150,8],[17,"Call of Duty: Vanguard",0,0,0,0,75],[18,"Call of Duty WWII Gold Edition",100,250,250,200,80],[19,"Car Mechanic Sim",100,0,0,200,15],[20,"cho cho Charles",100,0,0,400,3],[21,"Control",100,0,350,200,25],[22,"Crash Team Racing Nitro-Fueled",100,350,300,250,15],[23,"Cyberpunk 2077",100,0,0,0,110],[24,"Demon Slayer: Kimetsu no Yaiba",100,0,0,0,25],[25,"Detroit: Become Human",0,200,0,0,45],[26,"Devil May Cry 5",100,0,200,0,35],[27,"Dragon Ball FighterZ",100,0,350,0,6],[28,"Dragon Ball Z Kakarot",100,0,350,0,40],[29,"Dragonball Sparking Z",0,0,700,600,30],[30,"Dying Light 1",0,0,0,0,25],[31,"ea family bundle",80,0,200,150,50],[32,"Far Cry 3",0,0,0,0,15],[33,"Far Cry 6",100,6,6,2,90],[34,"EA SPORTS FC 24",100,0,0,0,50],[35,"EA SPORTS FC 25",100,0,0,0,50],[36,"EA SPORTS FC 26",150,450,500,350,58],[37,"FIFA 2022",100,0,0,0,40],[38,"FIFA 23",100,0,0,0,45],[39,"Forza Horizon PS5",0,0,0,0,90],[40,"Friday The 13th",80,0,0,150,6],[41,"Gang Beasts",0,0,0,0,2],[42,"Ghost of Tsushima",150,450,500,0,50],[43,"God of War (2018)",100,350,350,200,45],[44,"God of War Ragnarök",0,0,0,0,110],[45,"Gotham Knights",150,0,0,450,45],[46,"Gran Turismo Sport",0,0,0,0,110],[47,"Grand Theft Auto V (GTA 5)",100,500,450,300,90],[48,"Hello Neighbor Bundle",0,0,0,0,5],[49,"Hitman 3",0,0,0,0,70],[50,"Hogwarts Legacy",100,0,450,300,80],[51,"Horizon Forbidden West",150,450,400,300,90],[52,"Human: Fall Flat",0,0,0,0,2],[53,"Injustice 2",100,250,200,150,35],[54,"It Takes Two",150,450,450,0,45],[55,"Just Cause 4 Reloaded",100,300,250,200,60],[56,"L.A. Noire",100,0,250,150,18],[57,"lego 2k drive",100,350,300,0,20],[58,"LEGO Marvel Collection",100,350,300,0,50],[59,"Little Nightmares 1",100,0,250,0,4],[60,"Mafia Trilogy",100,300,300,0,100],[61,"Marvel's Avengers",100,0,350,0,100],[62,"Marvel's Spider-Man 2",0,0,0,0,90],[63,"marvel's spider-man miles morales",150,450,400,0,50],[64,"Marvel's Spider-Man 1",100,400,350,250,50],[65,"Minecraft",200,0,0,0,2],[66,"Mortal Kombat 11",100,350,300,200,80],[67,"Mortal Kombat™ 1",150,0,550,0,100],[68,"MotoGP 22 PS4 & PS5",100,250,200,180,30],[69,"Naruto Shippuden: Ultimate Ninja Storm 4",150,0,400,0,40],[70,"NBA 2K25",100,0,0,400,150],[71,"need for speed 2015",100,0,200,150,20],[72,"Need for Speed Heat",150,300,250,200,35],[73,"NFS Hot Pursuit Remastered",100,200,200,150,25],[74,"Need for Speed Payback",100,250,250,200,30],[75,"NFS Unbound",0,0,0,0,35],[76,"Olympic Games Tokyo 2020",100,300,300,0,15],[77,"Outlast Trinity",100,0,0,250,30],[78,"Overcooked Bundle",0,0,0,0,10],[79,"eFootball / PES 2019",0,0,0,0,30],[80,"eFootball / PES 2021",450,0,0,0,40],[81,"Ratchet",0,200,200,150,28],[82,"Rayman Legends",100,250,250,200,10],[83,"Red Dead Redemption 2",150,550,450,0,115],[84,"Resident Evil 4 Remake",0,0,0,0,60],[85,"Resident Evil 7: Biohazard",100,0,0,200,25],[86,"Resident Evil Racoon city",100,400,350,0,45],[87,"Resident Evil Village",100,0,0,0,30],[88,"Ride",100,0,200,150,20],[89,"Rise of the Tomb Raider",0,0,0,0,20],[90,"Rubber Bandits",0,0,0,0,2],[91,"Sackboy: A Big Adventure",0,0,0,0,35],[92,"Saints Row",100,350,300,0,50],[93,"Sekiro: Shadows Die Twice",100,450,0,0,15],[94,"Silent Hill 2 Remake",0,0,0,550,50],[95,"Sonic Frontiers",100,0,450,0,25],[96,"Split Fiction",0,0,0,0,10],[97,"Tekken 7",100,450,300,250,50],[98,"The Crew 2",0,0,0,0,60],[99,"The Crew Motofest",0,0,0,0,35],[100,"The Evil Within 1",100,0,0,150,40],[101,"The Evil Within 2",100,0,0,150,35],[102,"The Last of Us Part 2",150,0,0,0,80],[103,"The Last of Us Part 1 Remastered",100,350,300,0,45],[104,"The Witcher 3: Wild Hunt",100,250,200,0,40],[105,"Tomb Raider DE",100,200,200,150,15],[106,"Tomb Raider Trilogy",150,400,350,0,50],[107,"TOP Spin 2K 2025",0,0,450,350,30],[108,"EA SPORTS UFC 4",100,0,0,200,30],[109,"Uncharted Trilogy",100,450,400,250,45],[110,"Unravel Two",80,200,200,150,4],[111,"V Rally",100,200,200,150,15],[112,"Watch Dogs 2",100,0,250,0,35],[113,"Watch Dogs Legion",100,0,0,0,45],[114,"WWE 2k20",100,0,0,0,50],[115,"WWE 2K23",0,0,0,0,70],[116,"WWE 2K24",100,0,0,0,80],[117,"WWE 2K25",150,450,0,0,80],[118,"Zombie Army 4",100,250,0,150,50]
         ];
 
         const gamesDB = raw.map(r => ({ id: r[0], name: r[1], pr: {'Offline':r[2], 'Pri PS4':r[3], 'Pri PS5':r[4], 'Secondary':r[5]}, sz: r[6] }));
         let cart = []; 
 
-        // دالة استدعاء الصور بذكاء من ملف image_map.js مع تجاهل : و / والمسافات
         const getImg = (name) => {
             if (typeof imageMap !== 'undefined') {
                 const clean = n => n.toLowerCase().replace(/[:/]/g, '').replace(/\s+/g, ' ').trim();
                 let target = clean(name);
                 let match = imageMap.find(img => clean(img['اسم الصورة فقط']) === target);
-                if (match) {
-                    return encodeURI(match['الاسم بالكامل']);
-                }
+                if (match) return encodeURI(match['الاسم بالكامل']);
             }
-            // في حالة عدم العثور عليها في الخريطة كخيار احتياطي
             return encodeURI(name.replace(/[:/]/g, '') + ".jpg"); 
         };
 
@@ -334,7 +204,6 @@
             grid.innerHTML = '';
             
             let sortedGames = [...gamesDB].sort((a,b) => a.name.localeCompare(b.name));
-            
             sortedGames.forEach(g => {
                 if(term && !g.name.toLowerCase().includes(term)) return;
                 let btns = '';
@@ -345,9 +214,7 @@
                              </button>`;
                 });
                 
-                // جلب مسار الصورة من imageMap 
                 let imgSrc = getImg(g.name);
-                
                 grid.innerHTML += `<div class="card">
                     <div class="c-img">
                         <span class="c-text">${g.name}</span>
@@ -381,12 +248,11 @@
         function closeCart() { document.getElementById('cartModal').style.display='none'; }
 
         function sendWA(num) {
-            const nm = document.getElementById('userName').value.trim(), ph = document.getElementById('userPhone').value.trim(), ln = document.getElementById('userLandline').value.trim();
+            const nm = document.getElementById('userName').value.trim(), ph = document.getElementById('userPhone').value.trim();
             if(!nm || !ph) return alert("أكمل الاسم ورقم الموبايل!");
             if(!cart.length) return alert("السلة فارغة!");
             
-            let totalSz=0, totalP=0, txt=`مرحباً Level UP،\nالاسم: ${nm}\nموبايل: ${ph}\n`, gTxt="", items=[], uG=new Set(), isPri=false;
-            if(ln) txt += `أرضي: ${ln}\n`; txt += `\nالطلب:\n`;
+            let totalSz=0, totalP=0, txt=`مرحباً Level UP،\nالاسم: ${nm}\nموبايل: ${ph}\n\nالطلب:\n`, gTxt="", items=[], uG=new Set(), isPri=false;
             
             cart.forEach((c, i) => {
                 txt += `${i+1}. ${c.n} (${c.t}) - ${c.p} ج\n`;
@@ -402,11 +268,11 @@
 
             fetch(GOOGLE_URL, {
                 method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name: nm, phone: ph+(ln?" | "+ln:""), licenseType: isPri?"Primary/Sec":"Offline", gamesFormatted: gTxt, totalPrice: totalP+" EGP", totalSize: totalSz+" GB", inventoryItems: items })
+                body: JSON.stringify({ systemType: "Offers", name: nm, phone: ph, licenseType: isPri?"Primary/Sec":"Offline", gamesFormatted: gTxt, totalPrice: totalP+" EGP", totalSize: totalSz+" GB", inventoryItems: items })
             }).catch(e => console.log(e));
 
             alert("جاري تحويلك للواتساب...");
-            clearCart(); document.getElementById('storeFeeToggle').checked=false; document.getElementById('userLandline').value=""; closeCart();
+            clearCart(); document.getElementById('storeFeeToggle').checked=false; closeCart();
             window.open(`https://wa.me/${num}?text=${encodeURIComponent(txt)}`, '_blank');
         }
 
