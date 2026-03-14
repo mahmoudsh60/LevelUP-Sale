@@ -53,7 +53,10 @@
         .m-head h2 { margin: 0; color: var(--pri); }
         .u-info input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: white; font-family: inherit; margin-bottom: 10px; box-sizing: border-box;}
         .fee-box { background: #0f172a; padding: 15px; border-radius: 8px; margin-bottom: 15px; display: flex; justify-content: space-between; border: 1px solid #334155;}
-        .c-item { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; border-bottom: 1px dashed #334155; padding-bottom: 8px; }
+        
+        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 14px; border-bottom: 1px dashed #334155; padding-bottom: 8px; }
+        .remove-btn { background: var(--dang); border: none; color: white; font-size: 11px; cursor: pointer; padding: 4px 8px; border-radius: 4px; font-weight: bold; margin-right: 8px; }
+        
         .m-sum { background: #0f172a; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; border: 1px solid #334155;}
         .btn-wa { background: #25D366; color: white; width: 100%; padding: 14px; border: none; border-radius: 8px; font-weight: bold; font-family: inherit; cursor: pointer; margin-top: 10px;}
     </style>
@@ -137,8 +140,7 @@
     <script src="image_map.js" onerror="console.warn('image_map.js not found')"></script>
 
     <script>
-        // الرابط الجديد الخاص بك
-        const GOOGLE_URL = 'https://script.google.com/macros/s/AKfycbyZwX2zpm3qhlmuER-k2p2lN_YddkoQQJwfseVQG6eKz2clBB_NwqNziNpxzAPl_arW/exec';
+        const GOOGLE_URL = 'https://script.google.com/macros/s/AKfycbzsHNi9IU8P0cE57JkWQ1ZYK8W_7D1_R9klbJe2Fo9o6WPaOmyUm227fZYMIgz7bXdD/exec';
 
         const raw = [
             [1,"A Way Out",100,350,300,250,17],[2,"Assassin's Creed Unity",100,0,200,150,50],[3,"Alan Wake Remastered",150,400,350,250,30],[4,"Assassin's Creed Mirage",150,550,500,0,40],[5,"Assassin's Creed Odyssey",100,300,250,0,55],[6,"Assassin's Creed Origins",80,200,0,0,50],[7,"Assassin's Creed® Valhalla",100,350,250,0,70],[8,"Astro Bot",0,0,0,550,35],[9,"Baja Edge of Control HD",80,0,180,150,5],[10,"Batman: Arkham Knight",100,250,200,150,50],[11,"Battlefield 4",100,0,200,150,70],[12,"Battlefield V",80,250,200,150,116],[13,"Bendy and the Dark Revival",100,300,300,200,15],[14,"Call of Duty: Black Ops 4",80,250,250,200,100],[15,"Call of Duty: Black Ops 3",150,550,400,350,120],[16,"Burnout Paradise",80,250,200,150,8],[17,"Call of Duty: Vanguard",0,0,0,0,75],[18,"Call of Duty WWII Gold Edition",100,250,250,200,80],[19,"Car Mechanic Sim",100,0,0,200,15],[20,"cho cho Charles",100,0,0,400,3],[21,"Control",100,0,350,200,25],[22,"Crash Team Racing Nitro-Fueled",100,350,300,250,15],[23,"Cyberpunk 2077",100,0,0,0,110],[24,"Demon Slayer: Kimetsu no Yaiba",100,0,0,0,25],[25,"Detroit: Become Human",0,200,0,0,45],[26,"Devil May Cry 5",100,0,200,0,35],[27,"Dragon Ball FighterZ",100,0,350,0,6],[28,"Dragon Ball Z Kakarot",100,0,350,0,40],[29,"Dragonball Sparking Z",0,0,700,600,30],[30,"Dying Light 1",0,0,0,0,25],[31,"ea family bundle",80,0,200,150,50],[32,"Far Cry 3",0,0,0,0,15],[33,"Far Cry 6",100,6,6,2,90],[34,"EA SPORTS FC 24",100,0,0,0,50],[35,"EA SPORTS FC 25",100,0,0,0,50],[36,"EA SPORTS FC 26",150,450,500,350,58],[37,"FIFA 2022",100,0,0,0,40],[38,"FIFA 23",100,0,0,0,45],[39,"Forza Horizon PS5",0,0,0,0,90],[40,"Friday The 13th",80,0,0,150,6],[41,"Gang Beasts",0,0,0,0,2],[42,"Ghost of Tsushima",150,450,500,0,50],[43,"God of War (2018)",100,350,350,200,45],[44,"God of War Ragnarök",0,0,0,0,110],[45,"Gotham Knights",150,0,0,450,45],[46,"Gran Turismo Sport",0,0,0,0,110],[47,"Grand Theft Auto V (GTA 5)",100,500,450,300,90],[48,"Hello Neighbor Bundle",0,0,0,0,5],[49,"Hitman 3",0,0,0,0,70],[50,"Hogwarts Legacy",100,0,450,300,80],[51,"Horizon Forbidden West",150,450,400,300,90],[52,"Human: Fall Flat",0,0,0,0,2],[53,"Injustice 2",100,250,200,150,35],[54,"It Takes Two",150,450,450,0,45],[55,"Just Cause 4 Reloaded",100,300,250,200,60],[56,"L.A. Noire",100,0,250,150,18],[57,"lego 2k drive",100,350,300,0,20],[58,"LEGO Marvel Collection",100,350,300,0,50],[59,"Little Nightmares 1",100,0,250,0,4],[60,"Mafia Trilogy",100,300,300,0,100],[61,"Marvel's Avengers",100,0,350,0,100],[62,"Marvel's Spider-Man 2",0,0,0,0,90],[63,"marvel's spider-man miles morales",150,450,400,0,50],[64,"Marvel's Spider-Man 1",100,400,350,250,50],[65,"Minecraft",200,0,0,0,2],[66,"Mortal Kombat 11",100,350,300,200,80],[67,"Mortal Kombat™ 1",150,0,550,0,100],[68,"MotoGP 22 PS4 & PS5",100,250,200,180,30],[69,"Naruto Shippuden: Ultimate Ninja Storm 4",150,0,400,0,40],[70,"NBA 2K25",100,0,0,400,150],[71,"need for speed 2015",100,0,200,150,20],[72,"Need for Speed Heat",150,300,250,200,35],[73,"NFS Hot Pursuit Remastered",100,200,200,150,25],[74,"Need for Speed Payback",100,250,250,200,30],[75,"NFS Unbound",0,0,0,0,35],[76,"Olympic Games Tokyo 2020",100,300,300,0,15],[77,"Outlast Trinity",100,0,0,250,30],[78,"Overcooked Bundle",0,0,0,0,10],[79,"eFootball / PES 2019",0,0,0,0,30],[80,"eFootball / PES 2021",450,0,0,0,40],[81,"Ratchet",0,200,200,150,28],[82,"Rayman Legends",100,250,250,200,10],[83,"Red Dead Redemption 2",150,550,450,0,115],[84,"Resident Evil 4 Remake",0,0,0,0,60],[85,"Resident Evil 7: Biohazard",100,0,0,200,25],[86,"Resident Evil Racoon city",100,400,350,0,45],[87,"Resident Evil Village",100,0,0,0,30],[88,"Ride",100,0,200,150,20],[89,"Rise of the Tomb Raider",0,0,0,0,20],[90,"Rubber Bandits",0,0,0,0,2],[91,"Sackboy: A Big Adventure",0,0,0,0,35],[92,"Saints Row",100,350,300,0,50],[93,"Sekiro: Shadows Die Twice",100,450,0,0,15],[94,"Silent Hill 2 Remake",0,0,0,550,50],[95,"Sonic Frontiers",100,0,450,0,25],[96,"Split Fiction",0,0,0,0,10],[97,"Tekken 7",100,450,300,250,50],[98,"The Crew 2",0,0,0,0,60],[99,"The Crew Motofest",0,0,0,0,35],[100,"The Evil Within 1",100,0,0,150,40],[101,"The Evil Within 2",100,0,0,150,35],[102,"The Last of Us Part 2",150,0,0,0,80],[103,"The Last of Us Part 1 Remastered",100,350,300,0,45],[104,"The Witcher 3: Wild Hunt",100,250,200,0,40],[105,"Tomb Raider DE",100,200,200,150,15],[106,"Tomb Raider Trilogy",150,400,350,0,50],[107,"TOP Spin 2K 2025",0,0,450,350,30],[108,"EA SPORTS UFC 4",100,0,0,200,30],[109,"Uncharted Trilogy",100,450,400,250,45],[110,"Unravel Two",80,200,200,150,4],[111,"V Rally",100,200,200,150,15],[112,"Watch Dogs 2",100,0,250,0,35],[113,"Watch Dogs Legion",100,0,0,0,45],[114,"WWE 2k20",100,0,0,0,50],[115,"WWE 2K23",0,0,0,0,70],[116,"WWE 2K24",100,0,0,0,80],[117,"WWE 2K25",150,450,0,0,80],[118,"Zombie Army 4",100,250,0,150,50]
@@ -196,12 +198,21 @@
             updateCart(); renderGames();
         }
 
+        function removeFromCart(id) {
+            const index = cart.findIndex(c => c.id === id);
+            if (index > -1) {
+                cart.splice(index, 1);
+                updateCart(); renderGames();
+            }
+        }
+
         function clearCart() { cart = []; updateCart(); renderGames(); }
 
+        // تم التعديل لبناء الكود مرة واحدة لتسريع الصفحة (حل التهنيج)
         function renderGames() {
             const grid = document.getElementById('gamesGrid');
             const term = document.getElementById('searchInput').value.toLowerCase();
-            grid.innerHTML = '';
+            let htmlContent = '';
             
             let sortedGames = [...gamesDB].sort((a,b) => a.name.localeCompare(b.name));
             sortedGames.forEach(g => {
@@ -215,15 +226,17 @@
                 });
                 
                 let imgSrc = getImg(g.name);
-                grid.innerHTML += `<div class="card">
+                htmlContent += `
+                <div class="card">
                     <div class="c-img">
                         <span class="c-text">${g.name}</span>
-                        <img src="${imgSrc}" onerror="this.style.display='none'">
+                        <img src="${imgSrc}" loading="lazy" onerror="this.style.display='none'">
                     </div>
                     <div class="c-head"><h3 class="c-title">${g.name}</h3><span class="c-size">💾 ~${g.sz} GB</span></div>
                     <div class="c-body">${btns}</div>
                 </div>`;
             });
+            grid.innerHTML = htmlContent;
         }
 
         function updateCart() {
@@ -234,8 +247,12 @@
             cart.forEach(c => {
                 if(!uG.has(c.id)) { totalSz += c.sz; uG.add(c.id); }
                 totalP += c.p;
-                list.innerHTML += `<div class="c-item">
-                    <div><b style="color:var(--txt);">${c.n}</b><br><small style="color:var(--mut);">نسخة: ${c.t}</small></div>
+                list.innerHTML += `
+                <div class="cart-item">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <button class="remove-btn" onclick="removeFromCart(${c.id})" title="إزالة من السلة">✖</button>
+                        <div><b style="color:var(--txt);">${c.n}</b><br><small style="color:var(--mut);">نسخة: ${c.t}</small></div>
+                    </div>
                     <div><small dir="ltr" style="color:var(--mut);">${c.sz} GB</small> &nbsp; <b style="color:var(--pri);">${c.p} ج</b></div>
                 </div>`;
             });
@@ -247,12 +264,14 @@
         function openCart() { document.getElementById('cartModal').style.display='flex'; }
         function closeCart() { document.getElementById('cartModal').style.display='none'; }
 
-        // دالة الإرسال بصيغة text/plain لتخطي الحماية
+        // دالة الإرسال الخارقة
         function sendToGoogle(payload) {
+            const formData = new URLSearchParams();
+            formData.append('data', JSON.stringify(payload));
             return fetch(GOOGLE_URL, {
                 method: 'POST',
-                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify(payload)
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: formData.toString()
             });
         }
 
@@ -286,12 +305,13 @@
             txt += `\nالمساحة: ${totalSz} GB\nالإجمالي: ${totalP} ج`;
 
             sendToGoogle({ systemType: "Offers", name: nm, phone: ph, licenseType: licenseToSend, gamesFormatted: gTxt, totalPrice: totalP+" EGP", totalSize: totalSz+" GB", inventoryItems: items })
-            .then(() => {
+            .then(response => response.text())
+            .then(result => {
                 alert("تم تسجيل طلبك بنجاح في الشيت! جاري تحويلك للواتساب...");
                 clearCart(); document.getElementById('storeFeeToggle').checked=false; closeCart();
                 window.open(`https://wa.me/${num}?text=${encodeURIComponent(txt)}`, '_blank');
                 btn.innerText = originalText; btn.disabled = false;
-            }).catch(e => { alert("مشكلة في الاتصال!"); btn.innerText = originalText; btn.disabled = false; });
+            }).catch(e => { alert("مشكلة في الاتصال! الكود: " + e); btn.innerText = originalText; btn.disabled = false; });
         }
 
         renderGames(); updateCart();
