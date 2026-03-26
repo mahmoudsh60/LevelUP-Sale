@@ -6,7 +6,7 @@
     <title>Level UP Sale - عروض الألعاب الأصلية</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --bg: #0f172a; --card: #1e293b; --pri: #f59e0b; --acc: #ef4444; --txt: #f8fafc; --mut: #94a3b8; --dang: #dc2626; }
+        :root { --bg: #0f172a; --card: #1e293b; --pri: #f59e0b; --acc: #ef4444; --txt: #f8fafc; --mut: #94a3b8; --dang: #dc2626; --sale-gold: #facc15; }
         body { background: var(--bg); color: var(--txt); font-family: 'Tajawal', sans-serif; margin: 0; padding-bottom: 80px; }
         .top-bar { background: #020617; color: var(--pri); padding: 10px 15px; display: flex; justify-content: space-between; font-size: 13px; font-weight: bold; border-bottom: 2px solid var(--acc); }
         header { background: #0b1120; padding: 25px 15px; text-align: center; border-bottom: 3px solid var(--pri); position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.8);}
@@ -17,20 +17,41 @@
         .cont { max-width: 1200px; margin: auto; padding: 20px 15px; }
         .sec-title { font-size: 24px; color: var(--pri); margin-bottom: 20px; font-weight: 900; border-bottom: 2px dashed #334155; padding-bottom: 10px;}
         
-        .pkg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px; }
-        .pkg-card { background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%); border: 2px solid var(--acc); border-radius: 12px; padding: 20px; text-align: center; position: relative; display: flex; flex-direction: column;}
-        .pkg-card::before { content: '🔥 عرض'; position: absolute; top: 15px; right: -35px; background: var(--acc); color: white; padding: 5px 40px; font-weight: bold; transform: rotate(45deg); font-size: 12px; }
-        .pkg-title { font-size: 18px; font-weight: bold; color: var(--pri); margin-bottom: 15px; }
-        .pkg-info { background: #020617; padding: 8px 15px; border-radius: 20px; font-size: 13px; font-weight: bold; margin-bottom: 15px; border: 1px solid #334155; }
-        .pkg-desc { font-size: 12px; color: var(--mut); margin-bottom: 15px; line-height: 1.8; flex-grow: 1;}
-        .btn-pkg { background: var(--acc); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; font-family: inherit; cursor: pointer; width: 100%; margin-top: auto;}
+        .pkg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 20px; }
+        .pkg-card { background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%); border: 2px solid var(--acc); border-radius: 12px; padding: 20px; text-align: center; position: relative; display: flex; flex-direction: column; overflow: hidden;}
+        /* تم تصليح الليبل بتاع الباقات عشان مايطلعش بره الحواف */
+        .pkg-card::before { content: '🔥 عرض'; position: absolute; top: 15px; right: -35px; background: var(--acc); color: white; padding: 5px 40px; font-weight: bold; transform: rotate(45deg); font-size: 12px; z-index: 10;}
+        .pkg-title { font-size: 18px; font-weight: bold; color: var(--pri); margin-bottom: 15px; z-index: 2;}
+        .pkg-info { background: #020617; padding: 8px 15px; border-radius: 20px; font-size: 16px; font-weight: bold; margin-bottom: 15px; border: 1px solid #334155; color: white; z-index: 2;}
+        .pkg-desc { font-size: 12px; color: var(--mut); margin-bottom: 15px; line-height: 1.8; flex-grow: 1; z-index: 2;}
+        .btn-pkg { background: var(--acc); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; font-family: inherit; cursor: pointer; width: 100%; margin-top: auto; z-index: 2;}
         
+        /* خطوات الاستعمال */
+        .steps-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; text-align: center; }
+        .step-box { background-color: #0d121c; border: 1px dashed var(--pri); padding: 10px 15px; border-radius: 8px; font-size: 14px; font-weight: bold; color: var(--txt); flex: 1; min-width: 180px; display: flex; align-items: center; justify-content: center; gap: 10px;}
+        .step-box span { background-color: var(--pri); color: #000; width: 22px; height: 22px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; font-size: 14px;}
+
         .filters { background: var(--card); padding: 20px; border-radius: 12px; border: 1px solid #334155; margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);}
+        .filter-buttons { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;}
+        .filter-btn { background: #0f172a; border: 1px solid #475569; color: white; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-family: inherit; font-weight: bold; font-size: 14px; transition: 0.2s;}
+        .filter-btn.active { background: var(--pri); color: #000; border-color: var(--pri);}
+        .filter-btn.sale-btn { border-color: var(--sale-gold); color: var(--sale-gold);}
+        .filter-btn.sale-btn.active { background: var(--sale-gold); color: #000; box-shadow: 0 0 10px rgba(250,204,21,0.5);}
         .filters input { width: 100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: white; font-family: inherit; font-size: 15px; box-sizing: border-box;}
         
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: var(--card); border-radius: 12px; overflow: hidden; border: 1px solid #334155; display: flex; flex-direction: column; }
-        .c-img { width: 100%; height: 220px; position: relative; background: #0f172a; display: flex; justify-content: center; align-items: center; border-bottom: 2px solid var(--pri); }
+        .card { background: var(--card); border-radius: 12px; overflow: hidden; border: 1px solid #334155; display: flex; flex-direction: column; transition: 0.2s;}
+        
+        /* تنسيق الألعاب اللي عليها عروض */
+        .card.on-sale { border: 2px solid var(--sale-gold); box-shadow: 0 0 15px rgba(250,204,21,0.2); transform: scale(1.02); }
+        .card.on-sale:hover { box-shadow: 0 0 25px rgba(250,204,21,0.4); }
+
+        .c-img { width: 100%; height: 220px; position: relative; background: #0f172a; display: flex; justify-content: center; align-items: center; border-bottom: 2px solid var(--pri); overflow: hidden;}
+        
+        /* تصليح لافتة "عرض" عشان متطلعش بره الصورة */
+        .sale-badge { position: absolute; top: 10px; right: 10px; background: linear-gradient(45deg, #dc2626, #ef4444); color: white; padding: 4px 12px; font-size: 12px; font-weight: 900; border-radius: 4px; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.5); display: none;}
+        .card.on-sale .sale-badge { display: block; }
+
         .c-text { position: absolute; z-index: 1; color: #475569; font-size: 18px; font-weight: 900; text-transform: uppercase; text-align: center; padding: 10px;}
         .c-img img { position: absolute; z-index: 2; width: 100%; height: 100%; object-fit: cover; }
         .c-head { padding: 15px 10px 5px; text-align: center; background: #17171c;}
@@ -79,19 +100,19 @@
         <div class="pkg-grid">
             <div class="pkg-card">
                 <div class="pkg-title">باقة الأكشن والمحركات</div>
-                <div class="pkg-info" id="pkg1-info">جاري الحساب...</div>
+                <div class="pkg-info">💰 650 ج.م</div>
                 <div class="pkg-desc">Burnout Paradise, CoD WWII, Crash Racing, FC 2026, Mortal Kombat 11, GTA V</div>
                 <button class="btn-pkg" onclick="addPackage([16, 18, 22, 36, 66, 47])">🛒 أضف الباقة</button>
             </div>
             <div class="pkg-card">
                 <div class="pkg-title">باقة الحماس والقتال</div>
-                <div class="pkg-info" id="pkg2-info">جاري الحساب...</div>
+                <div class="pkg-info">💰 700 ج.م</div>
                 <div class="pkg-desc">NFS Hot Pursuit, Black Ops III, Crash Racing, FC 2026, Tekken 7, Mafia Trilogy</div>
                 <button class="btn-pkg" onclick="addPackage([73, 15, 22, 36, 97, 60])">🛒 أضف الباقة</button>
             </div>
             <div class="pkg-card">
                 <div class="pkg-title">باقة التدمير والسرعة</div>
-                <div class="pkg-info" id="pkg3-info">جاري الحساب...</div>
+                <div class="pkg-info">💰 500 ج.م</div>
                 <div class="pkg-desc">NFS Payback, Black Ops 4, Crash Racing, Mortal Kombat 11, Just Cause 4</div>
                 <button class="btn-pkg" onclick="addPackage([74, 14, 22, 66, 55])">🛒 أضف الباقة</button>
             </div>
@@ -103,9 +124,21 @@
         </div>
 
         <h2 class="sec-title">🎮 اختر ألعابك وحدد نسختك</h2>
+
+        <div class="steps-container">
+            <div class="step-box"><span>1</span> اختار ألعابك</div>
+            <div class="step-box"><span>2</span> افتح العربة</div>
+            <div class="step-box"><span>3</span> ارسل الألعاب مع بياناتك</div>
+        </div>
+
         <div class="filters">
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="setFilter('all', this)">الكل</button>
+                <button class="filter-btn sale-btn" onclick="setFilter('sale', this)">🔥 العروض الـ Sale</button>
+            </div>
             <input type="text" id="searchInput" placeholder="ابحث عن اسم اللعبة..." onkeyup="renderGames()">
         </div>
+        
         <div class="grid" id="gamesGrid"></div>
     </div>
 
@@ -142,32 +175,42 @@
     <script>
         const GOOGLE_URL = 'https://script.google.com/macros/s/AKfycbzsHNi9IU8P0cE57JkWQ1ZYK8W_7D1_R9klbJe2Fo9o6WPaOmyUm227fZYMIgz7bXdD/exec';
 
+        // 118 لعبة بتاعتك كاملة + سبايدرمان 2 بـ 550
         const raw = [
             [1,"A Way Out",100,350,300,250,17],[2,"Assassin's Creed Unity",100,0,200,150,50],[3,"Alan Wake Remastered",150,400,350,250,30],[4,"Assassin's Creed Mirage",150,550,500,0,40],[5,"Assassin's Creed Odyssey",100,300,250,0,55],[6,"Assassin's Creed Origins",80,200,0,0,50],[7,"Assassin's Creed® Valhalla",100,350,250,0,70],[8,"Astro Bot",0,0,0,550,35],[9,"Baja Edge of Control HD",80,0,180,150,5],[10,"Batman: Arkham Knight",100,250,200,150,50],[11,"Battlefield 4",100,0,200,150,70],[12,"Battlefield V",80,250,200,150,116],[13,"Bendy and the Dark Revival",100,300,300,200,15],[14,"Call of Duty: Black Ops 4",80,250,250,200,100],[15,"Call of Duty: Black Ops 3",150,550,400,350,120],[16,"Burnout Paradise",80,250,200,150,8],[17,"Call of Duty: Vanguard",0,0,0,0,75],[18,"Call of Duty WWII Gold Edition",100,250,250,200,80],[19,"Car Mechanic Sim",100,0,0,200,15],[20,"cho cho Charles",100,0,0,400,3],[21,"Control",100,0,350,200,25],[22,"Crash Team Racing Nitro-Fueled",100,350,300,250,15],[23,"Cyberpunk 2077",100,0,0,0,110],[24,"Demon Slayer: Kimetsu no Yaiba",100,0,0,0,25],[25,"Detroit: Become Human",0,200,0,0,45],[26,"Devil May Cry 5",100,0,200,0,35],[27,"Dragon Ball FighterZ",100,0,350,0,6],[28,"Dragon Ball Z Kakarot",100,0,350,0,40],[29,"Dragonball Sparking Z",0,0,700,600,30],[30,"Dying Light 1",0,0,0,0,25],[31,"ea family bundle",80,0,200,150,50],[32,"Far Cry 3",0,0,0,0,15],[33,"Far Cry 6",100,6,6,2,90],[34,"EA SPORTS FC 24",100,0,0,0,50],[35,"EA SPORTS FC 25",100,0,0,0,50],[36,"EA SPORTS FC 26",150,450,500,350,58],[37,"FIFA 2022",100,0,0,0,40],[38,"FIFA 23",100,0,0,0,45],[39,"Forza Horizon PS5",0,0,0,0,90],[40,"Friday The 13th",80,0,0,150,6],[41,"Gang Beasts",0,0,0,0,2],[42,"Ghost of Tsushima",150,450,500,0,50],[43,"God of War (2018)",100,350,350,200,45],[44,"God of War Ragnarök",0,0,0,0,110],[45,"Gotham Knights",150,0,0,450,45],[46,"Gran Turismo Sport",0,0,0,0,110],[47,"Grand Theft Auto V (GTA 5)",100,500,450,300,90],[48,"Hello Neighbor Bundle",0,0,0,0,5],[49,"Hitman 3",0,0,0,0,70],[50,"Hogwarts Legacy",100,0,450,300,80],[51,"Horizon Forbidden West",150,450,400,300,90],[52,"Human: Fall Flat",0,0,0,0,2],[53,"Injustice 2",100,250,200,150,35],[54,"It Takes Two",150,450,450,0,45],[55,"Just Cause 4 Reloaded",100,300,250,200,60],[56,"L.A. Noire",100,0,250,150,18],[57,"lego 2k drive",100,350,300,0,20],[58,"LEGO Marvel Collection",100,350,300,0,50],[59,"Little Nightmares 1",100,0,250,0,4],[60,"Mafia Trilogy",100,300,300,0,100],[61,"Marvel's Avengers",100,0,350,0,100],[62,"Marvel's Spider-Man 2",0,0,0,550,90],[63,"marvel's spider-man miles morales",150,450,400,0,50],[64,"Marvel's Spider-Man 1",100,400,350,250,50],[65,"Minecraft",200,0,0,0,2],[66,"Mortal Kombat 11",100,350,300,200,80],[67,"Mortal Kombat™ 1",150,0,550,0,100],[68,"MotoGP 22 PS4 & PS5",100,250,200,180,30],[69,"Naruto Shippuden: Ultimate Ninja Storm 4",150,0,400,0,40],[70,"NBA 2K25",100,0,0,400,150],[71,"need for speed 2015",100,0,200,150,20],[72,"Need for Speed Heat",150,300,250,200,35],[73,"NFS Hot Pursuit Remastered",100,200,200,150,25],[74,"Need for Speed Payback",100,250,250,200,30],[75,"NFS Unbound",0,0,0,0,35],[76,"Olympic Games Tokyo 2020",100,300,300,0,15],[77,"Outlast Trinity",100,0,0,250,30],[78,"Overcooked Bundle",0,0,0,0,10],[79,"eFootball / PES 2019",0,0,0,0,30],[80,"eFootball / PES 2021",450,0,0,0,40],[81,"Ratchet",0,200,200,150,28],[82,"Rayman Legends",100,250,250,200,10],[83,"Red Dead Redemption 2",150,550,450,0,115],[84,"Resident Evil 4 Remake",0,0,0,0,60],[85,"Resident Evil 7: Biohazard",100,0,0,200,25],[86,"Resident Evil Racoon city",100,400,350,0,45],[87,"Resident Evil Village",100,0,0,0,30],[88,"Ride",100,0,200,150,20],[89,"Rise of the Tomb Raider",0,0,0,0,20],[90,"Rubber Bandits",0,0,0,0,2],[91,"Sackboy: A Big Adventure",0,0,0,0,35],[92,"Saints Row",100,350,300,0,50],[93,"Sekiro: Shadows Die Twice",100,450,0,0,15],[94,"Silent Hill 2 Remake",0,0,0,550,50],[95,"Sonic Frontiers",100,0,450,0,25],[96,"Split Fiction",0,0,0,0,10],[97,"Tekken 7",100,450,300,250,50],[98,"The Crew 2",0,0,0,0,60],[99,"The Crew Motofest",0,0,0,0,35],[100,"The Evil Within 1",100,0,0,150,40],[101,"The Evil Within 2",100,0,0,150,35],[102,"The Last of Us Part 2",150,0,0,0,80],[103,"The Last of Us Part 1 Remastered",100,350,300,0,45],[104,"The Witcher 3: Wild Hunt",100,250,200,0,40],[105,"Tomb Raider DE",100,200,200,150,15],[106,"Tomb Raider Trilogy",150,400,350,0,50],[107,"TOP Spin 2K 2025",0,0,450,350,30],[108,"EA SPORTS UFC 4",100,0,0,200,30],[109,"Uncharted Trilogy",100,450,400,250,45],[110,"Unravel Two",80,200,200,150,4],[111,"V Rally",100,200,200,150,15],[112,"Watch Dogs 2",100,0,250,0,35],[113,"Watch Dogs Legion",100,0,0,0,45],[114,"WWE 2k20",100,0,0,0,50],[115,"WWE 2K23",0,0,0,0,70],[116,"WWE 2K24",100,0,0,0,80],[117,"WWE 2K25",150,450,0,0,80],[118,"Zombie Army 4",100,250,0,150,50]
         ];
 
-        const gamesDB = raw.map(r => ({ id: r[0], name: r[1], pr: {'Offline':r[2], 'Pri PS4':r[3], 'Pri PS5':r[4], 'Secondary':r[5]}, sz: r[6] }));
+        // مصفوفة تعريف ألعاب الـ Sale بأرقام الـ IDs الخاصة بها من القائمة لضمان عدم حدوث خطأ في الأسماء
+        const saleIDs = [1, 4, 5, 7, 10, 12, 14, 15, 18, 22, 36, 42, 43, 47, 54, 58, 60, 63, 64, 66, 67, 72, 80, 83, 103, 106, 109];
+
+        const gamesDB = raw.map(r => ({ 
+            id: r[0], 
+            name: r[1], 
+            pr: {'Offline':r[2], 'Pri PS4':r[3], 'Pri PS5':r[4], 'Secondary':r[5]}, 
+            sz: r[6],
+            isSale: saleIDs.includes(r[0]) // تحديد هل اللعبة في العرض أم لا
+        }));
+        
         let cart = []; 
+        let currentFilter = 'all';
 
         const getImg = (name) => {
             if (typeof imageMap !== 'undefined') {
                 const clean = n => n.toLowerCase().replace(/[:/]/g, '').replace(/\s+/g, ' ').trim();
                 let target = clean(name);
                 let match = imageMap.find(img => clean(img['اسم الصورة فقط']) === target);
-                if (match) return encodeURI(match['الاسم بالكامل']);
+                if (match) return encodeURI('images/' + match['الاسم بالكامل']); // توجيه مسار الصورة لمجلد images
             }
-            return encodeURI(name.replace(/[:/]/g, '') + ".jpg"); 
+            return encodeURI("images/" + name.replace(/[:/]/g, '') + ".jpg"); 
         };
 
-        function calcPkgs() {
-            const p = [{id:'pkg1-info',g:[16, 18, 22, 36, 66, 47]}, {id:'pkg2-info',g:[73, 15, 22, 36, 97, 60]}, {id:'pkg3-info',g:[74, 14, 22, 66, 55]}];
-            p.forEach(x => {
-                let sz=0, pr=0;
-                x.g.forEach(gid => { let g = gamesDB.find(i=>i.id===gid); if(g){sz+=g.sz; pr+=g.pr['Offline'];} });
-                document.getElementById(x.id).innerText = `💾 ~${sz} GB | 💰 ${pr} ج.م`;
-            });
+        function setFilter(filterType, btnElement) {
+            currentFilter = filterType;
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+            renderGames();
         }
-        calcPkgs();
 
         function addPackage(ids) {
             if(cart.some(c => c.t !== 'Offline')) return alert("لا يمكن دمج الأوفلاين مع برايمري أو سكندري.");
@@ -208,14 +251,22 @@
 
         function clearCart() { cart = []; updateCart(); renderGames(); }
 
-        // تم التعديل لبناء الكود مرة واحدة لتسريع الصفحة (حل التهنيج)
         function renderGames() {
             const grid = document.getElementById('gamesGrid');
             const term = document.getElementById('searchInput').value.toLowerCase();
             let htmlContent = '';
             
-            let sortedGames = [...gamesDB].sort((a,b) => a.name.localeCompare(b.name));
-            sortedGames.forEach(g => {
+            let filteredGames = [...gamesDB];
+
+            // تطبيق الفلتر (Sale أو الكل)
+            if (currentFilter === 'sale') {
+                filteredGames = filteredGames.filter(g => g.isSale);
+            }
+
+            // ترتيب الألعاب: العروض تظهر في البداية دائماً ثم ترتيب أبجدي
+            filteredGames.sort((a,b) => (b.isSale ? 1 : 0) - (a.isSale ? 1 : 0) || a.name.localeCompare(b.name));
+
+            filteredGames.forEach(g => {
                 if(term && !g.name.toLowerCase().includes(term)) return;
                 let btns = '';
                 ['Offline', 'Pri PS4', 'Pri PS5', 'Secondary'].forEach(t => {
@@ -226,9 +277,12 @@
                 });
                 
                 let imgSrc = getImg(g.name);
+                let saleClass = g.isSale ? 'on-sale' : '';
+                
                 htmlContent += `
-                <div class="card">
+                <div class="card ${saleClass}">
                     <div class="c-img">
+                        <div class="sale-badge">عرض 🔥</div>
                         <span class="c-text">${g.name}</span>
                         <img src="${imgSrc}" loading="lazy" onerror="this.style.display='none'">
                     </div>
@@ -256,7 +310,7 @@
                     <div><small dir="ltr" style="color:var(--mut);">${c.sz} GB</small> &nbsp; <b style="color:var(--pri);">${c.p} ج</b></div>
                 </div>`;
             });
-            if(document.getElementById('storeFeeToggle').checked && cart.length) { totalP += 100; list.innerHTML += `<div class="c-item"><b style="color:var(--dang);">رسوم تحميل المحل</b><b style="color:var(--dang);">100 ج</b></div>`; }
+            if(document.getElementById('storeFeeToggle').checked && cart.length) { totalP += 100; list.innerHTML += `<div class="cart-item"><div style="display:flex; align-items:center; gap:8px;"><div><b style="color:var(--dang);">رسوم تحميل داخل المحل</b></div></div><div><b style="color:var(--dang);">100 ج</b></div></div>`; }
             document.getElementById('totalSizeUI').innerText = totalSz + " GB";
             document.getElementById('totalPriceUI').innerText = totalP + " ج.م";
         }
@@ -264,7 +318,6 @@
         function openCart() { document.getElementById('cartModal').style.display='flex'; }
         function closeCart() { document.getElementById('cartModal').style.display='none'; }
 
-        // دالة الإرسال الخارقة
         function sendToGoogle(payload) {
             const formData = new URLSearchParams();
             formData.append('data', JSON.stringify(payload));
