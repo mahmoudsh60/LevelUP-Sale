@@ -62,8 +62,10 @@
         .sale-badge { position: absolute; top: 10px; right: 10px; background: linear-gradient(45deg, #dc2626, #ef4444); color: white; padding: 4px 12px; font-size: 12px; font-weight: 900; border-radius: 4px; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.5); display: none;}
         .card.on-sale .sale-badge { display: block; }
 
+        .img-fallback { position: absolute; z-index: 1; color: #475569; font-weight: 900; font-size: 18px; text-align: center; padding: 10px; width: 100%;}
         .c-text { position: absolute; z-index: 1; color: #475569; font-size: 18px; font-weight: 900; text-transform: uppercase; text-align: center; padding: 10px;}
         .c-img img { position: absolute; z-index: 2; width: 100%; height: 100%; object-fit: cover; }
+        
         .c-head { padding: 15px 10px 5px; text-align: center; background: #17171c;}
         .c-title { color: var(--txt); font-size: 16px; font-weight: 900; margin: 0; text-transform: uppercase;}
         .c-size { font-size: 13px; color: #cbd5e1; margin-top: 5px; display: block;}
@@ -171,7 +173,8 @@
             <div class="grid">
                 <div class="card">
                     <div class="c-img">
-                        <img src="images/Ps4%20slim%20mod.jpg" loading="lazy" alt="PS4 سليم معدل" style="width:100%; height:100%; object-fit:cover; z-index:2;">
+                        <span class="img-fallback">PS4 سليم معدل</span>
+                        <img src="images/Ps4%20slim%20mod.png" onerror="this.onerror=null; this.src='images/Ps4%20slim%20mod.jpg';" loading="lazy" alt="PS4 سليم معدل" style="width:100%; height:100%; object-fit:cover; z-index:2;">
                     </div>
                     <div class="c-head">
                         <h3 class="c-title">PS4 سليم معدل</h3>
@@ -185,7 +188,8 @@
 
                 <div class="card">
                     <div class="c-img">
-                        <img src="images/Ps4%20Slim%20legit.jpg" loading="lazy" alt="PS4 سليم أكونتات" style="width:100%; height:100%; object-fit:cover; z-index:2;">
+                        <span class="img-fallback">PS4 سليم أكونتات</span>
+                        <img src="images/Ps4%20Slim%20legit.png" onerror="this.onerror=null; this.src='images/Ps4%20Slim%20legit.jpg';" loading="lazy" alt="PS4 سليم أكونتات" style="width:100%; height:100%; object-fit:cover; z-index:2;">
                     </div>
                     <div class="c-head">
                         <h3 class="c-title">PS4 سليم أكونتات</h3>
@@ -199,7 +203,8 @@
 
                 <div class="card">
                     <div class="c-img">
-                        <img src="images/Ps4%20Fat%20mod.jpg" loading="lazy" alt="PS4 فات معدل" style="width:100%; height:100%; object-fit:cover; z-index:2;">
+                        <span class="img-fallback">PS4 فات معدل</span>
+                        <img src="images/Ps4%20Fat%20mod.png" onerror="this.onerror=null; this.src='images/Ps4%20Fat%20mod.jpg';" loading="lazy" alt="PS4 فات معدل" style="width:100%; height:100%; object-fit:cover; z-index:2;">
                     </div>
                     <div class="c-head">
                         <h3 class="c-title">PS4 فات معدل</h3>
@@ -213,7 +218,8 @@
 
                 <div class="card">
                     <div class="c-img">
-                        <img src="images/Ps4%20Fat%20Legit.jpg" loading="lazy" alt="PS4 فات أكونتات" style="width:100%; height:100%; object-fit:cover; z-index:2;">
+                        <span class="img-fallback">PS4 فات أكونتات</span>
+                        <img src="images/Ps4%20Fat%20Legit.png" onerror="this.onerror=null; this.src='images/Ps4%20Fat%20Legit.jpg';" loading="lazy" alt="PS4 فات أكونتات" style="width:100%; height:100%; object-fit:cover; z-index:2;">
                     </div>
                     <div class="c-head">
                         <h3 class="c-title">PS4 فات أكونتات</h3>
@@ -227,7 +233,8 @@
 
                 <div class="card">
                     <div class="c-img">
-                        <img src="images/Ps3%20mod.jpg" loading="lazy" alt="PlayStation 3 معدل" style="width:100%; height:100%; object-fit:cover; z-index:2;">
+                        <span class="img-fallback">PlayStation 3 معدل</span>
+                        <img src="images/Ps3%20mod.png" onerror="this.onerror=null; this.src='images/Ps3%20mod.jpg';" loading="lazy" alt="PlayStation 3 معدل" style="width:100%; height:100%; object-fit:cover; z-index:2;">
                     </div>
                     <div class="c-head">
                         <h3 class="c-title">PlayStation 3 معدل</h3>
@@ -283,19 +290,16 @@
         function openTab(evt, tabName) {
             let i, tabcontent, tablinks;
             
-            // إخفاء كل المحتوى
             tabcontent = document.getElementsByClassName("tab-content");
             for (i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].classList.remove("active");
             }
             
-            // إزالة كلاس active من كل الزراير
             tablinks = document.getElementsByClassName("tab-btn");
             for (i = 0; i < tablinks.length; i++) {
                 tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
             
-            // إظهار المحتوى المطلوب وتنشيط الزر الخاص به
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.className += " active";
         }
