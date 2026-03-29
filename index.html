@@ -91,7 +91,6 @@
         .m-sum { background: #0f172a; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center; border: 1px solid #334155;}
         .btn-wa { background: #25D366; color: white; width: 100%; padding: 14px; border: none; border-radius: 8px; font-weight: bold; font-family: inherit; cursor: pointer; margin-top: 10px;}
 
-        /* تنسيق أقسام الأجهزة والإكسسوارات (مؤقت) */
         .placeholder-box { background: var(--card); border: 2px dashed #475569; border-radius: 12px; padding: 50px; text-align: center; color: var(--mut); font-size: 18px; margin-top: 20px;}
     </style>
 </head>
@@ -167,9 +166,78 @@
         </div>
 
         <div id="devicesTab" class="tab-content">
-            <h2 class="sec-title">🕹️ أجهزة البلايستيشن (جديد ومستعمل)</h2>
-            <div class="placeholder-box">
-                قريباً.. سيتم إضافة كروت الأجهزة هنا بأسعارها وتفاصيلها! 🚀
+            <h2 class="sec-title">🕹️ أجهزة البلايستيشن</h2>
+            
+            <div class="grid">
+                <div class="card">
+                    <div class="c-img">
+                        <img src="images/Ps4%20slim%20mod.jpg" loading="lazy" alt="PS4 سليم معدل" style="width:100%; height:100%; object-fit:cover; z-index:2;">
+                    </div>
+                    <div class="c-head">
+                        <h3 class="c-title">PS4 سليم معدل</h3>
+                        <span style="color:var(--pri); font-size:20px; font-weight:900; display:block; margin-top:8px;">10,000 ج.م</span>
+                    </div>
+                    <div class="c-body">
+                        <p style="font-size:13px; color:var(--mut); margin:0 0 10px; text-align:center;">شامل الألعاب وضمان أسبوع لتغييرها</p>
+                        <button class="btn-pkg" style="background-color: #25D366;" onclick="window.open('https://wa.me/201555886990?text=' + encodeURIComponent('مرحباً LevelUP، أريد الاستفسار عن جهاز: PS4 سليم معدل بسعر 10000 ج.م'), '_blank')">📱 تواصل للحجز</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="c-img">
+                        <img src="images/Ps4%20Slim%20legit.jpg" loading="lazy" alt="PS4 سليم أكونتات" style="width:100%; height:100%; object-fit:cover; z-index:2;">
+                    </div>
+                    <div class="c-head">
+                        <h3 class="c-title">PS4 سليم أكونتات</h3>
+                        <span style="color:var(--pri); font-size:20px; font-weight:900; display:block; margin-top:8px;">8,500 ج.م</span>
+                    </div>
+                    <div class="c-body">
+                        <p style="font-size:13px; color:var(--mut); margin:0 0 10px; text-align:center;">ضمان أسبوع إرجاع</p>
+                        <button class="btn-pkg" style="background-color: #25D366;" onclick="window.open('https://wa.me/201555886990?text=' + encodeURIComponent('مرحباً LevelUP، أريد الاستفسار عن جهاز: PS4 سليم أكونتات بسعر 8500 ج.م'), '_blank')">📱 تواصل للحجز</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="c-img">
+                        <img src="images/Ps4%20Fat%20mod.jpg" loading="lazy" alt="PS4 فات معدل" style="width:100%; height:100%; object-fit:cover; z-index:2;">
+                    </div>
+                    <div class="c-head">
+                        <h3 class="c-title">PS4 فات معدل</h3>
+                        <span style="color:var(--pri); font-size:20px; font-weight:900; display:block; margin-top:8px;">8,500 ج.م</span>
+                    </div>
+                    <div class="c-body">
+                        <p style="font-size:13px; color:var(--mut); margin:0 0 10px; text-align:center;">شامل الألعاب وضمان أسبوع لتغييرها</p>
+                        <button class="btn-pkg" style="background-color: #25D366;" onclick="window.open('https://wa.me/201555886990?text=' + encodeURIComponent('مرحباً LevelUP، أريد الاستفسار عن جهاز: PS4 فات معدل بسعر 8500 ج.م'), '_blank')">📱 تواصل للحجز</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="c-img">
+                        <img src="images/Ps4%20Fat%20Legit.jpg" loading="lazy" alt="PS4 فات أكونتات" style="width:100%; height:100%; object-fit:cover; z-index:2;">
+                    </div>
+                    <div class="c-head">
+                        <h3 class="c-title">PS4 فات أكونتات</h3>
+                        <span style="color:var(--pri); font-size:20px; font-weight:900; display:block; margin-top:8px;">7,500 ج.م</span>
+                    </div>
+                    <div class="c-body">
+                        <p style="font-size:13px; color:var(--mut); margin:0 0 10px; text-align:center;">ضمان أسبوع إرجاع</p>
+                        <button class="btn-pkg" style="background-color: #25D366;" onclick="window.open('https://wa.me/201555886990?text=' + encodeURIComponent('مرحباً LevelUP، أريد الاستفسار عن جهاز: PS4 فات أكونتات بسعر 7500 ج.م'), '_blank')">📱 تواصل للحجز</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="c-img">
+                        <img src="images/Ps3%20mod.jpg" loading="lazy" alt="PlayStation 3 معدل" style="width:100%; height:100%; object-fit:cover; z-index:2;">
+                    </div>
+                    <div class="c-head">
+                        <h3 class="c-title">PlayStation 3 معدل</h3>
+                        <span style="color:var(--pri); font-size:20px; font-weight:900; display:block; margin-top:8px;">4,500 ج.م</span>
+                    </div>
+                    <div class="c-body">
+                        <p style="font-size:13px; color:var(--mut); margin:0 0 10px; text-align:center;">ضمان أسبوع لتغيير الألعاب</p>
+                        <button class="btn-pkg" style="background-color: #25D366;" onclick="window.open('https://wa.me/201555886990?text=' + encodeURIComponent('مرحباً LevelUP، أريد الاستفسار عن جهاز: PlayStation 3 معدل بسعر 4500 ج.م'), '_blank')">📱 تواصل للحجز</button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -255,15 +323,15 @@
 
         function getPossibleUrls(name) {
             let urls = [];
-            const clean = n => n.toLowerCase().replace(/[:/]/g, '').replace(/\s+/g, ' ').trim();
+            const clean = n => n ? n.toString().toLowerCase().replace(/[:/]/g, '').replace(/\s+/g, ' ').trim() : "";
             const dashed = n => clean(n).replace(/ /g, '-');
             
             let target1 = clean(name);
             let target2 = dashed(name);
 
-            if (typeof imageMap !== 'undefined') {
+            if (typeof imageMap !== 'undefined' && Array.isArray(imageMap)) {
                 let matches = imageMap.filter(img => {
-                    let imgName = clean(img['اسم الصورة فقط']);
+                    let imgName = clean(img['اسم الصورة فقط'] || "");
                     return imgName === target1 || imgName === target2;
                 });
                 matches.forEach(m => {
@@ -276,7 +344,7 @@
             let rawName = encodeURI(name.replace(/[:/]/g, ''));
             let rawDashed = encodeURI(name.replace(/[:/]/g, '').replace(/ /g, '-'));
             
-            ['.jpg', '.png', '.jpeg', '.avif'].forEach(ext => {
+            ['.jpg', '.png', '.jpeg', '.avif', '.JPG', '.PNG'].forEach(ext => {
                 urls.push('images/' + rawName + ext);
                 urls.push(rawName + ext);
                 urls.push('images/' + rawDashed + ext);
@@ -290,6 +358,8 @@
             let urls = window.fallbackImages[gameId];
             let nextIndex = currentIndex + 1;
             
+            imgElement.onerror = null;
+
             if (urls && nextIndex < urls.length) {
                 imgElement.onerror = function() { tryNextImg(imgElement, gameId, nextIndex); };
                 imgElement.src = urls[nextIndex];
@@ -346,44 +416,52 @@
         function clearCart() { cart = []; updateCart(); renderGames(); }
 
         function renderGames() {
-            const grid = document.getElementById('gamesGrid');
-            const term = document.getElementById('searchInput').value.toLowerCase();
-            let htmlContent = '';
-            
-            let filteredGames = [...gamesDB];
+            try {
+                const grid = document.getElementById('gamesGrid');
+                const term = document.getElementById('searchInput').value.toLowerCase();
+                let htmlContent = '';
+                
+                let filteredGames = [...gamesDB];
 
-            if (currentFilter === 'sale') {
-                filteredGames = filteredGames.filter(g => g.isSale);
-            }
+                if (currentFilter === 'sale') {
+                    filteredGames = filteredGames.filter(g => g.isSale);
+                }
 
-            filteredGames.sort((a,b) => (b.isSale ? 1 : 0) - (a.isSale ? 1 : 0) || a.name.localeCompare(b.name));
+                filteredGames.sort((a,b) => (b.isSale ? 1 : 0) - (a.isSale ? 1 : 0) || a.name.localeCompare(b.name));
 
-            filteredGames.forEach(g => {
-                if(term && !g.name.toLowerCase().includes(term)) return;
-                let btns = '';
-                ['Offline', 'Pri PS4', 'Pri PS5', 'Secondary'].forEach(t => {
-                    let p = g.pr[t], inC = cart.some(c => c.id === g.id && c.t === t);
-                    btns += `<button class="btn-v ${inC?'added':''}" onclick="toggleV(${g.id},'${t}',${p})" ${p>0?'':'disabled'}>
-                                <span>${inC?'إزالة':t}</span> <span>${p>0?p+' ج':'نفذت ❌'}</span>
-                             </button>`;
+                filteredGames.forEach(g => {
+                    try {
+                        if(term && !g.name.toLowerCase().includes(term)) return;
+                        let btns = '';
+                        ['Offline', 'Pri PS4', 'Pri PS5', 'Secondary'].forEach(t => {
+                            let p = g.pr[t], inC = cart.some(c => c.id === g.id && c.t === t);
+                            btns += `<button class="btn-v ${inC?'added':''}" onclick="toggleV(${g.id},'${t}',${p})" ${p>0?'':'disabled'}>
+                                        <span>${inC?'إزالة':t}</span> <span>${p>0?p+' ج':'نفذت ❌'}</span>
+                                     </button>`;
+                        });
+                        
+                        let possibleUrls = getPossibleUrls(g.name);
+                        window.fallbackImages[g.id] = possibleUrls;
+                        let saleClass = g.isSale ? 'on-sale' : '';
+                        
+                        htmlContent += `
+                        <div class="card ${saleClass}">
+                            <div class="c-img">
+                                <div class="sale-badge">عرض 🔥</div>
+                                <span class="c-text">${g.name}</span>
+                                <img src="${possibleUrls[0]}" loading="lazy" onerror="tryNextImg(this, ${g.id}, 0)">
+                            </div>
+                            <div class="c-head"><h3 class="c-title">${g.name}</h3><span class="c-size">💾 ~${g.sz} GB</span></div>
+                            <div class="c-body">${btns}</div>
+                        </div>`;
+                    } catch(err) {
+                        console.error('خطأ في تحميل لعبة:', g.name, err);
+                    }
                 });
-                
-                let possibleUrls = getPossibleUrls(g.name);
-                window.fallbackImages[g.id] = possibleUrls;
-                let saleClass = g.isSale ? 'on-sale' : '';
-                
-                htmlContent += `
-                <div class="card ${saleClass}">
-                    <div class="c-img">
-                        <div class="sale-badge">عرض 🔥</div>
-                        <span class="c-text">${g.name}</span>
-                        <img src="${possibleUrls[0]}" loading="lazy" onerror="tryNextImg(this, ${g.id}, 0)">
-                    </div>
-                    <div class="c-head"><h3 class="c-title">${g.name}</h3><span class="c-size">💾 ~${g.sz} GB</span></div>
-                    <div class="c-body">${btns}</div>
-                </div>`;
-            });
-            grid.innerHTML = htmlContent;
+                grid.innerHTML = htmlContent;
+            } catch(globalError) {
+                console.error("خطأ عام في ريندر الألعاب:", globalError);
+            }
         }
 
         function updateCart() {
