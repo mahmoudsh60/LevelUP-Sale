@@ -27,7 +27,6 @@
         .tab-content { display: none; animation: fadeIn 0.4s ease-in-out; }
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        /* ================================== */
 
         .sec-title { font-size: 24px; color: var(--pri); margin-bottom: 20px; font-weight: 900; border-bottom: 2px dashed #334155; padding-bottom: 10px;}
         
@@ -241,10 +240,9 @@
             { id: 'd5', name: 'PlayStation 3 معدل', price: 4500, desc: 'ضمان أسبوع لتغيير الألعاب', img: 'Ps3 mod.png', fallback: 'Ps3 mod.jpg' }
         ];
 
-        // === داتا الإكسسوارات (جديد) ===
+        // === داتا الإكسسوارات ===
         const accessoriesDB = [
-            { id: 'a1', name: 'دراع بلايستيشن 4 (إصدار GTA V)', price: 750, desc: 'إصدار محدود وشكل حصري', img: '20260331_083602.jpg' },
-            { id: 'a2', name: 'دراع بلايستيشن 4 (إصدار COD)', price: 750, desc: 'دابل موتور فايبريشن عالي الجودة', img: 'PS4 Controller.jpg' },
+            { id: 'a2', name: 'دراع بلايستيشن 4 اشكال', price: 750, desc: 'دابل موتور فايبريشن عالي الجودة', img: 'PS4 Controller.jpg' },
             { id: 'a3', name: 'دراع بلايستيشن 3 (ألوان)', price: 350, desc: 'جودة ممتازة متوافق مع PS3', img: 'PS3 Controller.jpg' },
             { id: 'a4', name: 'دراع XBOX 360 سلكي', price: 350, desc: 'متوافق مع الكمبيوتر و XBOX', img: 'XBOX 360.jpg' },
             { id: 'a5', name: 'ستاند وشاحن OIVO PS5', price: 450, desc: 'شحن دراعين مع مؤشر LED', img: 'OIVO PS5.jpg' },
@@ -351,7 +349,6 @@
             updateCart(); renderDevices(); 
         }
 
-        // إضافة / إزالة الإكسسوارات (جديد)
         function toggleAccessory(id) {
             let idx = cart.findIndex(c => c.id === id);
             if(idx > -1) { cart.splice(idx, 1); } 
@@ -430,7 +427,7 @@
                 <div class="card">
                     <div class="c-img">
                         <span class="img-fallback">${d.name}</span>
-                        <img src="images/${encodeURI(d.img)}" onerror="this.onerror=null; this.src='images/${encodeURI(d.fallback)}';" loading="lazy" alt="${d.name}" style="width:100%; height:100%; object-fit:cover; z-index:2;">
+                        <img src="images/${encodeURIComponent(d.img)}" onerror="this.onerror=null; this.src='images/${encodeURIComponent(d.fallback)}';" loading="lazy" alt="${d.name}" style="width:100%; height:100%; object-fit:cover; z-index:2;">
                     </div>
                     <div class="c-head">
                         <h3 class="c-title">${d.name}</h3>
@@ -445,7 +442,6 @@
             if (grid) grid.innerHTML = htmlContent;
         }
 
-        // ريندر الإكسسوارات (جديد)
         function renderAccessories() {
             const grid = document.getElementById('accessoriesGrid');
             let htmlContent = '';
@@ -457,7 +453,7 @@
                 <div class="card">
                     <div class="c-img">
                         <span class="img-fallback">${a.name}</span>
-                        <img src="images/${encodeURI(a.img)}" loading="lazy" alt="${a.name}" style="width:100%; height:100%; object-fit:cover; z-index:2;">
+                        <img src="images/${encodeURIComponent(a.img)}" loading="lazy" alt="${a.name}" style="width:100%; height:100%; object-fit:cover; z-index:2;">
                     </div>
                     <div class="c-head">
                         <h3 class="c-title" style="font-size: 14px;">${a.name}</h3>
