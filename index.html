@@ -27,6 +27,7 @@
         .tab-content { display: none; animation: fadeIn 0.4s ease-in-out; }
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* ================================== */
 
         .sec-title { font-size: 24px; color: var(--pri); margin-bottom: 20px; font-weight: 900; border-bottom: 2px dashed #334155; padding-bottom: 10px;}
         
@@ -79,7 +80,7 @@
         .btn-v:disabled { background: #17171c; border-color: #333; cursor: not-allowed; opacity: 0.7;}
         .btn-v:disabled span:last-child { color: var(--dang); font-size: 13px;}
 
-        .cart-fl { position: fixed; bottom: 20px; left: 20px; background: var(--acc); color: white; padding: 15px 25px; border-radius: 30px; font-weight: bold; font-family: inherit; cursor: pointer; border: none; z-index: 1000;}
+        .cart-fl { position: fixed; bottom: 20px; left: 20px; background: var(--acc); color: white; padding: 15px 25px; border-radius: 30px; font-weight: bold; font-family: inherit; cursor: pointer; border: none; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.5);}
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1001; justify-content: center; align-items: center; padding: 15px; }
         .m-cont { background: var(--card); width: 100%; max-width: 500px; border-radius: 15px; padding: 25px; max-height: 90vh; overflow-y: auto; border: 2px solid var(--acc); }
         .m-head { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; padding-bottom: 15px; margin-bottom: 15px; }
@@ -151,7 +152,7 @@
             <div class="steps-container">
                 <div class="step-box"><span>1</span> اختار ألعابك</div>
                 <div class="step-box"><span>2</span> افتح العربة</div>
-                <div class="step-box"><span>3</span> ارسل الألعاب مع بياناتك</div>
+                <div class="step-box"><span>3</span> ارسل الأوردر مع بياناتك</div>
             </div>
 
             <div class="filters">
@@ -172,12 +173,12 @@
 
         <div id="accessoriesTab" class="tab-content">
             <h2 class="sec-title">🎧 إكسسوارات و ملحقات</h2>
-            <div class="placeholder-box">
-                قريباً.. سيتم إضافة السماعات، الدراعات، الكابلات، والجرابات هنا لتضاف للعربة مباشرة! ⚡
-            </div>
+            <div class="grid" id="accessoriesGrid"></div>
         </div>
 
-    </div> <button class="cart-fl" onclick="openCart()">🛒 عرضي المختار (<span id="cartCount">0</span>)</button>
+    </div>
+
+    <button class="cart-fl" onclick="openCart()">🛒 عرضي المختار (<span id="cartCount">0</span>)</button>
 
     <div class="modal" id="cartModal">
         <div class="m-cont">
@@ -208,7 +209,6 @@
     <script src="image_map.js" onerror="console.warn('image_map.js not found')"></script>
 
     <script>
-        // ================= دالة التبويبات (Tabs) =================
         function openTab(evt, tabName) {
             let i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tab-content");
@@ -218,7 +218,6 @@
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.className += " active";
         }
-        // =========================================================
 
         const GOOGLE_URL = 'https://script.google.com/macros/s/AKfycbzsHNi9IU8P0cE57JkWQ1ZYK8W_7D1_R9klbJe2Fo9o6WPaOmyUm227fZYMIgz7bXdD/exec';
 
@@ -230,20 +229,30 @@
         const saleIDs = [1, 4, 5, 7, 10, 12, 14, 15, 18, 22, 36, 42, 43, 47, 54, 58, 60, 63, 64, 66, 67, 72, 80, 83, 103, 106, 109];
 
         const gamesDB = raw.map(r => ({ 
-            id: r[0], 
-            name: r[1], 
-            pr: {'Offline':r[2], 'Pri PS4':r[3], 'Pri PS5':r[4], 'Secondary':r[5]}, 
-            sz: r[6],
-            isSale: saleIDs.includes(r[0])
+            id: r[0], name: r[1], pr: {'Offline':r[2], 'Pri PS4':r[3], 'Pri PS5':r[4], 'Secondary':r[5]}, sz: r[6], isSale: saleIDs.includes(r[0])
         }));
 
-        // === داتا الأجهزة (جديد) ===
+        // === داتا الأجهزة ===
         const devicesDB = [
             { id: 'd1', name: 'PS4 سليم معدل', price: 10000, desc: 'شامل الألعاب وضمان أسبوع لتغييرها', img: 'Ps4 slim mod.png', fallback: 'Ps4 slim mod.jpg' },
             { id: 'd2', name: 'PS4 سليم أكونتات', price: 8500, desc: 'ضمان أسبوع إرجاع', img: 'Ps4 Slim legit.png', fallback: 'Ps4 Slim legit.jpg' },
             { id: 'd3', name: 'PS4 فات معدل', price: 8500, desc: 'شامل الألعاب وضمان أسبوع لتغييرها', img: 'Ps4 Fat mod.png', fallback: 'Ps4 Fat mod.jpg' },
             { id: 'd4', name: 'PS4 فات أكونتات', price: 7500, desc: 'ضمان أسبوع إرجاع', img: 'Ps4 Fat Legit.png', fallback: 'Ps4 Fat Legit.jpg' },
             { id: 'd5', name: 'PlayStation 3 معدل', price: 4500, desc: 'ضمان أسبوع لتغيير الألعاب', img: 'Ps3 mod.png', fallback: 'Ps3 mod.jpg' }
+        ];
+
+        // === داتا الإكسسوارات (جديد) ===
+        const accessoriesDB = [
+            { id: 'a1', name: 'دراع بلايستيشن 4 (إصدار GTA V)', price: 750, desc: 'إصدار محدود وشكل حصري', img: '20260331_083602.jpg' },
+            { id: 'a2', name: 'دراع بلايستيشن 4 (إصدار COD)', price: 750, desc: 'دابل موتور فايبريشن عالي الجودة', img: 'PS4 Controller.jpg' },
+            { id: 'a3', name: 'دراع بلايستيشن 3 (ألوان)', price: 350, desc: 'جودة ممتازة متوافق مع PS3', img: 'PS3 Controller.jpg' },
+            { id: 'a4', name: 'دراع XBOX 360 سلكي', price: 350, desc: 'متوافق مع الكمبيوتر و XBOX', img: 'XBOX 360.jpg' },
+            { id: 'a5', name: 'ستاند وشاحن OIVO PS5', price: 450, desc: 'شحن دراعين مع مؤشر LED', img: 'OIVO PS5.jpg' },
+            { id: 'a6', name: 'ستاند وشاحن OIVO PS4', price: 350, desc: 'شحن وتثبيت دراعين PS4', img: 'OIVO PS4.jpg' },
+            { id: 'a7', name: 'شاحن دراعات DOBE PS4', price: 250, desc: 'شاحن مزدوج سريع للدراعات', img: 'DOBE Charger.jpg' },
+            { id: 'a8', name: 'جراب سيليكون PS5', price: 150, desc: 'حماية ممتازة مع أزرار للأنالوج', img: 'PS5 Cover.jpg' },
+            { id: 'a9', name: 'جراب سيليكون PS4', price: 150, desc: 'أشكال مموهة ومميزة للحماية', img: 'PS4 Cover.jpg' },
+            { id: 'a10', name: 'طقم حماية أنالوج', price: 50, desc: 'متوافق مع دراعات PS4/PS5/Xbox', img: 'Silicon thumb stick.jpg' }
         ];
         
         let cart = []; 
@@ -286,9 +295,7 @@
         function tryNextImg(imgElement, gameId, currentIndex) {
             let urls = window.fallbackImages[gameId];
             let nextIndex = currentIndex + 1;
-            
             imgElement.onerror = null;
-
             if (urls && nextIndex < urls.length) {
                 imgElement.onerror = function() { tryNextImg(imgElement, gameId, nextIndex); };
                 imgElement.src = urls[nextIndex];
@@ -306,7 +313,7 @@
         }
 
         function addPackage(ids) {
-            if(cart.some(c => c.t !== 'Offline' && c.t !== 'جهاز')) return alert("لا يمكن دمج الأوفلاين مع برايمري أو سكندري.");
+            if(cart.some(c => c.t !== 'Offline' && c.t !== 'جهاز' && c.t !== 'إكسسوار')) return alert("لا يمكن دمج الأوفلاين مع برايمري أو سكندري.");
             ids.forEach(id => {
                 let g = gamesDB.find(x => x.id === id);
                 if(g && !cart.some(c => c.id === id)) cart.push({ id: g.id, n: g.name, t: 'Offline', p: g.pr['Offline'], sz: g.sz });
@@ -315,17 +322,16 @@
         }
 
         function addLevelUp() {
-            if(cart.some(c => c.t !== 'Offline' && c.t !== 'جهاز')) return alert("السلة تحتوي نسخ برايمري/سكندري.");
+            if(cart.some(c => c.t !== 'Offline' && c.t !== 'جهاز' && c.t !== 'إكسسوار')) return alert("السلة تحتوي نسخ برايمري/سكندري.");
             if(!cart.some(c => c.id === 999)) { cart.push({ id: 999, n: "باقة LevelUP 150 Giga WE", t: 'Offline', p: 85, sz: 150 }); updateCart(); alert("تم الإضافة للعربة!");}
         }
 
-        // إضافة / إزالة الألعاب
         function toggleV(id, type, price) {
             let idx = cart.findIndex(c => c.id === id && c.t === type);
             if(idx > -1) { cart.splice(idx, 1); }
             else {
                 let hasO = cart.some(c => c.t === 'Offline'), has4 = cart.some(c => c.t === 'Pri PS4'), has5 = cart.some(c => c.t === 'Pri PS5');
-                if(type === 'Offline' && cart.some(c=> c.t !== 'Offline' && c.t !== 'جهاز')) return alert("السلة بها نسخ أخرى غير الأوفلاين.");
+                if(type === 'Offline' && cart.some(c=> c.t !== 'Offline' && c.t !== 'جهاز' && c.t !== 'إكسسوار')) return alert("السلة بها نسخ أخرى غير الأوفلاين.");
                 if(type !== 'Offline' && hasO) return alert("السلة بها أوفلاين.");
                 if(type === 'Pri PS4' && has5) return alert("لا تدمج Pri PS4 مع Pri PS5.");
                 if(type === 'Pri PS5' && has4) return alert("لا تدمج Pri PS5 مع Pri PS4.");
@@ -335,35 +341,41 @@
             updateCart(); renderGames();
         }
 
-        // إضافة / إزالة الأجهزة (جديد)
         function toggleDevice(id) {
             let idx = cart.findIndex(c => c.id === id);
-            if(idx > -1) { 
-                cart.splice(idx, 1); 
-            } else {
+            if(idx > -1) { cart.splice(idx, 1); } 
+            else {
                 let d = devicesDB.find(x => x.id === id);
-                // بنضيف الجهاز والمساحة بتاعته بتكون صفر عشان ميأثرش على حسبة الجيجات
                 cart.push({ id: d.id, n: d.name, t: 'جهاز', p: d.price, sz: 0 });
             }
-            updateCart(); 
-            renderDevices(); 
+            updateCart(); renderDevices(); 
+        }
+
+        // إضافة / إزالة الإكسسوارات (جديد)
+        function toggleAccessory(id) {
+            let idx = cart.findIndex(c => c.id === id);
+            if(idx > -1) { cart.splice(idx, 1); } 
+            else {
+                let a = accessoriesDB.find(x => x.id === id);
+                cart.push({ id: a.id, n: a.name, t: 'إكسسوار', p: a.price, sz: 0 });
+            }
+            updateCart(); renderAccessories(); 
         }
 
         function removeFromCart(id) {
-            const index = cart.findIndex(c => c.id == id); // == عشان تقبل أرقام الألعاب أو نصوص الأجهزة
+            const index = cart.findIndex(c => c.id == id);
             if (index > -1) {
                 cart.splice(index, 1);
                 updateCart(); 
                 renderGames();
                 renderDevices();
+                renderAccessories();
             }
         }
 
         function clearCart() { 
             cart = []; 
-            updateCart(); 
-            renderGames(); 
-            renderDevices();
+            updateCart(); renderGames(); renderDevices(); renderAccessories();
         }
 
         function renderGames() {
@@ -371,13 +383,9 @@
                 const grid = document.getElementById('gamesGrid');
                 const term = document.getElementById('searchInput').value.toLowerCase();
                 let htmlContent = '';
-                
                 let filteredGames = [...gamesDB];
 
-                if (currentFilter === 'sale') {
-                    filteredGames = filteredGames.filter(g => g.isSale);
-                }
-
+                if (currentFilter === 'sale') { filteredGames = filteredGames.filter(g => g.isSale); }
                 filteredGames.sort((a,b) => (b.isSale ? 1 : 0) - (a.isSale ? 1 : 0) || a.name.localeCompare(b.name));
 
                 filteredGames.forEach(g => {
@@ -405,26 +413,19 @@
                             <div class="c-head"><h3 class="c-title">${g.name}</h3><span class="c-size">💾 ~${g.sz} GB</span></div>
                             <div class="c-body">${btns}</div>
                         </div>`;
-                    } catch(err) {
-                        console.error('خطأ في تحميل لعبة:', g.name, err);
-                    }
+                    } catch(err) { console.error('خطأ في تحميل لعبة:', g.name, err); }
                 });
                 grid.innerHTML = htmlContent;
-            } catch(globalError) {
-                console.error("خطأ عام في ريندر الألعاب:", globalError);
-            }
+            } catch(globalError) { console.error("خطأ عام في ريندر الألعاب:", globalError); }
         }
 
-        // ريندر الأجهزة (جديد)
         function renderDevices() {
             const grid = document.getElementById('devicesGrid');
             let htmlContent = '';
-            
             devicesDB.forEach(d => {
                 let inCart = cart.some(c => c.id === d.id);
                 let btnClass = inCart ? 'added' : '';
                 let btnText = inCart ? '❌ إزالة من العربة' : '🛒 إضافة للعربة';
-                
                 htmlContent += `
                 <div class="card">
                     <div class="c-img">
@@ -441,7 +442,33 @@
                     </div>
                 </div>`;
             });
-            
+            if (grid) grid.innerHTML = htmlContent;
+        }
+
+        // ريندر الإكسسوارات (جديد)
+        function renderAccessories() {
+            const grid = document.getElementById('accessoriesGrid');
+            let htmlContent = '';
+            accessoriesDB.forEach(a => {
+                let inCart = cart.some(c => c.id === a.id);
+                let btnClass = inCart ? 'added' : '';
+                let btnText = inCart ? '❌ إزالة من العربة' : '🛒 إضافة للعربة';
+                htmlContent += `
+                <div class="card">
+                    <div class="c-img">
+                        <span class="img-fallback">${a.name}</span>
+                        <img src="images/${encodeURI(a.img)}" loading="lazy" alt="${a.name}" style="width:100%; height:100%; object-fit:cover; z-index:2;">
+                    </div>
+                    <div class="c-head">
+                        <h3 class="c-title" style="font-size: 14px;">${a.name}</h3>
+                        <span style="color:var(--pri); font-size:18px; font-weight:900; display:block; margin-top:8px;">${a.price.toLocaleString()} ج.م</span>
+                    </div>
+                    <div class="c-body">
+                        <p style="font-size:12px; color:var(--mut); margin:0 0 10px; text-align:center;">${a.desc}</p>
+                        <button class="btn-pkg ${btnClass}" style="background-color: ${inCart ? 'var(--dang)' : 'var(--pri)'}; color: ${inCart ? '#fff' : '#000'};" onclick="toggleAccessory('${a.id}')">${btnText}</button>
+                    </div>
+                </div>`;
+            });
             if (grid) grid.innerHTML = htmlContent;
         }
 
@@ -454,10 +481,7 @@
             cart.forEach(c => {
                 if(!uG.has(c.id)) { totalSz += c.sz; uG.add(c.id); }
                 totalP += c.p;
-                
-                // نخفي مساحة الجيجا لو كانت صفر (زي الأجهزة أو الإكسسوارات)
                 let sizeHtml = c.sz > 0 ? `<small dir="ltr" style="color:var(--mut);">${c.sz} GB</small> &nbsp;` : '';
-                
                 list.innerHTML += `
                 <div class="cart-item">
                     <div style="display:flex; align-items:center; gap:8px;">
@@ -506,7 +530,7 @@
                 txt += `${i+1}. ${c.n} (${c.t}) - ${c.p.toLocaleString()} ج\n`;
                 gTxt += `${i+1}. ${c.n} [${c.t}]\n`;
                 items.push({name: c.n, type: c.t});
-                if(c.t !== 'Offline' && c.t !== 'جهاز') isPri = true;
+                if(c.t !== 'Offline' && c.t !== 'جهاز' && c.t !== 'إكسسوار') isPri = true;
                 if(!uG.has(c.id)) { totalSz += c.sz; uG.add(c.id); }
                 totalP += c.p;
             });
@@ -529,9 +553,9 @@
             }).catch(e => { alert("مشكلة في الاتصال! الكود: " + e); btn.innerText = originalText; btn.disabled = false; });
         }
 
-        // تشغيل الريندر عند فتح الصفحة
         renderGames(); 
         renderDevices(); 
+        renderAccessories();
         updateCart();
     </script>
 </body>
